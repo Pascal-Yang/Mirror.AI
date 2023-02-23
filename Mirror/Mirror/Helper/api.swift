@@ -2,12 +2,10 @@
 //  api.swift
 //  Mirror
 //
-//  Created by 梁宁越 on 2023/2/5.
-//  Copyright © 2023 Duy Bui. All rights reserved.
-//
+
 
 import Foundation
-
+// Structs for handling request and response data
 struct Request: Codable {
     let prompt: String
 }
@@ -23,27 +21,31 @@ struct RequestData: Codable {
     let temperature: Float
 }
 
-
+// Function for making a request to a API endpoint and returning the response
 func makeRequest(request: Request, completion: @escaping (Result<Response, Error>) -> Void) {
+    // Create encoder and decoder for encoding/decoding JSON data
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
+    // Encode request data into JSON
     let jsonData = try! encoder.encode(request)
+    // Create URL request to send the request to API endpoint
     var urlRequest = URLRequest(url: URL(string: "http://ec2-3-15-156-220.us-east-2.compute.amazonaws.com:5000/response")!)
+    // Set HTTP method to POST and add JSON data to the request body
     urlRequest.httpMethod = "POST"
     urlRequest.httpBody = jsonData
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
+    // Create URLSession data task to send the request and handle the response
     let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-        if let error = error {
+        if let error = error { //check error
             completion(.failure(error))
             return
         }
-
+        // Check if data was received from the request
         guard let data = data else {
             completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data was not retrieved from request"])))
             return
         }
-
+        // Decode response JSON data into Response struct
         do {
             let response = try decoder.decode(Response.self, from: data)
             completion(.success(response))
@@ -51,15 +53,15 @@ func makeRequest(request: Request, completion: @escaping (Result<Response, Error
             completion(.failure(error))
         }
     }
-    task.resume()
+    task.resume() // Start the data task
 }
-
+// Function for fetching response data from an API endpoint with a prompt string
 func fetchData(prompt: String) -> Response? {
-    
+    // Create a request struct with the given prompt
     let request = Request(prompt: prompt)
     var response: Response?
     let semaphore = DispatchSemaphore(value: 0)
-
+    // Make the request asynchronously and handle the response in a closure
     makeRequest(request: request) { result in
         switch result {
         case .success(let res):
@@ -67,56 +69,21 @@ func fetchData(prompt: String) -> Response? {
         case .failure(let error):
             print(error)
         }
-        semaphore.signal()
+        semaphore.signal()// Signal the semaphore to indicate that the request is complete
     }
 
-    semaphore.wait()
+    semaphore.wait() //Wait for the request to complete before returnthe response
     return response
 }
 
-func callFlaskAPI(with parameters: [String: Any]){
-    let url = URL(string: "http://ec2-3-15-156-220.us-east-2.compute.amazonaws.com:5000/response")!
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    
-    let parameters = parameters
-    do {
-        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-    } catch let error {
-        print(error.localizedDescription)
-    }
-    
-    URLSession.shared.dataTask(with: request) { (data, response, error) in
-        if let error = error {
-         
-            print(error.localizedDescription)
-            return
-        }
-        
-        guard let data = data else {
-            print("No data received from API")
-            return
-        }
-        
-        do {
-            
-            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-            
-            print(json)
-            
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }.resume()
-}
 
 
 
 //Davinci Version
+// Function for making a request to OpenAI's text-davinci-003 API and returning the response
 func makeRequestDav(prompt: String, completion: @escaping (Result<String, Error>) -> Void) {
     let apiKey = "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"
-    
+    // Set up request with required headers and parameters
     let url = URL(string: "https://api.openai.com/v1/engines/text-davinci-003/completions")!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
@@ -131,18 +98,18 @@ func makeRequestDav(prompt: String, completion: @escaping (Result<String, Error>
         "temperature": 0.5,
     ] as [String : Any]
     request.httpBody = try! JSONSerialization.data(withJSONObject: parameters, options: [])
-
+    // Send the request asynchronously and handle the response
     let task = URLSession.shared.dataTask(with: request) { data, response, error in
         if let error = error {
             completion(.failure(error))
             return
         }
-
+        // If there was no data in the response, call the completion handler with a failure
         guard let data = data else {
             completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data was not retrieved from request"])))
             return
         }
-
+        // Parse the JSON response and extract the text completion, call the completion handler with a success result
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
             let completions = json["choices"] as! [[String: Any]]
@@ -154,11 +121,11 @@ func makeRequestDav(prompt: String, completion: @escaping (Result<String, Error>
     }
     task.resume()
 }
-
+// A function that fetches a text completion for a given prompt using the makeRequestDav function
 func fetchCompletion(prompt: String) -> String? {
     var completion: String?
     let semaphore = DispatchSemaphore(value: 0)
-
+    // Send the request asynchronously and handle the response
     makeRequestDav(prompt: prompt) { result in
         switch result {
         case .success(let comp):
@@ -166,36 +133,11 @@ func fetchCompletion(prompt: String) -> String? {
         case .failure(let error):
             print(error)
         }
+        // Signal the semaphore to indicate that the completion handler has been call
         semaphore.signal()
     }
-
+    // Wait for the completion handler to be called
     semaphore.wait()
     return completion
 }
 
-func callDavAPI(promptString: String){
-    let apiKey = "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"
-    let endpoint = "https://api.openai.com/v1/engines/text-davinci-003/completions"
-    let requestData = RequestData(prompt: promptString, max_tokens: 100, n: 1, temperature: 0.5)
-
-    let requestJson = try! JSONEncoder().encode(requestData)
-    let request = NSMutableURLRequest(url: NSURL(string: endpoint)! as URL)
-    request.httpMethod = "POST"
-    request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.httpBody = requestJson
-
-    let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
-        guard let data = data, error == nil else {
-            print(error?.localizedDescription ?? "No data")
-            return
-        }
-        
-        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-        if let responseJSON = responseJSON as? [String: Any] {
-            print(responseJSON)
-        }
-    }
-
-    task.resume()
-}

@@ -10,7 +10,7 @@ import Foundation
 import Speech
 
 class recognizer{
-    
+    // Declare properties required for speech recognition
     public let audioEngine = AVAudioEngine()
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en_IN"))
@@ -20,11 +20,11 @@ class recognizer{
     init() {
         getPermission()
     }
-    
+    // Func to get the current transcript
     func getCurrentTranscript()->String{
         return currentTranscript ?? ""
     }
-    
+    //Func to request permission for speech recognition
     func getPermission(){
         SFSpeechRecognizer.requestAuthorization{authStatus in
             OperationQueue.main.addOperation {
@@ -37,7 +37,7 @@ class recognizer{
             }
         }
     }
-    
+    // Func to start recording audio and perform speech recognition
     func startRecording() throws{
         
         recognitionTask?.cancel()
@@ -56,17 +56,17 @@ class recognizer{
         
         audioEngine.prepare()
         try audioEngine.start()
-        
+        // Create recognition request
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         guard let recognitionRequest = recognitionRequest else { fatalError("Unable to create a SFSpeechAudioBufferRecognitionRequest object") }
         recognitionRequest.shouldReportPartialResults = true
-        
+        // Enable on-device recognition if supported
         if #available(iOS 13, *) {
             if speechRecognizer?.supportsOnDeviceRecognition ?? false{
                 recognitionRequest.requiresOnDeviceRecognition = true
             }
         }
-        
+        // Start recognition task
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest) { result, error in
             if let result = result {
                 DispatchQueue.main.async {

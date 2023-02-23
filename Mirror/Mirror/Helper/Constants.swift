@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+// reusable values
 struct Fonts {
     static let H1 = Font.custom("Roboto-light", size: 28).bold()
     static let reg = Font.custom("San Francisco", size: 16)

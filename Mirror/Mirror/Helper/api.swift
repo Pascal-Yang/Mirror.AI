@@ -23,7 +23,7 @@ struct RequestData: Codable {
     let temperature: Float
 }
 
-
+// make request to OpenAI api endpoint deployed on ec2
 func makeRequest(request: Request, completion: @escaping (Result<Response, Error>) -> Void) {
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
@@ -54,6 +54,7 @@ func makeRequest(request: Request, completion: @escaping (Result<Response, Error
     task.resume()
 }
 
+// function to be called for fetching AI response using prompt defined by user
 func fetchData(prompt: String) -> Response? {
     
     let request = Request(prompt: prompt)
@@ -113,7 +114,7 @@ func callFlaskAPI(with parameters: [String: Any]){
 
 
 
-//Davinci Version
+//Davinci Version (intended for backup solution when OpenAI server's down)
 func makeRequestDav(prompt: String, completion: @escaping (Result<String, Error>) -> Void) {
     let apiKey = "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"
     

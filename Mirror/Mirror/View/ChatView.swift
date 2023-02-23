@@ -4,6 +4,7 @@
 
 import SwiftUI
 
+// view for AI interview room
 struct ChatView: View {
     @State var typingMessage: String = ""
     @EnvironmentObject var chatHelper: ChatHelper
@@ -31,17 +32,17 @@ struct ChatView: View {
                     Button(action: {
                         
                         // if currently recording, end and send
-                        if isRecording{
+                        if isRecording {
                             chatHelper.sendMessage(Message(content: myRecognizer.getCurrentTranscript(), user: DataSource.secondUser))
                             self.isRecording = false
                             myRecognizer.audioEngine.stop()
-                        }else{
+                        } else {
                         // if not recording, start recording
                             myRecognizer = recognizer()
-                            do{
+                            do {
                                 myRecognizer.getPermission()
                                 try myRecognizer.startRecording()
-                            }catch{
+                            } catch {
                                 print(error)
                             }
                             self.isRecording = true
@@ -52,6 +53,7 @@ struct ChatView: View {
                         Image(systemName: isRecording ? "mic.fill" : "mic.slash.fill")
                     }
                     
+                    // populate textbox with real time typing input from keyboard
                     TextField("Message...", text: $typingMessage)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(minHeight: CGFloat(30))

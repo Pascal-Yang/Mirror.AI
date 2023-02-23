@@ -10,7 +10,7 @@ import Foundation
 
 import SwiftUI
 
-
+// view for configuration page (before AI chatroom session)
 struct SettingView: View {
     
     @State var selected = ""
@@ -66,6 +66,7 @@ struct RadioButtons : View {
         
         VStack(alignment: .leading, spacing: 20) {
             
+            // TODO: replace with actual company name and description
             Text("Company Name").font(.system(size: 28, weight: .bold))
                 .padding(.top).foregroundColor(Color("Purple2"))
             
@@ -96,6 +97,7 @@ struct RadioButtons : View {
                 
                 Spacer()
             
+                // navigate to AI interview room once user makes a selection
                 NavigationLink(
                     "Start",
                     destination: ChatView()
@@ -138,4 +140,5 @@ struct RadioButtons : View {
     }
 }
 
+// TODO: replace with actual positions at each company
 var data = ["Software Engineer","Data Scientist","DevOps Engineer","Product Manager","UI/UX Designer","Systems Administrator", "Others"]

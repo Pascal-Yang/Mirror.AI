@@ -1,10 +1,10 @@
 //
 //  ContentMessageView.swift
-//  ChatViewTutorial
 //
 
 import SwiftUI
 
+// view for message bubble
 struct ContentMessageView: View {
     var contentMessage: String
     var isCurrentUser: Bool

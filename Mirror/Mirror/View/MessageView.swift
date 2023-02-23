@@ -1,16 +1,16 @@
 //
 //  MessageView.swift
-//  ChatViewTutorial
 //
 
 import SwiftUI
 
+// view for user message
 struct MessageView : View {
     var currentMessage: Message
     var body: some View {
         HStack(alignment: .bottom, spacing: 15) {
             if !currentMessage.user.isCurrentUser {
-                Image(currentMessage.user.avatar)
+                Image(currentMessage.user.avatar)    // user avatar
                 .resizable()
                 .frame(width: 40, height: 40, alignment: .center)
                 .cornerRadius(20)

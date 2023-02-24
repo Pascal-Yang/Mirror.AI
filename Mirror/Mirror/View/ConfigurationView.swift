@@ -13,57 +13,59 @@ import SwiftUI
 // configuration view
 struct ConfigurationView : View {
     
+    let page: ConfigPage
     @State private var selectedIndex: Int = -1
-    @State private var text: String = "Google is an American multinational technology company that specializes in internet-related services and products, including search engines, online advertising technologies, cloud computing, software, and hardware."
     @Binding var selectedCompany: Company
+    @Binding var currentPage: Int
+
     
     var body : some View{
         
         VStack {
-            
-            Spacer()
-
-            
+                        
             VStack (alignment: .leading) {
-                
-                Spacer()
-                
-                HStack(spacing: 10){
-                    
-                    Image("google_logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
-                        .foregroundColor(Color(.white))
-                        .padding()
-                    
-                    VStack(alignment: .leading){
-                        Text("Google")
-                            .foregroundColor(Color("Purple3"))
-                            .font(.system(size: 25, weight: .bold))
-                            .fontWeight(.bold)
-                            .padding(.bottom, 5)
+                                
+                // only display company description when on the first config page
+                if self.currentPage == 0 {
+                                    
+                    HStack(spacing: 10){
                         
-                        Text("Google is an American multinational technology company that specializes in internet-related services and products.")
-                            .foregroundColor(Color("Grey3"))
-                            .disabled(true)
-                            .font(.system(size: 12, weight: .medium))
-                            .lineLimit(nil)
+                        Image(selectedCompany.logo)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                            .foregroundColor(Color(.white))
+                            .padding()
                         
-                    }.padding(.vertical, 10)
+                        VStack(alignment: .leading){
+                            Text(selectedCompany.name)
+                                .foregroundColor(Color("Purple3"))
+                                .font(.system(size: 25, weight: .bold))
+                                .fontWeight(.bold)
+                                .padding(.bottom, 5)
+                            
+                            Text(selectedCompany.description)
+                                .foregroundColor(Color("Grey3"))
+                                .disabled(true)
+                                .font(.system(size: 12, weight: .medium))
+                                .lineLimit(nil)
+                            
+                        }.padding(.vertical, 10)
+                        
+                        Spacer()
+                                                
+                    }
+                    .frame(height:160)
+                    .background(Color.white)
+                    .cornerRadius(45)
+                    .padding()
                     
-                    Spacer()
-            
                 }
-                .frame(height:160)
-                .background(Color.white)
-                .cornerRadius(45)
-                .padding(.horizontal)
 
                 HStack {
                     Spacer()
                     
-                    RadioGroupPicker(selectedIndex: $selectedIndex, titles: Config.positions)
+                    RadioGroupPicker(selectedIndex: $selectedIndex, titles: pages[currentPage].options)
                         .selectedColor(Colors.Purple3)
                         .buttonSize(32)
                         .itemSpacing(80)
@@ -76,37 +78,38 @@ struct ConfigurationView : View {
                         .accentColor(Color("Grey3"))
                     
                     Spacer()
-                }
 
-                Spacer()
+                }.onDisappear{
+                    // TODO: fix the extracting of last parameter
+//                    ConfigParam.append(pages[currentPage-1].options[selectedIndex])
+//                    print(ConfigParam)
+                }
                 
             }
-            .frame(height:550)
+            .frame(height: (self.currentPage == 0) ? (200 + 56 * CGFloat(pages[currentPage].options.count)) : (56 * CGFloat(pages[currentPage].options.count))) // responsive to frame size to number of options in the radio group
             .background(Color("Grey1"))
             .cornerRadius(50)
             .padding(.horizontal)
             
-            NavigationLink(destination: ChatView()) {
-                Text("Start Practicing")
-                    .foregroundColor(.white)
-                    .padding()
-                    .font(.system(size: 15, weight: .medium))
-                    .background(Color("Purple3"))
-                    .cornerRadius(50)
+            // if on last configuration page, show "Start Practicing" button
+            if self.currentPage == pages.count - 1 {
+                
+                NavigationLink(destination: ChatView()) {
+                    Text("Start Practicing")
+                        .foregroundColor(.white)
+                        .padding()
+                        .font(.system(size: 15, weight: .medium))
+                        .background(Color("Purple3"))
+                        .cornerRadius(50)
+                }
+                .padding(.top, 30)
+                .disabled(selectedIndex == -1)
+                .opacity(selectedIndex != -1 ? 1.0 : 0.5)
+                
             }
-            .padding(.top, 30)
-            .disabled(selectedIndex == -1)
-            .opacity(selectedIndex != -1 ? 1.0 : 0.5)
-
-            Spacer()
 
         }
         
     }
 }
 
-struct ConfigurationView_Previews: PreviewProvider {
-    static var previews: some View {
-        ConfigurationView(selectedCompany: Binding.constant(Companies.Google))
-    }
-}

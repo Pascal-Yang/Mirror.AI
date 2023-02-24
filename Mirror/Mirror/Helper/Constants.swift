@@ -10,11 +10,6 @@ import Foundation
 import SwiftUI
 
 
-struct Config {
-    static var positions = ["Software Engineer","Data Scientist","DevOps Engineer","Product Manager","UI/UX Designer","Systems Administrator", "Others"]
-}
-
-
 
 // reusable values
 struct Fonts {
@@ -77,5 +72,15 @@ extension Color {
             a = CGFloat(hexNumber & 0x000000FF) / 255
         }
         return UIColor(red: r, green: g, blue: b, alpha: a)
+    }
+}
+
+extension AnyTransition {
+    static var pageTransition: AnyTransition {
+        let insertion = AnyTransition.move(edge: .trailing)
+            .combined(with: .opacity)
+        let removal = AnyTransition.move(edge: .leading)
+            .combined(with: .opacity)
+        return .asymmetric(insertion: insertion, removal: removal)
     }
 }

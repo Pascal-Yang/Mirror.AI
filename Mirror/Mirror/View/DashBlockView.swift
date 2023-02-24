@@ -8,6 +8,8 @@
 import SwiftUI
 
 
+// TODO: pass actual selectedCompany to ConfigFlowView
+
 struct DashBlockView: View {
     
     @Binding var selectedCompany: Company
@@ -69,7 +71,7 @@ struct DashBlockView: View {
                 HStack(spacing:12){
                     ForEach(0 ..< 10, id: \.self){ _ in
                         
-                        NavigationLink(destination: ConfigurationView(selectedCompany: $selectedCompany)){
+                        NavigationLink(destination: ConfigFlowView(selectedCompany: $selectedCompany, pages: pages)){
                             
                             VStack (alignment: .center){
                                 

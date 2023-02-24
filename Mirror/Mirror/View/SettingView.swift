@@ -72,7 +72,7 @@ struct RadioButtons : View {
             
             Text("Company description placeholder").font(.body).padding(.bottom)
             
-            ForEach(data,id: \.self){i in
+            ForEach(Config.positions,id: \.self){i in
                 
                 Button(action: {
                     self.selected = i
@@ -139,6 +139,3 @@ struct RadioButtons : View {
         .cornerRadius(30)
     }
 }
-
-// TODO: replace with actual positions at each company
-var data = ["Software Engineer","Data Scientist","DevOps Engineer","Product Manager","UI/UX Designer","Systems Administrator", "Others"]

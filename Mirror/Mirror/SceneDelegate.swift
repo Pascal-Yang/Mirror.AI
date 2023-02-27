@@ -16,13 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let settingView = SettingView()
-//        let chatView = ChatView()
+
+        //        let chatView = ChatView()
+        let DashboardView = DashboardView(selectedCompany: Companies.Google)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: settingView.environmentObject(chatHelper))
+            window.rootViewController = UIHostingController(rootView: DashboardView.environmentObject(chatHelper))
             self.window = window
             window.makeKeyAndVisible()
         }

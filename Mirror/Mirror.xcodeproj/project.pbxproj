@@ -3,11 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DDD32D62998B28C00BE16DC /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDD32D52998B28C00BE16DC /* SettingView.swift */; };
+		1D6007B129A816CD00E439D6 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6007B029A816CD00E439D6 /* ConfigurationView.swift */; };
+		1D6007B329A8172200E439D6 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6007B229A8172200E439D6 /* DashboardView.swift */; };
+		1D6007B629A81D1900E439D6 /* RadioGroup in Frameworks */ = {isa = PBXBuildFile; productRef = 1D6007B529A81D1900E439D6 /* RadioGroup */; };
+		1DD1188629A85E4700F57759 /* DashBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1188529A85E4600F57759 /* DashBlockView.swift */; };
+		1DD1188829A8628800F57759 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1188729A8628800F57759 /* Company.swift */; };
+		1DD1188A29A8690B00F57759 /* ConfigFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1188929A8690B00F57759 /* ConfigFlowView.swift */; };
+		1DD1188C29A86E3900F57759 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1188B29A86E3900F57759 /* Config.swift */; };
 		1DDD32DA2998BA1400BE16DC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDD32D92998BA1400BE16DC /* Constants.swift */; };
 		3045530923E6702D00F41AF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3045530823E6702D00F41AF3 /* AppDelegate.swift */; };
 		3045530B23E6702D00F41AF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3045530A23E6702D00F41AF3 /* SceneDelegate.swift */; };
@@ -26,7 +32,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1DDD32D52998B28C00BE16DC /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		1D6007B029A816CD00E439D6 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
+		1D6007B229A8172200E439D6 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		1DD1188529A85E4600F57759 /* DashBlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBlockView.swift; sourceTree = "<group>"; };
+		1DD1188729A8628800F57759 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		1DD1188929A8690B00F57759 /* ConfigFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigFlowView.swift; sourceTree = "<group>"; };
+		1DD1188B29A86E3900F57759 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		1DDD32D92998BA1400BE16DC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3045530523E6702D00F41AF3 /* Mirror.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mirror.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3045530823E6702D00F41AF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D6007B629A81D1900E439D6 /* RadioGroup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +113,8 @@
 			children = (
 				3045531D23E6711300F41AF3 /* User.swift */,
 				3045531F23E6712800F41AF3 /* Message.swift */,
+				1DD1188729A8628800F57759 /* Company.swift */,
+				1DD1188B29A86E3900F57759 /* Config.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -108,10 +122,13 @@
 		3045532123E6B82B00F41AF3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1DD1188529A85E4600F57759 /* DashBlockView.swift */,
 				3045530C23E6702D00F41AF3 /* ChatView.swift */,
 				3045532223E6B8DE00F41AF3 /* MessageView.swift */,
 				3045532923E6C9B900F41AF3 /* ContentMessageView.swift */,
-				1DDD32D52998B28C00BE16DC /* SettingView.swift */,
+				1D6007B029A816CD00E439D6 /* ConfigurationView.swift */,
+				1D6007B229A8172200E439D6 /* DashboardView.swift */,
+				1DD1188929A8690B00F57759 /* ConfigFlowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -145,6 +162,9 @@
 			dependencies = (
 			);
 			name = Mirror;
+			packageProductDependencies = (
+				1D6007B529A81D1900E439D6 /* RadioGroup */,
+			);
 			productName = ChatViewTutorial;
 			productReference = 3045530523E6702D00F41AF3 /* Mirror.app */;
 			productType = "com.apple.product-type.application";
@@ -173,6 +193,9 @@
 				Base,
 			);
 			mainGroup = 304552FC23E6702D00F41AF3;
+			packageReferences = (
+				1D6007B429A81D1900E439D6 /* XCRemoteSwiftPackageReference "RadioGroup" */,
+			);
 			productRefGroup = 3045530623E6702D00F41AF3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -200,18 +223,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBBFF4FA29A3F89A00062598 /* api.swift in Sources */,
+				1D6007B329A8172200E439D6 /* DashboardView.swift in Sources */,
+				1DD1188629A85E4700F57759 /* DashBlockView.swift in Sources */,
+				1D6007B129A816CD00E439D6 /* ConfigurationView.swift in Sources */,
+				1DD1188C29A86E3900F57759 /* Config.swift in Sources */,
 				3045532323E6B8DE00F41AF3 /* MessageView.swift in Sources */,
 				3045531E23E6711300F41AF3 /* User.swift in Sources */,
 				3045530923E6702D00F41AF3 /* AppDelegate.swift in Sources */,
 				3045532023E6712800F41AF3 /* Message.swift in Sources */,
 				3045532C23E6DEAE00F41AF3 /* ViewExtension.swift in Sources */,
 				3045532523E6BB3F00F41AF3 /* ChatHelper.swift in Sources */,
+				1DD1188A29A8690B00F57759 /* ConfigFlowView.swift in Sources */,
 				45557F0B29A309BA006EA851 /* VoiceRecognizer.swift in Sources */,
+				1DD1188829A8628800F57759 /* Company.swift in Sources */,
 				3045532823E6BDF300F41AF3 /* KeyboardResponder.swift in Sources */,
 				3045532A23E6C9B900F41AF3 /* ContentMessageView.swift in Sources */,
 				3045530B23E6702D00F41AF3 /* SceneDelegate.swift in Sources */,
 				3045530D23E6702D00F41AF3 /* ChatView.swift in Sources */,
-				1DDD32D62998B28C00BE16DC /* SettingView.swift in Sources */,
 				1DDD32DA2998BA1400BE16DC /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +423,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D6007B429A81D1900E439D6 /* XCRemoteSwiftPackageReference "RadioGroup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yonat/RadioGroup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1D6007B529A81D1900E439D6 /* RadioGroup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D6007B429A81D1900E439D6 /* XCRemoteSwiftPackageReference "RadioGroup" */;
+			productName = RadioGroup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 304552FD23E6702D00F41AF3 /* Project object */;
 }

@@ -127,8 +127,8 @@
 				3045532223E6B8DE00F41AF3 /* MessageView.swift */,
 				3045532923E6C9B900F41AF3 /* ContentMessageView.swift */,
 				1D6007B029A816CD00E439D6 /* ConfigurationView.swift */,
-				1D6007B229A8172200E439D6 /* DashboardView.swift */,
 				1DD1188929A8690B00F57759 /* ConfigFlowView.swift */,
+				1D6007B229A8172200E439D6 /* DashboardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

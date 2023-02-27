@@ -33,7 +33,7 @@ struct ChatView: View {
                         
                         // if currently recording, end and send
                         if isRecording {
-                            chatHelper.sendMessage(Message(content: myRecognizer.getCurrentTranscript(), user: DataSource.secondUser))
+                            chatHelper.sendMessage(Message(content: myRecognizer.getCurrentTranscript(), user: DataSource.secondUser, fromAPI: false))
                             self.isRecording = false
                             myRecognizer.audioEngine.stop()
                         } else {
@@ -71,7 +71,7 @@ struct ChatView: View {
     }
     
     func sendMessage() {
-        chatHelper.sendMessage(Message(content: typingMessage, user: DataSource.secondUser))
+        chatHelper.sendMessage(Message(content: typingMessage, user: DataSource.secondUser, fromAPI: false))
         typingMessage = ""
     }
 }

@@ -28,6 +28,7 @@
 		3045532A23E6C9B900F41AF3 /* ContentMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3045532923E6C9B900F41AF3 /* ContentMessageView.swift */; };
 		3045532C23E6DEAE00F41AF3 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3045532B23E6DEAE00F41AF3 /* ViewExtension.swift */; };
 		45557F0B29A309BA006EA851 /* VoiceRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45557F0A29A309BA006EA851 /* VoiceRecognizer.swift */; };
+		46652B2129B56AE3008D18E4 /* MsgBtnsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46652B2029B56AE3008D18E4 /* MsgBtnsView.swift */; };
 		CBBFF4FA29A3F89A00062598 /* api.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBFF4F929A3F89900062598 /* api.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		3045532923E6C9B900F41AF3 /* ContentMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMessageView.swift; sourceTree = "<group>"; };
 		3045532B23E6DEAE00F41AF3 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		45557F0A29A309BA006EA851 /* VoiceRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecognizer.swift; sourceTree = "<group>"; };
+		46652B2029B56AE3008D18E4 /* MsgBtnsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgBtnsView.swift; sourceTree = "<group>"; };
 		CBBFF4F929A3F89900062598 /* api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 				1D6007B029A816CD00E439D6 /* ConfigurationView.swift */,
 				1DD1188929A8690B00F57759 /* ConfigFlowView.swift */,
 				1D6007B229A8172200E439D6 /* DashboardView.swift */,
+				46652B2029B56AE3008D18E4 /* MsgBtnsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBBFF4FA29A3F89A00062598 /* api.swift in Sources */,
+				46652B2129B56AE3008D18E4 /* MsgBtnsView.swift in Sources */,
 				1D6007B329A8172200E439D6 /* DashboardView.swift in Sources */,
 				1DD1188629A85E4700F57759 /* DashBlockView.swift in Sources */,
 				1D6007B129A816CD00E439D6 /* ConfigurationView.swift in Sources */,

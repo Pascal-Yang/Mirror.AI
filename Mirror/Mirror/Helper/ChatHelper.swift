@@ -12,9 +12,9 @@ class ChatHelper : ObservableObject {
         realTimeMessages.append(chatMessage)
         didChange.send(())
         //If the response from the fetchData function is not nil,
-        if let res = fetchData(prompt: chatMessage.content){
+        if let res = fetchCompletion(prompt: chatMessage.content){
             // Create a new chat message from the response and append it to the realTimeMessages data source
-            let new = Message(content: res.response, user: DataSource.firstUser)
+            let new = Message(content: res, user: DataSource.firstUser, fromAPI:true)
             realTimeMessages.append(new)
             didChange.send(())
         }

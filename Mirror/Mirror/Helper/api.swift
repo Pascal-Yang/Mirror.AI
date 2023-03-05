@@ -79,24 +79,20 @@ func fetchData(prompt: String) -> Response? {
 
 
 
-
-//Davinci Version (intended for backup solution when OpenAI server's down)
-// Function for making a request to OpenAI's text-davinci-003 API and returning the response
+// Function for making a request to OpenAI's Chatgpt API and returning the response
 func makeRequestDav(prompt: String, completion: @escaping (Result<String, Error>) -> Void) {
     let apiKey = "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"
     // Set up request with required headers and parameters
-    let url = URL(string: "https://api.openai.com/v1/engines/text-davinci-003/completions")!
+    let url = URL(string: "https://api.openai.com/v1/chat/completions")!
+
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
     let parameters = [
-        "prompt": prompt,
-        "max_tokens": 150,
-        "n": 1,
-        "stop": "",
-        "temperature": 0.5,
+        "model": "gpt-3.5-turbo",
+        "messages": [["role": "user", "content": prompt]]
     ] as [String : Any]
     request.httpBody = try! JSONSerialization.data(withJSONObject: parameters, options: [])
     // Send the request asynchronously and handle the response
@@ -114,7 +110,8 @@ func makeRequestDav(prompt: String, completion: @escaping (Result<String, Error>
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
             let completions = json["choices"] as! [[String: Any]]
-            let res = completions[0]["text"] as! String
+            let resDic = completions[0]["message"] as! [String: Any]
+            let res = resDic["content"] as! String
             completion(.success(res))
         } catch let error {
             completion(.failure(error))
@@ -141,4 +138,3 @@ func fetchCompletion(prompt: String) -> String? {
     semaphore.wait()
     return completion
 }
-

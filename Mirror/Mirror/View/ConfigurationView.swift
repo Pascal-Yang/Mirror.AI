@@ -84,11 +84,11 @@ struct ConfigurationView : View {
 
                 }.onDisappear{
                     
-                    if self.currentPage != pages.count - 1 || selectedIndex != -1 || currentPage > 0 {
+                    if self.currentPage != pages.count - 1 || selectedIndex != -1 {
                         guard currentPage > 0 else {
                             return
                         }
-                        if pages[currentPage - 1].options.count > selectedIndex {
+                        if pages[currentPage - 1].options.count > selectedIndex && selectedIndex >= 0 {
                             ConfigParam.append(pages[currentPage - 1].options[selectedIndex])
                             print(ConfigParam)
                         }

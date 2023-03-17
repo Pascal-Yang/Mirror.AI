@@ -17,8 +17,6 @@ struct ConfigFlowView : View {
     
     @State private var currentPage = 0
     @Binding var selectedCompany: Company
-
-//    let pages: [ConfigPage]
     
     var body: some View {
         
@@ -38,6 +36,9 @@ struct ConfigFlowView : View {
                         self.currentPage = (self.currentPage + 1) % pages.count
                     }
                 }) {
+                    
+                    // TODO: right now the user can proceed to next page w/o choosing an option, the chatroom will be configured without that particular parameter; for future enhancement, either add a default option in each RadioGroup or disable user from proceeding w/o choosing
+                    
                     if self.currentPage != pages.count - 1{
                         Image(systemName: "arrow.right")
                             .font(.title)
@@ -54,6 +55,7 @@ struct ConfigFlowView : View {
             .onAppear{
                 ConfigParam = []
             }
+    
         }
         
         

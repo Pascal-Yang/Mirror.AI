@@ -80,7 +80,7 @@ func fetchData(prompt: String) -> Response? {
 
 
 // Function for making a request to OpenAI's Chatgpt API and returning the response
-func makeRequestDav(prompt: String, completion: @escaping (Result<String, Error>) -> Void) {
+func makeRequestGPT(prompt: String, completion: @escaping (Result<String, Error>) -> Void) {
     let apiKey = "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"
     // Set up request with required headers and parameters
     let url = URL(string: "https://api.openai.com/v1/chat/completions")!
@@ -119,12 +119,14 @@ func makeRequestDav(prompt: String, completion: @escaping (Result<String, Error>
     }
     task.resume()
 }
-// A function that fetches a text completion for a given prompt using the makeRequestDav function
+
+
+// A function that fetches a text completion for a given prompt using the makeRequestGPT function
 func fetchCompletion(prompt: String) -> String? {
     var completion: String?
     let semaphore = DispatchSemaphore(value: 0)
     // Send the request asynchronously and handle the response
-    makeRequestDav(prompt: prompt) { result in
+    makeRequestGPT(prompt: prompt) { result in
         switch result {
         case .success(let comp):
             completion = comp

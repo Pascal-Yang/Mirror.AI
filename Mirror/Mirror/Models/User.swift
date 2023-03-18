@@ -10,3 +10,5 @@ struct User: Hashable {
     var avatar: String
     var isCurrentUser: Bool = false
 }
+
+

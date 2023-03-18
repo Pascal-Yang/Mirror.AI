@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>595121535925-l5ermus3gubfj5f460tkauqladnnj9lf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.595121535925-l5ermus3gubfj5f460tkauqladnnj9lf</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDv3rW-sUhERUkMHt20z5IR6EIVT6P5uNA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>595121535925</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>zhiyi.mirror</string>
+	<key>PROJECT_ID</key>
+	<string>washu-mirror</string>
+	<key>STORAGE_BUCKET</key>
+	<string>washu-mirror.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:595121535925:ios:077dc548743d492617f7fc</string>
+</dict>
+</plist>

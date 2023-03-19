@@ -14,11 +14,81 @@ struct Response: Codable {
     let response: String
 }
 
-struct RequestData: Codable {
-    let prompt: String
-    let max_tokens: Int
-    let n: Int
-    let temperature: Float
+struct MessageData {
+    let role: String
+    let content: String
+}
+
+func mergeWithChatHistory(prompt: String, chatHistory: [MessageData]) -> [MessageData] {
+    var mergedMessages = chatHistory
+    mergedMessages.append(MessageData(role: "user", content: prompt))
+    return chatHistory
+}
+
+
+
+// Function for making a request to OpenAI's Chatgpt API and returning the response
+func makeRequestGPT(chatHistory: [MessageData], completion: @escaping (Result<String, Error>) -> Void) {
+    let apiKey = "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"
+    // Set up request with required headers and parameters
+    let url = URL(string: "https://api.openai.com/v1/chat/completions")!
+
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+    let parameters = [
+        "model": "gpt-3.5-turbo",
+        "messages": chatHistory
+    ] as [String : Any]
+    request.httpBody = try! JSONSerialization.data(withJSONObject: parameters, options: [])
+    // Send the request asynchronously and handle the response
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        if let error = error {
+            completion(.failure(error))
+            return
+        }
+        // If there was no data in the response, call the completion handler with a failure
+        guard let data = data else {
+            completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data was not retrieved from request"])))
+            return
+        }
+        // Parse the JSON response and extract the text completion, call the completion handler with a success result
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            let completions = json["choices"] as! [[String: Any]]
+            let resDic = completions[0]["message"] as! [String: Any]
+            let res = resDic["content"] as! String
+            completion(.success(res))
+        } catch let error {
+            completion(.failure(error))
+        }
+    }
+    task.resume()
+}
+
+
+// A function that fetches a text completion for a given prompt using the makeRequestGPT function
+func fetchCompletion(prompt: String) -> String? {
+    var completion: String?
+    let semaphore = DispatchSemaphore(value: 0)
+    // Send the request asynchronously and handle the response
+    let tmpHis = [MessageData(role: "system", content: "You are a helpful assistant.")]
+    let tmpMerge = mergeWithChatHistory(prompt: prompt, chatHistory: tmpHis)
+    makeRequestGPT(chatHistory: tmpMerge) { result in
+        switch result {
+        case .success(let comp):
+            completion = comp
+        case .failure(let error):
+            print(error)
+        }
+        // Signal the semaphore to indicate that the completion handler has been call
+        semaphore.signal()
+    }
+    // Wait for the completion handler to be called
+    semaphore.wait()
+    return completion
 }
 
 // Function for making a request to a API endpoint and returning the response
@@ -75,68 +145,4 @@ func fetchData(prompt: String) -> Response? {
 
     semaphore.wait() //Wait for the request to complete before returnthe response
     return response
-}
-
-
-
-// Function for making a request to OpenAI's Chatgpt API and returning the response
-func makeRequestGPT(prompt: String, completion: @escaping (Result<String, Error>) -> Void) {
-    let apiKey = "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"
-    // Set up request with required headers and parameters
-    let url = URL(string: "https://api.openai.com/v1/chat/completions")!
-
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-    let parameters = [
-        "model": "gpt-3.5-turbo",
-        "messages": [["role": "user", "content": prompt]]
-    ] as [String : Any]
-    request.httpBody = try! JSONSerialization.data(withJSONObject: parameters, options: [])
-    // Send the request asynchronously and handle the response
-    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-        if let error = error {
-            completion(.failure(error))
-            return
-        }
-        // If there was no data in the response, call the completion handler with a failure
-        guard let data = data else {
-            completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data was not retrieved from request"])))
-            return
-        }
-        // Parse the JSON response and extract the text completion, call the completion handler with a success result
-        do {
-            let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-            let completions = json["choices"] as! [[String: Any]]
-            let resDic = completions[0]["message"] as! [String: Any]
-            let res = resDic["content"] as! String
-            completion(.success(res))
-        } catch let error {
-            completion(.failure(error))
-        }
-    }
-    task.resume()
-}
-
-
-// A function that fetches a text completion for a given prompt using the makeRequestGPT function
-func fetchCompletion(prompt: String) -> String? {
-    var completion: String?
-    let semaphore = DispatchSemaphore(value: 0)
-    // Send the request asynchronously and handle the response
-    makeRequestGPT(prompt: prompt) { result in
-        switch result {
-        case .success(let comp):
-            completion = comp
-        case .failure(let error):
-            print(error)
-        }
-        // Signal the semaphore to indicate that the completion handler has been call
-        semaphore.signal()
-    }
-    // Wait for the completion handler to be called
-    semaphore.wait()
-    return completion
 }

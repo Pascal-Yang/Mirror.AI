@@ -34,5 +34,5 @@ let chooseType = ConfigPage(options: Options.questionTypes, title: "Choose Quest
 let chooseNum = ConfigPage(options: Options.numQuestions, title: "Choose Number of Questions")
 let startPractice = ConfigPage(options: [], title: "Start Practice")
 
-let pages: [ConfigPage] = [chooseType, choosePos, chooseNum, startPractice]
+let pages: [ConfigPage] = [chooseType, choosePos, startPractice]
 

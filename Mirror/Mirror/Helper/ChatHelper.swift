@@ -31,9 +31,27 @@ class ChatHelper : ObservableObject {
     
         print("here")
         // if start of conversation, configure chatroom
+        var questionType = param[0].lowercased()
+        let job = param[1].lowercased()
+//        var num = param[2].lowercased()
+        
+        if questionType.count >= 9 {
+                let endIndex = questionType.index(questionType.endIndex, offsetBy: -9)
+            questionType = String(questionType[..<endIndex])
+            }
+//        if (num.count >= 8 && num.count <= 10){
+//                let endIndex = num.index(num.endIndex, offsetBy: -8)
+//            num = String(num[..<endIndex])
+//            }
+//        if (num.count > 10){
+//                let endIndex = num.index(num.endIndex, offsetBy: -9)
+//            num = String(num[..<endIndex])
+//            }
+        
         if realTimeMessages.count <= 1 {
             // prepare prompt
-            let configuredParams = "Please ask me some interview questions one at a time based on the following parameters: " + param.joined(separator: " " + "; Keep all response relatively short please")
+            let configuredParams = "Ask me 1 " + questionType + "interview questions for a " + job + " job, keep the questions short."
+//            let configuredParams = "Please ask me some interview questions one at a time based on the following parameters: " + param.joined(separator: " ") + "; Keep all response relatively short please"
             print(configuredParams)
 
             if let res = fetchCompletion(prompt: configuredParams){

@@ -5,6 +5,16 @@
 
 import Foundation
 
+struct ChatRecord: Hashable{
+    var content: String
+    
+    // 0 => user
+    // 1 => chat bot
+    var type: Int
+    
+    var time: Date
+}
+
 struct Message: Hashable {
     var content: String
     var user: User

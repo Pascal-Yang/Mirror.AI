@@ -14,21 +14,18 @@ struct Response: Codable {
     let response: String
 }
 
-struct MessageData {
-    let role: String
-    let content: String
-}
 
-func mergeWithChatHistory(prompt: String, chatHistory: [MessageData]) -> [MessageData] {
+
+func mergeWithChatHistory(prompt: String, chatHistory: [[String:Any]]) -> [[String:Any]] {
     var mergedMessages = chatHistory
-    mergedMessages.append(MessageData(role: "user", content: prompt))
-    return chatHistory
+    mergedMessages.append(["role": "user", "content": prompt])
+    return mergedMessages
 }
 
 
 
 // Function for making a request to OpenAI's Chatgpt API and returning the response
-func makeRequestGPT(chatHistory: [MessageData], completion: @escaping (Result<String, Error>) -> Void) {
+func makeRequestGPT(chatHistory: [[String:Any]], completion: @escaping (Result<String, Error>) -> Void) {
     let apiKey = "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"
     // Set up request with required headers and parameters
     let url = URL(string: "https://api.openai.com/v1/chat/completions")!
@@ -57,6 +54,7 @@ func makeRequestGPT(chatHistory: [MessageData], completion: @escaping (Result<St
         // Parse the JSON response and extract the text completion, call the completion handler with a success result
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            print(json)
             let completions = json["choices"] as! [[String: Any]]
             let resDic = completions[0]["message"] as! [String: Any]
             let res = resDic["content"] as! String
@@ -74,8 +72,9 @@ func fetchCompletion(prompt: String) -> String? {
     var completion: String?
     let semaphore = DispatchSemaphore(value: 0)
     // Send the request asynchronously and handle the response
-    let tmpHis = [MessageData(role: "system", content: "You are a helpful assistant.")]
+    let tmpHis = [["role": "system", "content": "You are a helpful assistant."]]
     let tmpMerge = mergeWithChatHistory(prompt: prompt, chatHistory: tmpHis)
+    print(tmpMerge)
     makeRequestGPT(chatHistory: tmpMerge) { result in
         switch result {
         case .success(let comp):

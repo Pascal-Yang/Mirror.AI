@@ -51,7 +51,6 @@ class ChatHelper : ObservableObject {
         if realTimeMessages.count <= 1 {
             // prepare prompt
             let configuredParams = "Ask me 1 " + questionType + "interview questions for a " + job + " job, keep the questions short."
-//            let configuredParams = "Please ask me some interview questions one at a time based on the following parameters: " + param.joined(separator: " ") + "; Keep all response relatively short please"
             print(configuredParams)
 
             if let res = fetchCompletion(prompt: configuredParams){

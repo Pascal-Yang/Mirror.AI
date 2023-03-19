@@ -10,7 +10,6 @@ struct ChatView: View {
     @EnvironmentObject var chatHelper: ChatHelper
     @ObservedObject private var keyboard = KeyboardResponder()
     @State var isRecording:Bool = false
-    
     @State var myRecognizer:recognizer!
     
     init() {
@@ -30,6 +29,7 @@ struct ChatView: View {
                     }
                 }
                 .frame(width:.infinity)
+                
                 HStack {
                     
                     Button(action: {

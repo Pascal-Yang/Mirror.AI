@@ -19,7 +19,7 @@ struct MessageView : View {
                         Text(currentMessage.user.name)
                     }
                 }
-                ContentMessageView(contentMessage: currentMessage.content,
+                ContentMessageView(contentMessage: currentMessage.display,
                                    isCurrentUser: currentMessage.user.isCurrentUser)
                 if currentMessage.fromAPI == true {
                     MsgBtnsView()
@@ -34,10 +34,20 @@ struct MessageView : View {
                             .cornerRadius(20)
                     }
                 }
-                ContentMessageView(contentMessage: currentMessage.content,
+                ContentMessageView(contentMessage: currentMessage.display,
                                    isCurrentUser: currentMessage.user.isCurrentUser)
                 if currentMessage.fromAPI == true {
                     MsgBtnsView()
+                        .frame(maxWidth: .infinity)
+                        .alignmentGuide(.leading) { d in
+                            if currentMessage.user.isCurrentUser {
+                                return 0
+                            } else {
+                                return d.width
+                            }
+                        }
+                        .padding(.top, 5)
+                        .padding(.bottom, 10)
                 }
             }
             

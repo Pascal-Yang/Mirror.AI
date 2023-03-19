@@ -20,5 +20,4 @@ struct Companies {
     static let Amazon = Company(name: "Amazon", logo: "amazon_logo", description: "Amazon is a multinational tech company known for its e-commerce platform, cloud computing services, digital streaming, and artificial intelligence products.")
     static let Meta = Company(name: "Meta", logo: "meta_logo", description: "Meta is a tech company that provides social networking and digital communication services.")
     static let Microsoft = Company(name: "Microsoft", logo: "microsoft_logo", description: "Microsoft is a technology company that offers software, hardware, and cloud services.")
-
 }

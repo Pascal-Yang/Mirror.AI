@@ -21,7 +21,6 @@ struct MessageView : View {
                 }
                 ContentMessageView(contentMessage: currentMessage.content,
                                    isCurrentUser: currentMessage.user.isCurrentUser)
-                
                 if currentMessage.fromAPI == true {
                     MsgBtnsView()
                 }
@@ -37,13 +36,13 @@ struct MessageView : View {
                 }
                 ContentMessageView(contentMessage: currentMessage.content,
                                    isCurrentUser: currentMessage.user.isCurrentUser)
-                
                 if currentMessage.fromAPI == true {
                     MsgBtnsView()
                 }
             }
             
-        }.padding()
+        }
+        .padding()
     }
 }
 

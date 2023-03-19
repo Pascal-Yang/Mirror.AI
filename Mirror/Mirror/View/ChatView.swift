@@ -27,6 +27,7 @@ struct ChatView: View {
                         MessageView(currentMessage: msg)
                     }
                 }
+                .frame(width:.infinity)
                 HStack {
                     
                     Button(action: {

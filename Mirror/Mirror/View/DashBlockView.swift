@@ -71,7 +71,7 @@ struct DashBlockView: View {
                 HStack(spacing:12){
                     ForEach(0 ..< 10, id: \.self){ _ in
                         
-                        NavigationLink(destination: ConfigFlowView(selectedCompany: $selectedCompany, pages: pages)){
+                        NavigationLink(destination: ConfigFlowView(selectedCompany: $selectedCompany)){
                             
                             VStack (alignment: .center){
                                 

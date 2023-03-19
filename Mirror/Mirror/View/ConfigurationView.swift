@@ -65,24 +65,35 @@ struct ConfigurationView : View {
                 HStack {
                     Spacer()
                     
-                    RadioGroupPicker(selectedIndex: $selectedIndex, titles: pages[currentPage].options)
-                        .selectedColor(Colors.Purple3)
-                        .buttonSize(32)
-                        .itemSpacing(80)
-                        .spacing(12)
-                        .titleColor(.black)
-                        .titleAlignment(.left)
-                        .environment(\.layoutDirection, .rightToLeft)
-                        .fixedSize()
-                        .padding(10)
-                        .accentColor(Color("Grey3"))
-                    
+                    if self.currentPage != pages.count - 1 {
+
+                        RadioGroupPicker(selectedIndex: $selectedIndex, titles: pages[currentPage].options)
+                            .selectedColor(Colors.Purple3)
+                            .buttonSize(32)
+                            .itemSpacing(80)
+                            .spacing(12)
+                            .titleColor(.black)
+                            .titleAlignment(.left)
+                            .environment(\.layoutDirection, .rightToLeft)
+                            .fixedSize()
+                            .padding(10)
+                            .accentColor(Color("Grey3"))
+                        
+                    }
                     Spacer()
 
                 }.onDisappear{
-                    // TODO: fix the extracting of last parameter
-//                    ConfigParam.append(pages[currentPage-1].options[selectedIndex])
-//                    print(ConfigParam)
+                    
+                    if self.currentPage != pages.count - 1 || selectedIndex != -1 {
+                        guard currentPage > 0 else {
+                            return
+                        }
+                        if pages[currentPage - 1].options.count > selectedIndex && selectedIndex >= 0 {
+                            ConfigParam.append(pages[currentPage - 1].options[selectedIndex])
+                            print(ConfigParam)
+                        }
+
+                    }
                 }
                 
             }
@@ -103,8 +114,8 @@ struct ConfigurationView : View {
                         .cornerRadius(50)
                 }
                 .padding(.top, 30)
-                .disabled(selectedIndex == -1)
-                .opacity(selectedIndex != -1 ? 1.0 : 0.5)
+//                .disabled(selectedIndex == -1)
+//                .opacity(selectedIndex != -1 ? 1.0 : 0.5)
                 
             }
 

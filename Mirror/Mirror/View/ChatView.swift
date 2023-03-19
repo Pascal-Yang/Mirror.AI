@@ -21,7 +21,9 @@ struct ChatView: View {
     
     var body: some View {
         NavigationView {
+                        
             VStack {
+                
                 List {
                     ForEach(chatHelper.realTimeMessages, id: \.self) { msg in
                         MessageView(currentMessage: msg)
@@ -49,7 +51,6 @@ struct ChatView: View {
                             self.isRecording = true
                         }
                         
-                        
                     }){
                         Image(systemName: isRecording ? "mic.fill" : "mic.slash.fill")
                     }
@@ -68,6 +69,8 @@ struct ChatView: View {
             .edgesIgnoringSafeArea(keyboard.currentHeight == 0.0 ? .leading: .bottom)
         }.onTapGesture {
                 self.endEditing(true)
+        }.onAppear {
+            chatHelper.configureChatroom(ConfigParam)
         }
     }
     

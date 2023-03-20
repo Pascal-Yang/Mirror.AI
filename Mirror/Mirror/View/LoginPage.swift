@@ -70,15 +70,16 @@ struct LoginPage: View {
     
     private func handleButton(){
         if isLoginMode{
-            print("Login is called...")
+            
             loginAccount()
         }else{
-            print("Register is called...")
+            
             createAccount()
         }
     }
     
     private func loginAccount(){
+        print("Login is called...")
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password){
             res, error in
             if let err = error{
@@ -88,12 +89,20 @@ struct LoginPage: View {
             
             print("login successful", email, res?.user.uid ?? "cannot get uid")
             
-            FirebaseManager.shared.getChatHistory()
+            //FirebaseManager.shared.getChatHistory()
+            
+            
+            
+            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "user", content: "I user SwiftUI the best. But I also use Object-C.")
+            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "assistant", content: "I can give hint.")
+            
+            FirebaseManager.shared.getQuestionsOfUser()
             
         }
     }
     
     private func createAccount(){
+        print("Register is called...")
         FirebaseManager.shared.auth.createUser(withEmail: email, password: password){
             res, error in
             if let err = error{
@@ -110,9 +119,16 @@ struct LoginPage: View {
                 "email": email,
             ])
             
-            loginAccount()
+//            loginAccount()
+                
+            //FirebaseManager.shared.storeChatHistory(content: "Hello human.", type: 1)
             
-            FirebaseManager.shared.storeChatHistory(content: "Hello human.", type: 1)
+            FirebaseManager.shared.startNewQuestion(job: "Software Engineer", question: "What is your fav coding laguage?")
+
+      
+//            FirebaseManager.shared.startNewQuestion(job: "Data Scientist", question: "How do you analyze data?")
+//            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "user", content: "I don't know how.")
+//            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "assistant", content: "I won't give hint.")
             
         }
     }

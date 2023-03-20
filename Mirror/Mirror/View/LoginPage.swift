@@ -92,11 +92,11 @@ struct LoginPage: View {
             //FirebaseManager.shared.getChatHistory()
             
             
-            
-            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "user", content: "I user SwiftUI the best. But I also use Object-C.")
-            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "assistant", content: "I can give hint.")
-            
-            FirebaseManager.shared.getQuestionsOfUser()
+//
+//            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "user", content: "I user SwiftUI the best. But I also use Object-C.")
+//            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "assistant", content: "I can give hint.")
+//
+//            FirebaseManager.shared.getQuestionsOfUser()
             
         }
     }

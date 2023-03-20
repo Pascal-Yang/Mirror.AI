@@ -48,6 +48,7 @@ class FirebaseManager: NSObject{
     
     // 1. Add a new question into the database
     // 2. Update currentQuestionID to the newly creatd question
+    // 3. How to call: FirebaseManager.shared.startNewQuestion()
     func startNewQuestion(job:String, question:String){
         
         print("Starting a new question =>", job, "=>" ,question)
@@ -86,7 +87,8 @@ class FirebaseManager: NSObject{
         }
     }
     
-    // add a new history into the current question
+    // 1. Add a new history into the current question
+    // 2. How to call: FirebaseManager.shared.addHistoryToCurrentQuestion()
     func addHistoryToCurrentQuestion(role:String, content:String){
         
         print("Adding new history to qeustion =>", self.currentQuestionID)
@@ -119,6 +121,9 @@ class FirebaseManager: NSObject{
         }
     }
     
+    
+    // Return a list of all questions of the current user
+    // Refer to structure of question and history in message.swift
     func getQuestionsOfUser()->[Question]{
         
         var questionList:[Question] = []
@@ -149,7 +154,7 @@ class FirebaseManager: NSObject{
                                     print(e)
                                 }else{
                                     for hist in res!.documents{
-                                        var curHistory = History(content: hist.data()["content"] as! String,
+                                        let curHistory = History(content: hist.data()["content"] as! String,
                                                                  role: hist.data()["role"] as! String)
                                         print(curHistory.role, curHistory.content)
                                         historyList.append(curHistory)
@@ -157,7 +162,7 @@ class FirebaseManager: NSObject{
                                 }
                             }
                             
-                            var curQuestion = Question(job: question.data()["job"] as! String,
+                            let curQuestion = Question(job: question.data()["job"] as! String,
                                                        question: question.data()["question"] as! String,
                                                        history: historyList)
                             print(curQuestion.job, curQuestion.question)

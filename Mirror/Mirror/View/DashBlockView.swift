@@ -66,10 +66,10 @@ struct DashBlockView: View {
                 .foregroundColor(Color("Purple3"))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            ScrollView(.horizontal){
+            ScrollView(.horizontal, showsIndicators: false){
                 
                 HStack(spacing:12){
-                    ForEach(0 ..< 10, id: \.self){ _ in
+                    ForEach(0 ..< 9, id: \.self){ _ in
                         
                         NavigationLink(destination: ConfigFlowView(selectedCompany: $selectedCompany)){
                             
@@ -83,17 +83,17 @@ struct DashBlockView: View {
                                         .padding()
                                 }
                                 .background(Color(.white))
-                                .frame(width:61, height:61)
-                                .cornerRadius(20)
+                                .frame(width:80, height:80)
+                                .cornerRadius(25)
                                 .padding(.bottom, 3)
                                 
                                 Text("Google")
                                     .foregroundColor(Color(.darkGray))
-                                    .font(.footnote)
+                                    .font(.subheadline)
                             }
-                            .frame(width:80, height:110)
+                            .frame(width:110, height:140)
                             .background(Color(.systemGroupedBackground))
-                            .cornerRadius(25)
+                            .cornerRadius(30)
                         }
 
                         
@@ -110,10 +110,10 @@ struct DashBlockView: View {
                 .foregroundColor(Color("Purple3"))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            ScrollView(.horizontal){
+            ScrollView(.horizontal, showsIndicators: false){
                 
                 HStack(spacing:12){
-                    ForEach(0 ..< 10, id: \.self){ _ in
+                    ForEach(0 ..< 9, id: \.self){ _ in
                         VStack (alignment: .center){
                             
                             VStack (alignment: .center){
@@ -124,17 +124,17 @@ struct DashBlockView: View {
                                     .padding()
                             }
                             .background(Color(.white))
-                            .frame(width:61, height:61)
-                            .cornerRadius(20)
+                            .frame(width:80, height:80)
+                            .cornerRadius(25)
                             .padding(.bottom, 3)
                             
                             Text("Google")
                                 .foregroundColor(Color(.darkGray))
-                                .font(.footnote)
+                                .font(.subheadline)
                         }
-                        .frame(width:80, height:110)
+                        .frame(width:110, height:140)
                         .background(Color(.systemGroupedBackground))
-                        .cornerRadius(25)
+                        .cornerRadius(30)
                         
                     }
                 }

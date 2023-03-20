@@ -17,16 +17,23 @@ struct DashboardView: View {
     
     var body: some View {
         
-        NavigationView{
-            
-            VStack {
-                Spacer()
-                DashBlockView(selectedCompany: $selectedCompany)
+        ZStack{
+            Color.gray.opacity(0.15).edgesIgnoringSafeArea(.all)
+                
+            ZStack{
+                VStack {
+                    Spacer(minLength: 220)
+                    Color.white
+                        .edgesIgnoringSafeArea(.all)
+                        .frame(width: UIScreen.main.bounds.size.width, height:550, alignment: .bottom)
+                }
+                VStack {
+                    Spacer()
+                    DashBlockView(selectedCompany: $selectedCompany)
+                }
             }
-
+                
         }
-        .navigationBarTitle(Text("Dashboard"), displayMode: .automatic)
-        .background(Color(.systemGroupedBackground))
         
     }
 }

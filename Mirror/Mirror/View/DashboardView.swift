@@ -20,13 +20,35 @@ struct DashboardView: View {
         NavigationView{
             
             VStack {
+                
+                Spacer()
+                    .frame(maxHeight: 100)
+                
+                HStack{
+                    Text(DataSource.secondUser.name)
+                        .font(.system(size: 30))
+                        .fontWeight(.bold)
+                        .padding()
+                        .foregroundColor(Color("Purple3"))
+                    
+                    Spacer()
+
+                    Image(DataSource.secondUser.avatar)
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .clipShape(Circle())
+                        .padding(.top, 16)
+                }
+                .padding(.horizontal)
                 Spacer()
                 DashBlockView(selectedCompany: $selectedCompany)
+                
             }
 
         }
         .navigationBarTitle(Text("Dashboard"), displayMode: .automatic)
         .background(Color(.systemGroupedBackground))
+        
         
     }
 }

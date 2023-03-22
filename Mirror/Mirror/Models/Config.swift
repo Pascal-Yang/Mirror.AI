@@ -21,7 +21,7 @@ struct Options {
     static var questionTypes = ["Technical questions","Behavioral questions", "Situational questions"]
     
     static var numQuestions = ["1 question", "1 to 3 questions","3 to 5 questions","5 to 7 questions"]
-
+    
 }
 
 
@@ -30,5 +30,5 @@ let chooseType = ConfigPage(options: Options.questionTypes, title: "Choose Quest
 let chooseNum = ConfigPage(options: Options.numQuestions, title: "Choose Number of Questions")
 let startPractice = ConfigPage(options: [], title: "Start Practice")
 
-let pages: [ConfigPage] = [chooseType, choosePos, chooseNum, startPractice]
+let pages: [ConfigPage] = [chooseType, choosePos, startPractice]
 

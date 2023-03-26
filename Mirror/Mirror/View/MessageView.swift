@@ -8,47 +8,47 @@ import SwiftUI
 struct MessageView : View {
     var currentMessage: Message
     var body: some View {
+        
         VStack(alignment: .leading, spacing: 15) {
+            HStack(alignment: .bottom, spacing: 15) {
+                                
+                if !currentMessage.user.isCurrentUser {
+                    Image(currentMessage.user.avatar)    // user avatar
+                        .resizable()
+                        .frame(width: 40, height: 40, alignment: .center)
+                        .cornerRadius(20)
+                    Text(currentMessage.user.name)
+                        .font(.caption)
+                } else {
+                    Spacer()
+                    Text(currentMessage.user.name)
+                        .font(.caption)
+                    Image(currentMessage.user.avatar)    // user avatar
+                        .resizable()
+                        .frame(width: 40, height: 40, alignment: .center)
+                        .cornerRadius(20)
+                
+                }
+                
+            }
+            
             if !currentMessage.user.isCurrentUser {
-                VStack(alignment: .leading, spacing: 15){
-                    HStack(alignment: .center, spacing:10){
-                        Image(currentMessage.user.avatar)    // user avatar
-                            .resizable()
-                            .frame(width: 40, height: 40, alignment: .center)
-                            .cornerRadius(20)
-                        Text(currentMessage.user.name)
-                    }
-                }
+        
                 ContentMessageView(contentMessage: currentMessage.display,
                                    isCurrentUser: currentMessage.user.isCurrentUser)
-                if currentMessage.fromAPI == true {
-                    MsgBtnsView()
-                }
+                
             } else {
-                VStack(alignment: .trailing, spacing: 15){
-                    HStack(alignment: .center, spacing:10){
-                        Text(currentMessage.user.name)
-                        Image(currentMessage.user.avatar)    // user avatar
-                            .resizable()
-                            .frame(width: 40, height: 40, alignment: .center)
-                            .cornerRadius(20)
-                    }
+                
+                HStack(alignment: .bottom, spacing: 15) {
+                    Spacer()
+                    ContentMessageView(contentMessage: currentMessage.display,
+                                       isCurrentUser: currentMessage.user.isCurrentUser)
                 }
-                ContentMessageView(contentMessage: currentMessage.display,
-                                   isCurrentUser: currentMessage.user.isCurrentUser)
-                if currentMessage.fromAPI == true {
-                    MsgBtnsView()
-                        .frame(maxWidth: .infinity)
-                        .alignmentGuide(.leading) { d in
-                            if currentMessage.user.isCurrentUser {
-                                return 0
-                            } else {
-                                return d.width
-                            }
-                        }
-                        .padding(.top, 5)
-                        .padding(.bottom, 10)
-                }
+            }
+            
+            if currentMessage.fromAPI == true {
+                MsgBtnsView()
+
             }
             
         }

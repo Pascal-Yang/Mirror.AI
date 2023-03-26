@@ -23,7 +23,6 @@ struct DashboardView: View {
                     .frame(maxHeight: 100)
                 
                 HStack{
-
                     
                     // TO-DO: change second-user name in DataSource
                     Text((FirebaseManager.shared.auth.currentUser?.email)!)
@@ -31,6 +30,7 @@ struct DashboardView: View {
                         .fontWeight(.bold)
                         .padding()
                         .foregroundColor(Color("Purple3"))
+                    
                     
                     Spacer()
 
@@ -44,6 +44,8 @@ struct DashboardView: View {
                 Spacer()
                 DashBlockView(selectedCompany: $selectedCompany)
                 
+            }.onAppear(){
+                DataSource.secondUser.name = (FirebaseManager.shared.auth.currentUser?.email)!
             }
                         
         

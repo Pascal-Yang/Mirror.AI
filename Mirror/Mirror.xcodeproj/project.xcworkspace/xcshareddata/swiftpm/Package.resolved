@@ -104,8 +104,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yonat/RadioGroup",
       "state" : {
-        "revision" : "c2ce6b275fbd8ef970f85349d03e7ea0615ed495",
-        "version" : "1.4.4"
+        "branch" : "master",
+        "revision" : "63cafd215ee76ba03018e735d89ced5985395fb9"
       }
     },
     {

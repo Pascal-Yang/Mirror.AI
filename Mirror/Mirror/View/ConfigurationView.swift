@@ -26,7 +26,7 @@ struct ConfigurationView : View {
             VStack (alignment: .leading) {
                                 
                 // only display company description when on the first config page
-                if self.currentPage == 0 {
+                if self.currentPage == 0 && selectedCompany != Companies.Default {
                                     
                     HStack(spacing: 10){
                         
@@ -59,7 +59,10 @@ struct ConfigurationView : View {
                     .background(Color.white)
                     .cornerRadius(45)
                     .padding()
-                    
+                    .onAppear() {
+                        let temp = ["company":selectedCompany.name]
+                        ConfigParam.merge(temp, uniquingKeysWith: {$1})
+                    }
                 }
 
                 HStack {
@@ -89,7 +92,8 @@ struct ConfigurationView : View {
                             return
                         }
                         if pages[currentPage - 1].options.count > selectedIndex && selectedIndex >= 0 {
-                            ConfigParam.append(pages[currentPage - 1].options[selectedIndex])
+                            let temp = [pages[currentPage - 1].title:pages[currentPage - 1].options[selectedIndex]]
+                            ConfigParam.merge(temp, uniquingKeysWith: {$1})
                             print(ConfigParam)
                         }
 
@@ -97,7 +101,7 @@ struct ConfigurationView : View {
                 }
                 
             }
-            .frame(height: (self.currentPage == 0) ? (200 + 56 * CGFloat(pages[currentPage].options.count)) : (56 * CGFloat(pages[currentPage].options.count))) // responsive to frame size to number of options in the radio group
+            .frame(height: (self.currentPage == 0 && selectedCompany != Companies.Default) ? (200 + 56 * CGFloat(pages[currentPage].options.count)) : (56 * CGFloat(pages[currentPage].options.count))) // responsive to frame size to number of options in the radio group
             .background(Color("Grey1"))
             .cornerRadius(50)
             .padding(.horizontal)

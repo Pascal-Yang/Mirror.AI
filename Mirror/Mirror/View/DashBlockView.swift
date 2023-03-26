@@ -25,25 +25,30 @@ struct DashBlockView: View {
             
             //General practice
             HStack(spacing:12){
-                VStack(alignment: .leading){
-                    Text("GENERAL PRACTICE")
-                        .foregroundColor(Color(.white))
-                        .font(.subheadline)
-                        .fontWeight(.bold)
-                        .padding(.leading, 30)
+                
+                NavigationLink(destination: ConfigFlowView(selectedCompany: Companies.Default)){
                     
-                    Text("10")
-                        .foregroundColor(Color(.white))
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding(.leading, 30)
-                    
-                    Text("Questions left today")
-                        .foregroundColor(Color(.systemGray3))
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                        .padding(.leading, 30)
-                    
+                    VStack(alignment: .leading){
+                        Text("GENERAL PRACTICE")
+                            .foregroundColor(Color(.white))
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                            .padding(.leading, 30)
+                        
+                        // TODO: to add a questions per day setting for each user
+                        Text("10")
+                            .foregroundColor(Color(.white))
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .padding(.leading, 30)
+                        
+                        Text("Questions left today")
+                            .foregroundColor(Color(.systemGray3))
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                            .padding(.leading, 30)
+                        
+                    }
                 }
                 
                 Spacer()
@@ -52,6 +57,7 @@ struct DashBlockView: View {
                     .foregroundColor(Color(.white))
                     .imageScale(.medium)
                     .padding()
+                
             }
             .frame(height:111)
             .background(Color("Purple3"))
@@ -66,38 +72,40 @@ struct DashBlockView: View {
                 .foregroundColor(Color("Purple3"))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            ScrollView(.horizontal){
+            ScrollView(.horizontal, showsIndicators: false){
                 
                 HStack(spacing:12){
-                    ForEach(0 ..< 10, id: \.self){ _ in
-                        
-                        NavigationLink(destination: ConfigFlowView(selectedCompany: $selectedCompany)){
+                    ForEach(companies, id: \.name){ company in
+                                                
+                        NavigationLink(destination: ConfigFlowView(selectedCompany: company)){
                             
                             VStack (alignment: .center){
                                 
                                 VStack (alignment: .center){
-                                    Image("google_logo")
+                                    Image(company.logo)
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width:120)
                                         .padding()
                                 }
                                 .background(Color(.white))
-                                .frame(width:61, height:61)
-                                .cornerRadius(20)
+                                .frame(width:80, height:80)
+                                .cornerRadius(25)
                                 .padding(.bottom, 3)
                                 
-                                Text("Google")
+                                Text(company.name)
                                     .foregroundColor(Color(.darkGray))
                                     .font(.footnote)
+                                
                             }
-                            .frame(width:80, height:110)
+                            .frame(width:110, height:140)
                             .background(Color(.systemGroupedBackground))
-                            .cornerRadius(25)
+                            .cornerRadius(30)
                         }
 
                         
                     }
+                    
                 }
             }
             .padding(.horizontal)
@@ -110,31 +118,37 @@ struct DashBlockView: View {
                 .foregroundColor(Color("Purple3"))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            ScrollView(.horizontal){
+            ScrollView(.horizontal, showsIndicators: false){
                 
                 HStack(spacing:12){
-                    ForEach(0 ..< 10, id: \.self){ _ in
-                        VStack (alignment: .center){
+                    ForEach(topics, id: \.name){ topic in
+                                                
+                        NavigationLink(destination: ConfigFlowView(selectedCompany: topic)){
                             
                             VStack (alignment: .center){
-                                Image("react_logo")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width:120)
-                                    .padding()
+                                
+                                VStack (alignment: .center){
+                                    Image(topic.logo)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width:120)
+                                        .padding()
+                                }
+                                .background(Color(.white))
+                                .frame(width:61, height:61)
+                                .cornerRadius(20)
+                                .padding(.bottom, 3)
+                                
+                                Text(topic.name)
+                                    .foregroundColor(Color(.darkGray))
+                                    .font(.footnote)
+                                
                             }
-                            .background(Color(.white))
-                            .frame(width:61, height:61)
-                            .cornerRadius(20)
-                            .padding(.bottom, 3)
-                            
-                            Text("Google")
-                                .foregroundColor(Color(.darkGray))
-                                .font(.footnote)
+                            .frame(width:80, height:110)
+                            .background(Color(.systemGroupedBackground))
+                            .cornerRadius(25)
                         }
-                        .frame(width:80, height:110)
-                        .background(Color(.systemGroupedBackground))
-                        .cornerRadius(25)
+
                         
                     }
                 }

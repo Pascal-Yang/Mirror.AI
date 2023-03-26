@@ -19,25 +19,46 @@ class ChatHelper : ObservableObject {
         if let res = fetchCompletion(prompt: chatMessage.content){
             
             // Create a new chat message from the response and append it to the realTimeMessages data source
-            let new = Message(content: res, user: DataSource.firstUser)
+            let new = Message(content: res, user: DataSource.firstUser, fromAPI:true)
             realTimeMessages.append(new)
             didChange.send(())
             
         }
     }
     
-    func configureChatroom(_ param: [String]) {
+    func configureChatroom(_ param: [String:String]) {
         // TODO: initiate new conversation object to be saved in database
     
         print("here")
         // if start of conversation, configure chatroom
+        var company = "general"
+        if let temp = param["company"]?.lowercased() {
+            company = temp
+        }
+        var questionType = param["type"]?.lowercased()
+        let job = param["position"]?.lowercased()
+//        var num = param[2].lowercased()
+        
+        if questionType!.count >= 9 {
+            let endIndex = questionType!.index(questionType!.endIndex, offsetBy: -9)
+            questionType = String(questionType![..<endIndex])
+            }
+//        if (num.count >= 8 && num.count <= 10){
+//                let endIndex = num.index(num.endIndex, offsetBy: -8)
+//            num = String(num[..<endIndex])
+//            }
+//        if (num.count > 10){
+//                let endIndex = num.index(num.endIndex, offsetBy: -9)
+//            num = String(num[..<endIndex])
+//            }
+        
         if realTimeMessages.count <= 1 {
             // prepare prompt
-            let configuredParams = "Please ask me some interview questions one at a time based on the following parameters: " + param.joined(separator: " " + "; Keep all response relatively short please")
+            let configuredParams = "Ask me 1 " + String(company ?? "") + " " + String(questionType ?? "") + "interview question for a " + String(job ?? "") + " job, keep the question short."
             print(configuredParams)
 
             if let res = fetchCompletion(prompt: configuredParams){
-                let new = Message(content: res, user: DataSource.firstUser)
+                let new = Message(content: res, user: DataSource.firstUser, fromAPI: true)
                 realTimeMessages.append(new)
                 didChange.send(())
             }

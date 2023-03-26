@@ -21,7 +21,7 @@ struct Options {
     static var questionTypes = ["Technical questions","Behavioral questions", "Situational questions"]
     
     static var numQuestions = ["1 question", "1 to 3 questions","3 to 5 questions","5 to 7 questions"]
-
+    
 }
 
 struct msgOptions {

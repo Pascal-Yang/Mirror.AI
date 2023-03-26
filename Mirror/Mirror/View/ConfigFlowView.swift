@@ -16,7 +16,7 @@ var ConfigParam: [String] = []
 struct ConfigFlowView : View {
     
     @State private var currentPage = 0
-    @Binding var selectedCompany: Company
+    @State var selectedCompany: Company
     
     var body: some View {
         

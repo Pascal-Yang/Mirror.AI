@@ -17,23 +17,36 @@ struct DashboardView: View {
     
     var body: some View {
         
-        ZStack{
-            Color.gray.opacity(0.15).edgesIgnoringSafeArea(.all)
+        NavigationView{
+            
+            VStack {
                 
-            ZStack{
-                VStack {
-                    Spacer(minLength: 220)
-                    Color.white
-                        .edgesIgnoringSafeArea(.all)
-                        .frame(width: UIScreen.main.bounds.size.width, height:550, alignment: .bottom)
-                }
-                VStack {
+                Spacer()
+                    .frame(maxHeight: 100)
+                
+                HStack{
+                    Text(DataSource.secondUser.name)
+                        .font(.system(size: 30))
+                        .fontWeight(.bold)
+                        .padding()
+                        .foregroundColor(Color("Purple3"))
+                    
                     Spacer()
-                    DashBlockView(selectedCompany: $selectedCompany)
+
+                    Image(DataSource.secondUser.avatar)
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .clipShape(Circle())
+                        .padding(.top, 16)
                 }
+                .padding(.horizontal)
+                Spacer()
+                DashBlockView(selectedCompany: $selectedCompany)
+                
             }
                 
         }
+        
         
     }
 }

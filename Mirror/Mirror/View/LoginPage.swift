@@ -19,10 +19,6 @@ struct LoginPage: View {
         NavigationView{
             ScrollView{
                 
-                NavigationLink(destination: DashboardView(selectedCompany: Companies.Google)) {
-                                    Text("Do Something")
-                                }
-                
                 VStack(spacing: 20){
                     Text("Authentication Page")
                         .fontWeight(.heavy)

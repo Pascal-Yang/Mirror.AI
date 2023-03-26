@@ -6,6 +6,7 @@ import SwiftUI
 
 // view for AI interview room
 struct ChatView: View {
+        
     @State var typingMessage: String = ""
     @EnvironmentObject var chatHelper: ChatHelper
     @ObservedObject private var keyboard = KeyboardResponder()
@@ -67,6 +68,7 @@ struct ChatView: View {
             }.navigationBarTitle(Text(DataSource.firstUser.name), displayMode: .inline)
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(keyboard.currentHeight == 0.0 ? .leading: .bottom)
+            
         }.onTapGesture {
                 self.endEditing(true)
         }.onAppear {
@@ -74,11 +76,16 @@ struct ChatView: View {
         }
     }
     
+    
     func sendMessage() {
         chatHelper.sendMessage(Message(content: typingMessage, user: DataSource.secondUser, fromAPI: false))
         typingMessage = ""
     }
+    
+    
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

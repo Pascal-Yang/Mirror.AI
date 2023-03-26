@@ -12,7 +12,11 @@ struct LoginPage: View {
     @State var isLoginMode = true
     @State var email = ""
     @State var password = ""
-    @State var isLogined = false
+    @State var isLogined = false {
+        didSet{
+            print("isLogined = \(isLogined)")
+        }
+    }
     @State var displayAlert = false
     @State var alertMessage = ""
     
@@ -93,6 +97,19 @@ struct LoginPage: View {
                     
                 }
                 .padding()
+                .onAppear(perform: {
+                    if isLogined{
+                        do{
+                            try FirebaseManager.shared.auth.signOut()
+                        }catch{
+                            print(error)
+                        }
+                        isLogined = false
+                        email = ""
+                        password = ""
+                    }
+                    
+                })
                 
             }
             

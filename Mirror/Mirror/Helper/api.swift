@@ -13,7 +13,7 @@ struct Request: Codable {
 struct Response: Codable {
     let response: String
 }
-
+public var currentHis: [[String:Any]] = [["role": "system", "content": "You are a helpful assistant."]]
 
 
 func mergeWithChatHistory(prompt: String, chatHistory: [[String:Any]]) -> [[String:Any]] {
@@ -57,6 +57,7 @@ func makeRequestGPT(chatHistory: [[String:Any]], completion: @escaping (Result<S
             print(json)
             let completions = json["choices"] as! [[String: Any]]
             let resDic = completions[0]["message"] as! [String: Any]
+            currentHis.append(resDic)
             let res = resDic["content"] as! String
             completion(.success(res))
         } catch let error {
@@ -72,8 +73,8 @@ func fetchCompletion(prompt: String) -> String? {
     var completion: String?
     let semaphore = DispatchSemaphore(value: 0)
     // Send the request asynchronously and handle the response
-    let tmpHis = [["role": "system", "content": "You are a helpful assistant."]]
-    let tmpMerge = mergeWithChatHistory(prompt: prompt, chatHistory: tmpHis)
+    
+    let tmpMerge = mergeWithChatHistory(prompt: prompt, chatHistory: currentHis)
     print(tmpMerge)
     makeRequestGPT(chatHistory: tmpMerge) { result in
         switch result {

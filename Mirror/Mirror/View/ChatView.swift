@@ -71,6 +71,11 @@ struct ChatView: View {
                 self.endEditing(true)
         }.onAppear {
             chatHelper.configureChatroom(ConfigParam)
+        }.onDisappear{
+            
+            
+            currentHis = [["role": "system", "content": "You are a helpful assistant."]]
+            
         }
     }
     

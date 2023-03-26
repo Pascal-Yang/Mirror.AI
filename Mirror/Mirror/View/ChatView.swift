@@ -6,11 +6,11 @@ import SwiftUI
 
 // view for AI interview room
 struct ChatView: View {
+        
     @State var typingMessage: String = ""
     @EnvironmentObject var chatHelper: ChatHelper
     @ObservedObject private var keyboard = KeyboardResponder()
     @State var isRecording:Bool = false
-    
     @State var myRecognizer:recognizer!
     
     init() {
@@ -29,13 +29,15 @@ struct ChatView: View {
                         MessageView(currentMessage: msg)
                     }
                 }
+                .frame(width:.infinity)
+                
                 HStack {
                     
                     Button(action: {
                         
                         // if currently recording, end and send
                         if isRecording {
-                            chatHelper.sendMessage(Message(content: myRecognizer.getCurrentTranscript(), user: DataSource.secondUser))
+                            chatHelper.sendMessage(Message(content: myRecognizer.getCurrentTranscript(), user: DataSource.secondUser, fromAPI: false))
                             self.isRecording = false
                             myRecognizer.audioEngine.stop()
                         } else {
@@ -49,7 +51,6 @@ struct ChatView: View {
                             }
                             self.isRecording = true
                         }
-                        
                         
                     }){
                         Image(systemName: isRecording ? "mic.fill" : "mic.slash.fill")
@@ -67,18 +68,31 @@ struct ChatView: View {
             }.navigationBarTitle(Text(DataSource.firstUser.name), displayMode: .inline)
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(keyboard.currentHeight == 0.0 ? .leading: .bottom)
+            
         }.onTapGesture {
                 self.endEditing(true)
         }.onAppear {
+            FirebaseManager.shared.startNewQuestion(job: "", question: "")
             chatHelper.configureChatroom(ConfigParam)
+        }.onDisappear{
+            for arr in currentHis{
+                FirebaseManager.shared.addHistoryToCurrentQuestion(role: arr["role"] as! String, content: arr["content"] as! String)
+            }
+            currentHis = [["role": "system", "content": "You are a helpful assistant."]]
+            
         }
     }
     
+    
     func sendMessage() {
-        chatHelper.sendMessage(Message(content: typingMessage, user: DataSource.secondUser))
+        chatHelper.sendMessage(Message(content: typingMessage, user: DataSource.secondUser, fromAPI: false))
         typingMessage = ""
     }
+    
+    
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

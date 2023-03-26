@@ -8,23 +8,56 @@ import SwiftUI
 struct MessageView : View {
     var currentMessage: Message
     var body: some View {
-        HStack(alignment: .bottom, spacing: 15) {
+        VStack(alignment: .leading, spacing: 15) {
             if !currentMessage.user.isCurrentUser {
-                Image(currentMessage.user.avatar)    // user avatar
-                .resizable()
-                .frame(width: 40, height: 40, alignment: .center)
-                .cornerRadius(20)
+                VStack(alignment: .leading, spacing: 15){
+                    HStack(alignment: .center, spacing:10){
+                        Image(currentMessage.user.avatar)    // user avatar
+                            .resizable()
+                            .frame(width: 40, height: 40, alignment: .center)
+                            .cornerRadius(20)
+                        Text(currentMessage.user.name)
+                    }
+                }
+                ContentMessageView(contentMessage: currentMessage.display,
+                                   isCurrentUser: currentMessage.user.isCurrentUser)
+                if currentMessage.fromAPI == true {
+                    MsgBtnsView()
+                }
             } else {
-                Spacer()
+                VStack(alignment: .trailing, spacing: 15){
+                    HStack(alignment: .center, spacing:10){
+                        Text(currentMessage.user.name)
+                        Image(currentMessage.user.avatar)    // user avatar
+                            .resizable()
+                            .frame(width: 40, height: 40, alignment: .center)
+                            .cornerRadius(20)
+                    }
+                }
+                ContentMessageView(contentMessage: currentMessage.display,
+                                   isCurrentUser: currentMessage.user.isCurrentUser)
+                if currentMessage.fromAPI == true {
+                    MsgBtnsView()
+                        .frame(maxWidth: .infinity)
+                        .alignmentGuide(.leading) { d in
+                            if currentMessage.user.isCurrentUser {
+                                return 0
+                            } else {
+                                return d.width
+                            }
+                        }
+                        .padding(.top, 5)
+                        .padding(.bottom, 10)
+                }
             }
-            ContentMessageView(contentMessage: currentMessage.content,
-                               isCurrentUser: currentMessage.user.isCurrentUser)
-        }.padding()
+            
+        }
+        .padding()
     }
 }
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageView(currentMessage: Message(content: "There are a lot of premium iOS templates on iosapptemplates.com", user: DataSource.secondUser))
+        MessageView(currentMessage: Message(content: "There are a lot of premium iOS templates on iosapptemplates.com", user: DataSource.secondUser, fromAPI: false))
     }
 }

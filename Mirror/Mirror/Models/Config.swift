@@ -21,14 +21,14 @@ struct Options {
     static var questionTypes = ["Technical questions","Behavioral questions", "Situational questions"]
     
     static var numQuestions = ["1 question", "1 to 3 questions","3 to 5 questions","5 to 7 questions"]
-
+    
 }
 
 
-let choosePos = ConfigPage(options: Options.positions, title: "Choose Position")
-let chooseType = ConfigPage(options: Options.questionTypes, title: "Choose Question Type")
-let chooseNum = ConfigPage(options: Options.numQuestions, title: "Choose Number of Questions")
-let startPractice = ConfigPage(options: [], title: "Start Practice")
+let choosePos = ConfigPage(options: Options.positions, title: "position")
+let chooseType = ConfigPage(options: Options.questionTypes, title: "type")
+let chooseNum = ConfigPage(options: Options.numQuestions, title: "num")
+let startPractice = ConfigPage(options: [], title: "start")
 
-let pages: [ConfigPage] = [chooseType, choosePos, chooseNum, startPractice]
+let pages: [ConfigPage] = [chooseType, choosePos, startPractice]
 

@@ -11,12 +11,12 @@ import Foundation
 import SwiftUI
 
 
-var ConfigParam: [String] = []
+var ConfigParam: [String:String] = [:]
 
 struct ConfigFlowView : View {
     
     @State private var currentPage = 0
-    @Binding var selectedCompany: Company
+    @State var selectedCompany: Company
     
     var body: some View {
         
@@ -53,7 +53,7 @@ struct ConfigFlowView : View {
             }
             .padding()
             .onAppear{
-                ConfigParam = []
+                ConfigParam = [:]
             }
     
         }

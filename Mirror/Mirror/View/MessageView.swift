@@ -4,9 +4,11 @@
 
 import SwiftUI
 
-// view for user message
 struct MessageView : View {
+    
     var currentMessage: Message
+    @Binding var hintClicked: Bool
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             if !currentMessage.user.isCurrentUser {
@@ -22,7 +24,7 @@ struct MessageView : View {
                 ContentMessageView(contentMessage: currentMessage.display,
                                    isCurrentUser: currentMessage.user.isCurrentUser)
                 if currentMessage.fromAPI == true {
-                    MsgBtnsView()
+                    MsgBtnsView(hintClicked: $hintClicked, answerClicked: .constant(false), questionClicked: .constant(false), isHintClicked: hintClicked)
                 }
             } else {
                 VStack(alignment: .trailing, spacing: 15){
@@ -36,19 +38,6 @@ struct MessageView : View {
                 }
                 ContentMessageView(contentMessage: currentMessage.display,
                                    isCurrentUser: currentMessage.user.isCurrentUser)
-                if currentMessage.fromAPI == true {
-                    MsgBtnsView()
-                        .frame(maxWidth: .infinity)
-                        .alignmentGuide(.leading) { d in
-                            if currentMessage.user.isCurrentUser {
-                                return 0
-                            } else {
-                                return d.width
-                            }
-                        }
-                        .padding(.top, 5)
-                        .padding(.bottom, 10)
-                }
             }
             
         }
@@ -58,6 +47,6 @@ struct MessageView : View {
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageView(currentMessage: Message(content: "There are a lot of premium iOS templates on iosapptemplates.com", user: DataSource.secondUser, fromAPI: false))
+        MessageView(currentMessage: Message(content: "Hello, this is a test message.", user: DataSource.firstUser, fromAPI: false), hintClicked: .constant(false))
     }
 }

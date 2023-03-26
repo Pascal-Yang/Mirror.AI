@@ -18,7 +18,6 @@ struct LoginPage: View {
     
     var body: some View {
         
-        
         NavigationView{
             
             ScrollView{

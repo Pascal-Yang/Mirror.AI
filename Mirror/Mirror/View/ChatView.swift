@@ -12,6 +12,9 @@ struct ChatView: View {
     @ObservedObject private var keyboard = KeyboardResponder()
     @State var isRecording:Bool = false
     @State var myRecognizer:recognizer!
+    @State var hintClicked: Bool = false
+    @State var answerClicked: Bool = false
+    @State var questionClicked: Bool = false
     
     init() {
         UITableView.appearance().separatorStyle = .none
@@ -26,7 +29,7 @@ struct ChatView: View {
                 
                 List {
                     ForEach(chatHelper.realTimeMessages, id: \.self) { msg in
-                        MessageView(currentMessage: msg)
+                        MessageView(currentMessage: msg, hintClicked: $hintClicked)
                     }
                 }
                 .frame(width:.infinity)
@@ -80,15 +83,17 @@ struct ChatView: View {
     func sendMessage() {
         chatHelper.sendMessage(Message(content: typingMessage, user: DataSource.secondUser, fromAPI: false))
         typingMessage = ""
+        hintClicked = false
+        answerClicked = false
+        questionClicked = false
     }
     
     
 }
 
-
-
-struct ContentView_Previews: PreviewProvider {
+struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
         ChatView()
     }
 }
+

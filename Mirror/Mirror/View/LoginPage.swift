@@ -12,7 +12,11 @@ struct LoginPage: View {
     @State var isLoginMode = false
     @State var email = ""
     @State var password = ""
-    @State var isLogined = false
+    @State var isLogined = false {
+        didSet{
+            print("isLogined = \(isLogined)")
+        }
+    }
     @State var displayAlert = false
     @State var alertMessage = ""
     
@@ -20,8 +24,6 @@ struct LoginPage: View {
         
         NavigationView{
             ScrollView{
-                
-                
                 
                 VStack(spacing: 20){
                     Text("Authentication Page")
@@ -80,6 +82,19 @@ struct LoginPage: View {
                     
                 }
                 .padding()
+                .onAppear(perform: {
+                    if isLogined{
+                        do{
+                            try FirebaseManager.shared.auth.signOut()
+                        }catch{
+                            print(error)
+                        }
+                        isLogined = false
+                        email = ""
+                        password = ""
+                    }
+                    
+                })
                 
             }
             

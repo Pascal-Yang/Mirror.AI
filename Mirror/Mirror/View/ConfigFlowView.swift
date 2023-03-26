@@ -11,7 +11,7 @@ import Foundation
 import SwiftUI
 
 
-var ConfigParam: [String] = []
+var ConfigParam: [String:String] = [:]
 
 struct ConfigFlowView : View {
     
@@ -53,7 +53,7 @@ struct ConfigFlowView : View {
             }
             .padding()
             .onAppear{
-                ConfigParam = []
+                ConfigParam = [:]
             }
     
         }

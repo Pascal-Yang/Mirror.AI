@@ -16,16 +16,17 @@ struct DashboardView: View {
     @State var selectedCompany : Company
     
     var body: some View {
-        
-        NavigationView{
-            
+                    
             VStack {
                 
                 Spacer()
                     .frame(maxHeight: 100)
                 
                 HStack{
-                    Text(DataSource.secondUser.name)
+
+                    
+                    // TO-DO: change second-user name in DataSource
+                    Text((FirebaseManager.shared.auth.currentUser?.email)!)
                         .font(.system(size: 30))
                         .fontWeight(.bold)
                         .padding()
@@ -44,9 +45,7 @@ struct DashboardView: View {
                 DashBlockView(selectedCompany: $selectedCompany)
                 
             }
-                
-        }
-        
+                        
         
     }
 }

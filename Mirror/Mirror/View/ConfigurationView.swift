@@ -60,7 +60,8 @@ struct ConfigurationView : View {
                     .cornerRadius(45)
                     .padding()
                     .onAppear() {
-                        ConfigParam.append(selectedCompany.name)
+                        let temp = ["company":selectedCompany.name]
+                        ConfigParam.merge(temp, uniquingKeysWith: {$1})
                     }
                 }
 
@@ -91,7 +92,8 @@ struct ConfigurationView : View {
                             return
                         }
                         if pages[currentPage - 1].options.count > selectedIndex && selectedIndex >= 0 {
-                            ConfigParam.append(pages[currentPage - 1].options[selectedIndex])
+                            let temp = [pages[currentPage - 1].title:pages[currentPage - 1].options[selectedIndex]]
+                            ConfigParam.merge(temp, uniquingKeysWith: {$1})
                             print(ConfigParam)
                         }
 

@@ -26,19 +26,22 @@ class ChatHelper : ObservableObject {
         }
     }
     
-    func configureChatroom(_ param: [String]) {
+    func configureChatroom(_ param: [String:String]) {
         // TODO: initiate new conversation object to be saved in database
     
         print("here")
         // if start of conversation, configure chatroom
-        let company = param[0].lowercased()
-        var questionType = param[1].lowercased()
-        let job = param[2].lowercased()
+        var company = "general"
+        if let temp = param["company"]?.lowercased() {
+            company = temp
+        }
+        var questionType = param["type"]?.lowercased()
+        let job = param["position"]?.lowercased()
 //        var num = param[2].lowercased()
         
-        if questionType.count >= 9 {
-                let endIndex = questionType.index(questionType.endIndex, offsetBy: -9)
-            questionType = String(questionType[..<endIndex])
+        if questionType!.count >= 9 {
+            let endIndex = questionType!.index(questionType!.endIndex, offsetBy: -9)
+            questionType = String(questionType![..<endIndex])
             }
 //        if (num.count >= 8 && num.count <= 10){
 //                let endIndex = num.index(num.endIndex, offsetBy: -8)
@@ -51,7 +54,7 @@ class ChatHelper : ObservableObject {
         
         if realTimeMessages.count <= 1 {
             // prepare prompt
-            let configuredParams = "Ask me 1 " + company + " " + questionType + "interview question for a " + job + " job, keep the question short."
+            let configuredParams = "Ask me 1 " + String(company ?? "") + " " + String(questionType ?? "") + "interview question for a " + String(job ?? "") + " job, keep the question short."
             print(configuredParams)
 
             if let res = fetchCompletion(prompt: configuredParams){

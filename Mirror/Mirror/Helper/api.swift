@@ -26,13 +26,13 @@ func mergeWithChatHistory(prompt: String, chatHistory: [[String:Any]]) -> [[Stri
 
 // Function for making a request to OpenAI's Chatgpt API and returning the response
 func makeRequestGPT(chatHistory: [[String:Any]], completion: @escaping (Result<String, Error>) -> Void) {
-    let apiKey = "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"
+    let apiKey = ProcessInfo.processInfo.environment["API_KEY"]
     // Set up request with required headers and parameters
     let url = URL(string: "https://api.openai.com/v1/chat/completions")!
 
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
-    request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+    request.addValue("Bearer \(apiKey ?? "")", forHTTPHeaderField: "Authorization")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
     let parameters = [

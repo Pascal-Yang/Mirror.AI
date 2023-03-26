@@ -70,10 +70,12 @@ struct ChatView: View {
         }.onTapGesture {
                 self.endEditing(true)
         }.onAppear {
+            FirebaseManager.shared.startNewQuestion(job: "", question: "")
             chatHelper.configureChatroom(ConfigParam)
         }.onDisappear{
-            
-            
+            for arr in currentHis{
+                FirebaseManager.shared.addHistoryToCurrentQuestion(role: arr["role"] as! String, content: arr["content"] as! String)
+            }
             currentHis = [["role": "system", "content": "You are a helpful assistant."]]
             
         }

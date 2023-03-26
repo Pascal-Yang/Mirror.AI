@@ -5,6 +5,28 @@
 
 import Foundation
 
+
+struct Question: Hashable{
+    let job:String
+    let question:String
+    var history:[History]
+}
+
+struct History: Hashable{
+    var content:String
+    var role:String
+}
+
+struct ChatRecord: Hashable{
+    var content: String
+    
+    // 0 => user
+    // 1 => chat bot
+    var type: Int
+    
+    var time: Date
+}
+
 struct Message: Hashable {
     var display: String
     var content: String

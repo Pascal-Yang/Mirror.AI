@@ -13,6 +13,8 @@ struct LoginPage: View {
     @State var email = ""
     @State var password = ""
     @State var isLogined = false
+    @State var displayAlert = false
+    @State var alertMessage = ""
     
     var body: some View {
         
@@ -61,6 +63,13 @@ struct LoginPage: View {
                                 Spacer()
                             }.background(Color.blue)
                         }
+                        .alert(isPresented: $displayAlert){
+                            Alert(
+                                title: Text("Error"),
+                                message: Text(alertMessage),
+                                dismissButton: .default(Text("OK"))
+                            )
+                        }
                         .cornerRadius(10)
                     }
                     .background(
@@ -68,8 +77,6 @@ struct LoginPage: View {
                             EmptyView()
                         }
                     )
-                    
-                   
                     
                 }
                 .padding()
@@ -95,7 +102,9 @@ struct LoginPage: View {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password){
             res, error in
             if let err = error{
-                print("cannot login", err)
+                alertMessage = err.localizedDescription
+                displayAlert = true
+                print(err.localizedDescription)
                 return
             }
             
@@ -119,6 +128,8 @@ struct LoginPage: View {
         FirebaseManager.shared.auth.createUser(withEmail: email, password: password){
             res, error in
             if let err = error{
+                alertMessage = err.localizedDescription
+                displayAlert = true
                 print("register failed with \(err)")
                 return
             }

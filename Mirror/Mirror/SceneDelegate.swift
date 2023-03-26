@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let loginView = LoginPage()
         //        let chatView = ChatView()
-        let DashboardView = DashboardView(selectedCompany: Companies.Google)
+        let DashboardView = DashboardView(selectedCompany: Companies.General)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

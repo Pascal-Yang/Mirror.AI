@@ -12,11 +12,14 @@ struct LoginPage: View {
     @State var isLoginMode = false
     @State var email = ""
     @State var password = ""
+    @State var isLogined = false
     
     var body: some View {
         
         NavigationView{
             ScrollView{
+                
+                
                 
                 VStack(spacing: 20){
                     Text("Authentication Page")
@@ -46,19 +49,28 @@ struct LoginPage: View {
                     SecureField("Password", text: $password)
                         .padding(12)
                     
-                   
-                    Button{
-                        handleButton()
-                    }label: {
-                        HStack{
-                            Spacer()
-                            Text(isLoginMode ? "Log In" : "Create Account")
-                                .foregroundColor(.white)
-                                .padding(.vertical, 8)
-                            Spacer()
-                        }.background(Color.blue)
+                    VStack{
+                        Button{
+                            handleButton()
+                        }label: {
+                            HStack{
+                                Spacer()
+                                Text(isLoginMode ? "Log In" : "Create Account")
+                                    .foregroundColor(.white)
+                                    .padding(.vertical, 8)
+                                Spacer()
+                            }.background(Color.blue)
+                        }
+                        .cornerRadius(10)
                     }
-                    .cornerRadius(10)
+                    .background(
+                        NavigationLink(destination: DashboardView(selectedCompany: Companies.Google), isActive: $isLogined){
+                            EmptyView()
+                        }
+                    )
+                    
+                   
+                    
                 }
                 .padding()
                 
@@ -89,8 +101,9 @@ struct LoginPage: View {
             
             print("login successful", email, res?.user.uid ?? "cannot get uid")
             
-            //FirebaseManager.shared.getChatHistory()
+            isLogined = true
             
+            //FirebaseManager.shared.getChatHistory()
             
 //
 //            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "user", content: "I user SwiftUI the best. But I also use Object-C.")

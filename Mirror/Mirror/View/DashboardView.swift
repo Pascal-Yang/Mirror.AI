@@ -26,7 +26,7 @@ struct DashboardView: View {
 
                     
                     // TO-DO: change second-user name in DataSource
-                    Text((FirebaseManager.shared.auth.currentUser?.email)!)
+                    Text((FirebaseManager.shared.auth.currentUser?.email ?? "Guest"))
                         .font(.system(size: 30))
                         .fontWeight(.bold)
                         .padding()

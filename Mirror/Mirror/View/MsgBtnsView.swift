@@ -48,7 +48,7 @@ struct MsgBtnsView: View {
                     Image("answer")
                         .resizable()
                         .scaledToFit()
-                        .frame(width:40) // Set the width of the image to match the width of VStack
+                        .frame(width:40)
                         .padding(10)
                 }
                 .background(isAnswerClicked ? Color.gray : Color("Purple3"))

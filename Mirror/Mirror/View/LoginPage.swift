@@ -79,8 +79,8 @@ struct LoginPage: View {
                         Button("Continue as Guest") {
                             isLogined = true
                         }
+                        .buttonStyle(PlainButtonStyle())
                         .foregroundColor(.blue)
-                        .background(Color.gray)
                         .padding(.top, 20)
                         .background(
                             NavigationLink(destination: DashboardView(selectedCompany: Companies.Google), isActive: $isLogined) {

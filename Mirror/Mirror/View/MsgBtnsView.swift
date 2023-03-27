@@ -17,6 +17,8 @@ struct MsgBtnsView: View {
     @Binding var answerClicked: Bool
     @Binding var questionClicked: Bool
     @State var isHintClicked: Bool = false
+    @State var isAnswerClicked: Bool = false
+    @State var isPlusClicked: Bool = false
     
     var body: some View {
         
@@ -49,16 +51,15 @@ struct MsgBtnsView: View {
                         .frame(width:40) // Set the width of the image to match the width of VStack
                         .padding(10)
                 }
-                .background(answerClicked ? Color.gray : Color("Purple3"))
+                .background(isAnswerClicked ? Color.gray : Color("Purple3"))
                 .frame(width: 40, height:40)
                 .cornerRadius(20)
                 .onTapGesture {
                     print("example answer")
                     answer()
-                    hintClicked = false
-                    answerClicked = true
-                    questionClicked = false
+                    isAnswerClicked = true
                 }
+                .disabled(isAnswerClicked)
                 
             }
             
@@ -70,15 +71,15 @@ struct MsgBtnsView: View {
                     .frame(width:40) // Set the width of the image to match the width of VStack
                     .padding(10)
             }
-            .background(questionClicked ? Color.gray : Color("Purple3"))
+            .background(Color("Purple3"))
             .frame(width:40, height:40)
             .cornerRadius(20)
             .onTapGesture {
                 print("new question")
                 question()
-                hintClicked = false
-                answerClicked = false
-                questionClicked = true
+                isPlusClicked = true
+                isAnswerClicked = false
+                isHintClicked = false
             }
         }
         
@@ -87,16 +88,17 @@ struct MsgBtnsView: View {
     func hint() {
         chatHelper.sendMessage(Message(display:"give me a hint", content: "give me a hint to the interview question you just asked, keep it relatively short", user: DataSource.secondUser, fromAPI: false))
         hintClicked = true
-        answerClicked = false
-        questionClicked = false
     }
     
     func answer() {
         chatHelper.sendMessage(Message(display:"example answer", content: "give me a standard answer to the interview question you just asked", user: DataSource.secondUser, fromAPI: false))
+        answerClicked = true
     }
     
     func question() {
         chatHelper.sendMessage(Message(display:"new question", content: "give me another question", user: DataSource.secondUser, fromAPI: false))
+        hintClicked = false
+        answerClicked = false
     }
 }
 

@@ -12,6 +12,7 @@ struct ChatView: View {
     @ObservedObject private var keyboard = KeyboardResponder()
     @State var isRecording:Bool = false
     @State var myRecognizer:recognizer!
+    
     @State var hintClicked: Bool = false
     @State var answerClicked: Bool = false
     @State var questionClicked: Bool = false
@@ -29,7 +30,7 @@ struct ChatView: View {
                 
                 List {
                     ForEach(chatHelper.realTimeMessages, id: \.self) { msg in
-                        MessageView(currentMessage: msg, hintClicked: $hintClicked)
+                        MessageView(currentMessage: msg, hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked)
                     }
                 }
                 .frame(width:.infinity)

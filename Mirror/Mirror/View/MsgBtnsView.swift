@@ -20,6 +20,8 @@ struct MsgBtnsView: View {
     @State var isAnswerClicked: Bool = false
     @State var isPlusClicked: Bool = false
     
+    @Binding var showButtons: Bool
+    
     var body: some View {
         
         HStack{
@@ -48,7 +50,7 @@ struct MsgBtnsView: View {
                     Image("answer")
                         .resizable()
                         .scaledToFit()
-                        .frame(width:40)
+                        .frame(width:40) // Set the width of the image to match the width of VStack
                         .padding(10)
                 }
                 .background(isAnswerClicked ? Color.gray : Color("Purple3"))
@@ -88,17 +90,20 @@ struct MsgBtnsView: View {
     func hint() {
         chatHelper.sendMessage(Message(display:"give me a hint", content: "give me a hint to the interview question you just asked, keep it relatively short", user: DataSource.secondUser, fromAPI: false))
         hintClicked = true
+        showButtons = false
     }
     
     func answer() {
         chatHelper.sendMessage(Message(display:"example answer", content: "give me a standard answer to the interview question you just asked", user: DataSource.secondUser, fromAPI: false))
         answerClicked = true
+        showButtons = false
     }
     
     func question() {
         chatHelper.sendMessage(Message(display:"new question", content: "give me another question", user: DataSource.secondUser, fromAPI: false))
         hintClicked = false
         answerClicked = false
+        showButtons = false
     }
 }
 

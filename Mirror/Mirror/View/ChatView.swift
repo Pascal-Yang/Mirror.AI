@@ -18,6 +18,7 @@ struct ChatView: View {
     @State var answerClicked: Bool = false
     @State var questionClicked: Bool = false
     
+    
     init() {
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().tableFooterView = UIView()

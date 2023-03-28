@@ -39,10 +39,10 @@ class ChatHelper : ObservableObject {
         let job = param["position"]?.lowercased()
 //        var num = param[2].lowercased()
         
-        if questionType!.count >= 9 {
-            let endIndex = questionType!.index(questionType!.endIndex, offsetBy: -9)
-            questionType = String(questionType![..<endIndex])
-            }
+//        if questionType!.count >= 9 {
+//            let endIndex = questionType!.index(questionType!.endIndex, offsetBy: -9)
+//            questionType = String(questionType![..<endIndex])
+//            }
 //        if (num.count >= 8 && num.count <= 10){
 //                let endIndex = num.index(num.endIndex, offsetBy: -8)
 //            num = String(num[..<endIndex])

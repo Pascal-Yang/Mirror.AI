@@ -19,9 +19,10 @@ struct LoginPage: View {
     }
     @State var displayAlert = false
     @State var alertMessage = ""
-    
+    @State private var isButton1Selected = false
+    @State private var isButton2Selected = false
+
     var body: some View {
-        
         
         NavigationView{
             
@@ -37,16 +38,45 @@ struct LoginPage: View {
                         Text("Create Account").tag(false)
                     }.pickerStyle(SegmentedPickerStyle())
                     
+                    
                     if !isLoginMode {
-                        Button{}label: {
+
+                        HStack {
+                            Button(action: {
+                                isButton1Selected = true
+                                isButton2Selected = false
+                                DataSource.secondUser.avatar = "myAvatar"
+                            }) {
+                                Image("myAvatar")
+                                    .resizable()
+                                    .frame(width: 60, height: 60)
+                                    .clipShape(Circle())
+                                    .overlay(
+                                        Circle().stroke(Color("Purple2"), lineWidth: isButton1Selected ? 3 : 0)
+                                    )
+                                    .padding(.top, 16)
+                            }
+                            Spacer().frame(width: 20)
                             
-                            Image(systemName: "person.fill")
-                                .font(.system(size: 64))
-                                .padding()
-                                .foregroundColor(.blue)
-                            
+                            Button(action: {
+                                isButton1Selected = false
+                                isButton2Selected = true
+                                DataSource.secondUser.avatar = "myAvatar2"
+
+                            }) {
+                                Image("myAvatar2")
+                                    .resizable()
+                                    .frame(width: 60, height: 60)
+                                    .clipShape(Circle())
+                                    .overlay(
+                                        Circle().stroke(Color("Purple2"), lineWidth: isButton2Selected ? 3 : 0)
+                                    )
+                                    .padding(.top, 16)
+                            }
                         }
+                        
                     }
+                    
                     
                     TextField("Email", text: $email)
                         .keyboardType(.emailAddress)
@@ -65,7 +95,7 @@ struct LoginPage: View {
                                     .foregroundColor(.white)
                                     .padding(.vertical, 8)
                                 Spacer()
-                            }.background(Color.blue)
+                            }.background(Color("Purple3"))
                         }
                         .alert(isPresented: $displayAlert){
                             Alert(
@@ -79,8 +109,8 @@ struct LoginPage: View {
                         Button("Continue as Guest") {
                             isLogined = true
                         }
-                        .foregroundColor(.blue)
-                        .background(Color.gray)
+                        .buttonStyle(PlainButtonStyle())
+                        .foregroundColor(Color("Purple3"))
                         .padding(.top, 20)
                         .background(
                             NavigationLink(destination: DashboardView(selectedCompany: Companies.Google), isActive: $isLogined) {

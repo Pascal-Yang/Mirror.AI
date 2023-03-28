@@ -45,7 +45,9 @@ struct DashboardView: View {
                 DashBlockView(selectedCompany: $selectedCompany)
                 
             }.onAppear(){
-                DataSource.secondUser.name = (FirebaseManager.shared.auth.currentUser?.email)!
+                if let tempUserName = FirebaseManager.shared.auth.currentUser?.email {
+                    DataSource.secondUser.name = tempUserName;
+                }
             }
                         
         

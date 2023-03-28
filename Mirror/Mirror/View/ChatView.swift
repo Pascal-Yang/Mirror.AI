@@ -1,3 +1,4 @@
+
 //
 //  ContentView.swift
 //
@@ -13,6 +14,11 @@ struct ChatView: View {
     @State var isRecording:Bool = false
     @State var myRecognizer:recognizer!
     
+    @State var hintClicked: Bool = false
+    @State var answerClicked: Bool = false
+    @State var questionClicked: Bool = false
+    
+    
     init() {
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().tableFooterView = UIView()
@@ -26,22 +32,20 @@ struct ChatView: View {
                 
                 List {
                     ForEach(chatHelper.realTimeMessages, id: \.self) { msg in
-                        MessageView(currentMessage: msg)
+                        MessageView(currentMessage: msg, hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked)
                     }
                 }
                 .frame(width:.infinity)
                 
                 HStack {
-                    
                     Button(action: {
-                        
                         // if currently recording, end and send
                         if isRecording {
                             chatHelper.sendMessage(Message(content: myRecognizer.getCurrentTranscript(), user: DataSource.secondUser, fromAPI: false))
                             self.isRecording = false
                             myRecognizer.audioEngine.stop()
                         } else {
-                        // if not recording, start recording
+                            // if not recording, start recording
                             myRecognizer = recognizer()
                             do {
                                 myRecognizer.getPermission()
@@ -51,19 +55,33 @@ struct ChatView: View {
                             }
                             self.isRecording = true
                         }
-                        
-                    }){
-                        Image(systemName: isRecording ? "mic.fill" : "mic.slash.fill")
+                    }) {
+                        HStack {
+                            Image(systemName: isRecording ? "mic.fill" : "mic.slash.fill")
+                                .foregroundColor(isRecording ? .white : Color("Grey4"))
+                        }
+                        .padding()
+                        .frame(minWidth:350, minHeight: 40)
+                        .background(isRecording ? Color("Purple3") : Color("Grey1"))
+                        .cornerRadius(40)
                     }
+
                     
                     // populate textbox with real time typing input from keyboard
-                    TextField("Message...", text: $typingMessage)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(minHeight: CGFloat(30))
+//                    TextField("Message...", text: $typingMessage)
+//                        .textFieldStyle(RoundedBorderTextFieldStyle())
+//                        .frame(minHeight: CGFloat(30))
+//
+//                    Button(action: sendMessage) {
+//                        Image("send")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .padding(12)
+//                    }
+//                    .frame(width: 60, height:40)
+//                    .background(Color("Grey1"))
+//                    .cornerRadius(20)
                     
-                    Button(action: sendMessage) {
-                        Text("Send")
-                    }
                 }.frame(minHeight: CGFloat(50)).padding()
             }.navigationBarTitle(Text(DataSource.firstUser.name), displayMode: .inline)
             .padding(.bottom, keyboard.currentHeight)
@@ -87,15 +105,16 @@ struct ChatView: View {
     func sendMessage() {
         chatHelper.sendMessage(Message(content: typingMessage, user: DataSource.secondUser, fromAPI: false))
         typingMessage = ""
+        hintClicked = false
+        answerClicked = false
+        questionClicked = false
     }
     
     
 }
 
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatView()
-    }
-}
+//struct ChatView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChatView()
+//    }
+//}

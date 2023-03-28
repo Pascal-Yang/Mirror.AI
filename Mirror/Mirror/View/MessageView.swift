@@ -13,6 +13,8 @@ struct MessageView : View {
     
     @State private var showButtons: Bool = true
     
+    @Binding var loading: Bool
+
     var body: some View {
         
         VStack(alignment: .leading, spacing: 15) {
@@ -25,10 +27,13 @@ struct MessageView : View {
                         .cornerRadius(20)
                     Text(currentMessage.user.name)
                         .font(.caption)
+                        .padding(.vertical)
                 } else {
                     Spacer()
                     Text(currentMessage.user.name)
                         .font(.caption)
+                        .padding(.vertical)
+
                     Image(currentMessage.user.avatar)    // user avatar
                         .resizable()
                         .frame(width: 40, height: 40, alignment: .center)
@@ -53,7 +58,7 @@ struct MessageView : View {
             }
             
             if currentMessage.fromAPI == true {
-                MsgBtnsView(hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, isHintClicked: hintClicked, isAnswerClicked: answerClicked, isPlusClicked: questionClicked, showButtons: $showButtons)
+                MsgBtnsView(hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, isHintClicked: hintClicked, isAnswerClicked: answerClicked, isPlusClicked: questionClicked, showButtons: $showButtons, loading: $loading)
             }
             
         }

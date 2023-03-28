@@ -29,9 +29,14 @@ struct LoginPage: View {
             ScrollView{
                 
                 VStack(spacing: 20){
-                    Text("Authentication Page")
-                        .fontWeight(.heavy)
-                        
+                    Spacer()
+                    
+                    Text("Welcome!")
+                        .font(.system(size: 28))
+                        .fontWeight(.bold)
+                        .padding()
+                        .foregroundColor(Color("Purple3"))
+                    
                     
                     Picker(selection: $isLoginMode, label: Text("Picker is here")){
                         Text("Login").tag(true)
@@ -117,6 +122,9 @@ struct LoginPage: View {
                                 EmptyView()
                             }
                         )
+                        
+                        Spacer()
+
                         
                     }
                     .background(

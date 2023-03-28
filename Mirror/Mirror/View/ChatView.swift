@@ -18,6 +18,7 @@ struct ChatView: View {
     @State var answerClicked: Bool = false
     @State var questionClicked: Bool = false
     
+    @State var loading: Bool = false
     
     init() {
         UITableView.appearance().separatorStyle = .none
@@ -26,13 +27,15 @@ struct ChatView: View {
     }
     
     var body: some View {
+        
+        
         NavigationView {
                         
             VStack {
                 
                 List {
                     ForEach(chatHelper.realTimeMessages, id: \.self) { msg in
-                        MessageView(currentMessage: msg, hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked)
+                        MessageView(currentMessage: msg, hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, loading: $loading)
                     }
                 }
                 .frame(width:.infinity)
@@ -41,9 +44,18 @@ struct ChatView: View {
                     Button(action: {
                         // if currently recording, end and send
                         if isRecording {
-                            chatHelper.sendMessage(Message(content: myRecognizer.getCurrentTranscript(), user: DataSource.secondUser, fromAPI: false))
+
+                            loading = true
+                            DispatchQueue.global(qos: .background).async {
+                                chatHelper.sendMessage(Message(content: myRecognizer.getCurrentTranscript(), user: DataSource.secondUser, fromAPI: false))
+
+                                DispatchQueue.main.async {
+                                    loading = false
+                                }
+                            }
                             self.isRecording = false
                             myRecognizer.audioEngine.stop()
+                            
                         } else {
                             // if not recording, start recording
                             myRecognizer = recognizer()
@@ -98,7 +110,10 @@ struct ChatView: View {
             }
             currentHis = [["role": "system", "content": "You are a helpful assistant."]]
             
-        }
+        }.overlay(
+            LoadingView(loading: loading)
+        )
+        
     }
     
     

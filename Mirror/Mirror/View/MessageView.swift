@@ -4,9 +4,15 @@
 
 import SwiftUI
 
-// view for user message
 struct MessageView : View {
+    
     var currentMessage: Message
+    @Binding var hintClicked: Bool
+    @Binding var answerClicked: Bool
+    @Binding var questionClicked: Bool
+    
+    @State private var showButtons: Bool = true
+    
     var body: some View {
         
         VStack(alignment: .leading, spacing: 15) {
@@ -47,17 +53,10 @@ struct MessageView : View {
             }
             
             if currentMessage.fromAPI == true {
-                MsgBtnsView()
-
+                MsgBtnsView(hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, isHintClicked: hintClicked, isAnswerClicked: answerClicked, isPlusClicked: questionClicked, showButtons: $showButtons)
             }
             
         }
         .padding()
-    }
-}
-
-struct MessageView_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageView(currentMessage: Message(content: "There are a lot of premium iOS templates on iosapptemplates.com", user: DataSource.secondUser, fromAPI: false))
     }
 }

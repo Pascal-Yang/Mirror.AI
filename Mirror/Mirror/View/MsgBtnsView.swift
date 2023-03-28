@@ -22,6 +22,8 @@ struct MsgBtnsView: View {
     
     @Binding var showButtons: Bool
     
+    @Binding var loading: Bool
+
     var body: some View {
         
         HStack{
@@ -88,19 +90,42 @@ struct MsgBtnsView: View {
     }
     
     func hint() {
-        chatHelper.sendMessage(Message(display:"give me a hint", content: "give me a hint to the interview question you just asked, keep it relatively short", user: DataSource.secondUser, fromAPI: false))
+        
+        loading = true
+        DispatchQueue.global(qos: .background).async {
+            chatHelper.sendMessage(Message(display:"give me a hint", content: "give me a hint to the interview question you just asked, keep it relatively short", user: DataSource.secondUser, fromAPI: false))
+
+            DispatchQueue.main.async {
+                loading = false
+            }
+        }
+        
         hintClicked = true
         showButtons = false
     }
     
     func answer() {
-        chatHelper.sendMessage(Message(display:"example answer", content: "give me a standard answer to the interview question you just asked", user: DataSource.secondUser, fromAPI: false))
+        loading = true
+        DispatchQueue.global(qos: .background).async {
+            chatHelper.sendMessage(Message(display:"example answer", content: "give me a standard answer to the interview question you just asked", user: DataSource.secondUser, fromAPI: false))
+
+            DispatchQueue.main.async {
+                loading = false
+            }
+        }
         answerClicked = true
         showButtons = false
     }
     
     func question() {
-        chatHelper.sendMessage(Message(display:"new question", content: "give me another question", user: DataSource.secondUser, fromAPI: false))
+        loading = true
+        DispatchQueue.global(qos: .background).async {
+            chatHelper.sendMessage(Message(display:"new question", content: "give me another question", user: DataSource.secondUser, fromAPI: false))
+
+            DispatchQueue.main.async {
+                loading = false
+            }
+        }
         hintClicked = false
         answerClicked = false
         showButtons = false

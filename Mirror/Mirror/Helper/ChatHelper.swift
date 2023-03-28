@@ -35,7 +35,7 @@ class ChatHelper : ObservableObject {
         if let temp = param["company"]?.lowercased() {
             company = temp
         }
-        var questionType = param["type"]?.lowercased()
+        let questionType = param["type"]?.lowercased()
         let job = param["position"]?.lowercased()
 //        var num = param[2].lowercased()
         
@@ -54,7 +54,7 @@ class ChatHelper : ObservableObject {
         
         if realTimeMessages.count <= 1 {
             // prepare prompt
-            let configuredParams = "Ask me 1 " + String(company ?? "") + " " + String(questionType ?? "") + "interview question for a " + String(job ?? "") + " job, keep the question short."
+            let configuredParams = "Ask me 1 " + String(company ) + " " + String(questionType ?? "") + "interview question for a " + String(job ?? "") + " job, keep the question short."
             print(configuredParams)
 
             if let res = fetchCompletion(prompt: configuredParams){

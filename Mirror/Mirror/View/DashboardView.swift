@@ -39,6 +39,7 @@ struct DashboardView: View {
                         .frame(width: 60, height: 60)
                         .clipShape(Circle())
                         .padding(.top, 16)
+                    
                 }
                 .padding(.horizontal)
                 Spacer()
@@ -47,10 +48,30 @@ struct DashboardView: View {
             }.onAppear(){
                 if let tempUserName = FirebaseManager.shared.auth.currentUser?.email {
                     DataSource.secondUser.name = tempUserName;
+                } else {
+                    DataSource.secondUser.name = "Guest";
                 }
-            }
+            }.navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: CustomBackButton())
                         
         
+    }
+}
+
+struct CustomBackButton: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+                Image(systemName: "arrowshape.turn.up.backward")
+                    .foregroundColor(.red)
+                Text("Logout")
+                    .foregroundColor(.red)
+            }
+        }
     }
 }
 

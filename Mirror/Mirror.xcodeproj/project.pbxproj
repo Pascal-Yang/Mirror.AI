@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D6007B129A816CD00E439D6 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6007B029A816CD00E439D6 /* ConfigurationView.swift */; };
 		1D6007B329A8172200E439D6 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6007B229A8172200E439D6 /* DashboardView.swift */; };
+		1DA318A129D2901C0049C159 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA318A029D2901C0049C159 /* Loading.swift */; };
 		1DD1188629A85E4700F57759 /* DashBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1188529A85E4600F57759 /* DashBlockView.swift */; };
 		1DD1188829A8628800F57759 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1188729A8628800F57759 /* Company.swift */; };
 		1DD1188A29A8690B00F57759 /* ConfigFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1188929A8690B00F57759 /* ConfigFlowView.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		1D6007B029A816CD00E439D6 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		1D6007B229A8172200E439D6 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		1DA318A029D2901C0049C159 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		1DD1188529A85E4600F57759 /* DashBlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBlockView.swift; sourceTree = "<group>"; };
 		1DD1188729A8628800F57759 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		1DD1188929A8690B00F57759 /* ConfigFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigFlowView.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				1D6007B229A8172200E439D6 /* DashboardView.swift */,
 				4515FABB29D0FE14001A884A /* LaunchScreen.storyboard */,
 				46652B2029B56AE3008D18E4 /* MsgBtnsView.swift */,
+				1DA318A029D2901C0049C159 /* Loading.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				3045531E23E6711300F41AF3 /* User.swift in Sources */,
 				3045530923E6702D00F41AF3 /* AppDelegate.swift in Sources */,
 				45E0D0F229C4CB250076713A /* LoginPage.swift in Sources */,
+				1DA318A129D2901C0049C159 /* Loading.swift in Sources */,
 				45E0D0F429C624F70076713A /* FirebaseManager.swift in Sources */,
 				3045532023E6712800F41AF3 /* Message.swift in Sources */,
 				3045532C23E6DEAE00F41AF3 /* ViewExtension.swift in Sources */,

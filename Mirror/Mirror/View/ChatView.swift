@@ -8,6 +8,9 @@ import SwiftUI
 // view for AI interview room
 struct ChatView: View {
         
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    
     @State var typingMessage: String = ""
     @EnvironmentObject var chatHelper: ChatHelper
     @ObservedObject private var keyboard = KeyboardResponder()
@@ -95,7 +98,8 @@ struct ChatView: View {
 //                    .cornerRadius(20)
                     
                 }.frame(minHeight: CGFloat(50)).padding()
-            }.navigationBarTitle(Text(DataSource.firstUser.name), displayMode: .inline)
+            }
+            .navigationBarTitle(Text(DataSource.firstUser.name), displayMode: .inline)
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(keyboard.currentHeight == 0.0 ? .leading: .bottom)
             
@@ -112,7 +116,15 @@ struct ChatView: View {
             
         }.overlay(
             LoadingView(loading: loading)
-        )
+        ).navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            Text("Back")
+                .fontWeight(.bold)
+                .foregroundColor(Color("Purple3"))
+        })
         
     }
     

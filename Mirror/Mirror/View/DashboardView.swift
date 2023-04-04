@@ -53,6 +53,11 @@ struct DashboardView: View {
                 }
             }.navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: CustomBackButton())
+            .navigationBarItems(trailing:
+                NavigationLink(destination: IntroFlow()) {
+                    Image(systemName: "lightbulb")
+                }
+            )
                         
         
     }

@@ -136,6 +136,7 @@ struct LoginPage: View {
                 }
                 .padding()
                 .onAppear(perform: {
+                    VoiceOver.shared.speak("Hello, Hello, Helloooooo!")
                     if isLogined{
                         do{
                             try FirebaseManager.shared.auth.signOut()

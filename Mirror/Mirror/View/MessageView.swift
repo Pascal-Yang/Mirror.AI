@@ -12,7 +12,6 @@ struct MessageView : View {
     @Binding var questionClicked: Bool
     
     @State private var showButtons: Bool = true
-    
     @Binding var loading: Bool
 
     var body: some View {
@@ -44,12 +43,10 @@ struct MessageView : View {
             }
             
             if !currentMessage.user.isCurrentUser {
-        
                 ContentMessageView(contentMessage: currentMessage.display,
                                    isCurrentUser: currentMessage.user.isCurrentUser)
                 
             } else {
-                
                 HStack(alignment: .bottom, spacing: 15) {
                     Spacer()
                     ContentMessageView(contentMessage: currentMessage.display,
@@ -57,7 +54,7 @@ struct MessageView : View {
                 }
             }
             
-            if currentMessage.fromAPI == true {
+            if currentMessage.fromAPI == true && showButtons {
                 MsgBtnsView(hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, isHintClicked: hintClicked, isAnswerClicked: answerClicked, isPlusClicked: questionClicked, showButtons: $showButtons, loading: $loading)
             }
             

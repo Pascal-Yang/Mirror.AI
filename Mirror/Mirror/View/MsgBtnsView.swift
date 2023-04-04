@@ -21,7 +21,6 @@ struct MsgBtnsView: View {
     @State var isPlusClicked: Bool = false
     
     @Binding var showButtons: Bool
-    
     @Binding var loading: Bool
 
     var body: some View {
@@ -102,6 +101,7 @@ struct MsgBtnsView: View {
         
         hintClicked = true
         showButtons = false
+        print(showButtons)
     }
     
     func answer() {
@@ -115,6 +115,7 @@ struct MsgBtnsView: View {
         }
         answerClicked = true
         showButtons = false
+        print(showButtons)
     }
     
     func question() {
@@ -129,6 +130,7 @@ struct MsgBtnsView: View {
         hintClicked = false
         answerClicked = false
         showButtons = false
+        print(showButtons)
     }
 }
 

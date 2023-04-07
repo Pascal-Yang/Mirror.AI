@@ -14,13 +14,14 @@ import SwiftUI
 struct DashboardView: View {
     
     @State var selectedCompany : Company
-    
+    @State var selection : Int = 0
+
     var body: some View {
                     
             VStack {
                 
                 Spacer()
-                    .frame(maxHeight: 100)
+                    .frame(maxHeight: 10)
                 
                 HStack{
                     
@@ -43,7 +44,8 @@ struct DashboardView: View {
                 }
                 .padding(.horizontal)
                 Spacer()
-                DashBlockView(selectedCompany: $selectedCompany)
+            
+                CustomTabView()
                 
             }.onAppear(){
                 if let tempUserName = FirebaseManager.shared.auth.currentUser?.email {

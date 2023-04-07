@@ -25,7 +25,6 @@ struct Colors {
     static let Grey3 = Color(hex: "8E8E8E").uiColor()
     static let Grey2 = Color(hex: "C2C2C2").uiColor()
     static let Grey1 = Color(hex: "ECECEC").uiColor()
-    
 }
 
 

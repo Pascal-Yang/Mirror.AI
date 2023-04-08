@@ -9,7 +9,6 @@
 import Foundation
 import SwiftUI
 
-// configuration view
 struct DataView : View {
 
     var body : some View{
@@ -19,3 +18,11 @@ struct DataView : View {
     }
 }
 
+struct LineChartView : View {
+
+    var body : some View{
+        
+       Text("data view")
+        
+    }
+}

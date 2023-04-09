@@ -19,6 +19,33 @@ struct DashBlockView: View {
         ScrollView(.vertical){
             VStack{
                 
+                Spacer()
+                    .frame(maxHeight: 10)
+                
+                HStack{
+                    
+                    // TO-DO: change second-user name in DataSource
+                    Text((FirebaseManager.shared.auth.currentUser?.email ?? "Guest"))
+                        .font(.system(size: 30))
+                        .fontWeight(.bold)
+                        .padding()
+                        .foregroundColor(Color("Purple3"))
+                    
+                    
+                    Spacer()
+
+                    Image(DataSource.secondUser.avatar)
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .clipShape(Circle())
+                        .padding(.top, 16)
+                    
+                }
+                .padding(.horizontal)
+                Spacer()
+                
+                
+                
                 Capsule()
                     .foregroundColor(Color(.systemGroupedBackground))
                     .frame(width:48, height:6)
@@ -37,7 +64,7 @@ struct DashBlockView: View {
                                 .padding(.leading, 30)
                             
                             // TODO: to add a questions per day setting for each user
-                            Text("10")
+                            Text("\(DataSource.secondUser.quesPerDay)")
                                 .foregroundColor(Color(.white))
                                 .font(.largeTitle)
                                 .fontWeight(.bold)

@@ -44,7 +44,7 @@ struct CustomTabView : View {
                         Image(systemName: "calendar")
                             .foregroundColor(Color("Purple2"))
                     })
-                EmptyView() //TODO: to be replaced with profile view
+                ProfileView()
                     .tabItem(tag: 2, normal: {
                         Image(systemName: "person")
                             .foregroundColor(.gray)

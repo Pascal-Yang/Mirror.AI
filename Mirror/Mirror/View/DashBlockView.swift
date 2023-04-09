@@ -7,13 +7,9 @@
 
 import SwiftUI
 
-
-// TODO: pass actual selectedCompany to ConfigFlowView
-
 struct DashBlockView: View {
     
     @Binding var selectedCompany: Company
-
 
     var body: some View {
         ScrollView(.vertical){
@@ -63,7 +59,6 @@ struct DashBlockView: View {
                                 .fontWeight(.bold)
                                 .padding(.leading, 30)
                             
-                            // TODO: to add a questions per day setting for each user
                             Text("\(DataSource.secondUser.quesPerDay)")
                                 .foregroundColor(Color(.white))
                                 .font(.largeTitle)

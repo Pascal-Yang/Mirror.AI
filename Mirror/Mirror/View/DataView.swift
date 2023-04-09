@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftUI
-import SwiftUICharts
+//import SwiftUICharts
 
 
 struct DataView : View {

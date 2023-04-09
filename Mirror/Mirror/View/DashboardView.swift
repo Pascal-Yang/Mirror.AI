@@ -14,8 +14,9 @@ import SwiftUI
 struct DashboardView: View {
     
     @State var selectedCompany : Company
+    @State var userName:String?
+    @State var avatarString:String?
     @State var selection : Int = 0
-
     var body: some View {
                     
             VStack {

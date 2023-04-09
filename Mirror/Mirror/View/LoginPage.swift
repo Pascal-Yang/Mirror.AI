@@ -85,10 +85,14 @@ struct LoginPage: View {
                         
                     }
                     
-                    TextField("User Name", text: $userName)
-                        .keyboardType(.emailAddress)
-                        .autocapitalization(.none)
-                        .padding(12)
+                    // user name field in register page
+                    if !isLoginMode{
+                        TextField("User Name", text: $userName)
+                            .keyboardType(.emailAddress)
+                            .autocapitalization(.none)
+                            .padding(12)
+                    }
+                    
                     TextField("Email", text: $email)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
@@ -184,16 +188,7 @@ struct LoginPage: View {
             }
             
             //print("login successful", FirebaseManager.shared.getUserName() ?? "cannot get username",email, res?.user.uid ?? "cannot get uid")
-            
             isLogined = true
-            
-            //FirebaseManager.shared.getChatHistory()
-            
-//
-//            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "user", content: "I user SwiftUI the best. But I also use Object-C.")
-//            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "assistant", content: "I can give hint.")
-//
-//            FirebaseManager.shared.getQuestionsOfUser()
             
         }
     }

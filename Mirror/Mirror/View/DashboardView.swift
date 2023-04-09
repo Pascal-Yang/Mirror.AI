@@ -14,6 +14,8 @@ import SwiftUI
 struct DashboardView: View {
     
     @State var selectedCompany : Company
+    @State var userName:String?
+    @State var avatarString:String?
     
     var body: some View {
                     
@@ -25,20 +27,27 @@ struct DashboardView: View {
                 HStack{
                     
                     // TO-DO: change second-user name in DataSource
-                    Text((FirebaseManager.shared.auth.currentUser?.email ?? "Guest"))
+                    Text((userName ?? "Guest"))
                         .font(.system(size: 30))
                         .fontWeight(.bold)
                         .padding()
                         .foregroundColor(Color("Purple3"))
+                        .onAppear(){
+                            Task{userName = await FirebaseManager.shared.getUserName()}
+                        }
                     
                     
                     Spacer()
-
-                    Image(DataSource.secondUser.avatar)
+                    
+                    
+                    Image(avatarString ?? DataSource.secondUser.avatar)
                         .resizable()
                         .frame(width: 60, height: 60)
                         .clipShape(Circle())
                         .padding(.top, 16)
+                        .onAppear(){
+                            Task{avatarString = await FirebaseManager.shared.getAvatarString()}
+                        }
                     
                 }
                 .padding(.horizontal)

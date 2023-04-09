@@ -45,6 +45,81 @@ class FirebaseManager: NSObject{
         }
     }
     
+    func setQuestionPerDay(value:Int, uid:String){
+        let docRef = db.collection("chat_history").document(uid)
+        docRef.setData(["questionPerDay ":value], merge:true){err in
+            if let e = err{
+                print("error in changing questionPerDay", e)
+            }else{
+                print("questionPerDay changed to", value)
+            }
+        }
+    }
+    
+    func getQuestionPerDay() async -> Int{
+        var res:Int = 0
+        if let user = auth.currentUser{
+            let uid = user.uid
+            do{
+                let userDoc = try await db.collection("chat_history").document(uid).getDocument()
+                res = userDoc.data()!["questionPerDay"] as! Int
+                print(userDoc.data()!)
+            }catch{
+                print("error")
+            }
+        }else{
+            print("Cannot find user name since not logined")
+        }
+        //print("res=",res ?? "Guest")
+        return res
+    }
+    
+    func setAvatarString(avatar:String, uid:String){
+        let docRef = db.collection("chat_history").document(uid)
+        docRef.setData(["avatar":avatar], merge:true){err in
+            if let e = err{
+                print("error in changing avatar", e)
+            }else{
+                print("avatar changed to", avatar)
+            }
+        }
+    }
+    
+    func getAvatarString() async -> String?{
+        var res:String?
+        if let user = auth.currentUser{
+            let uid = user.uid
+            do{
+                let userDoc = try await db.collection("chat_history").document(uid).getDocument()
+                res = userDoc.data()!["avatar"] as? String
+                print(userDoc.data()!)
+            }catch{
+                print("error")
+            }
+        }else{
+            print("Cannot find user name since not logined")
+        }
+        //print("res=",res ?? "Guest")
+        return res
+    }
+    
+    func getUserName() async->String?{
+        var res:String?
+        if let user = auth.currentUser{
+            let uid = user.uid
+            do{
+                let userDoc = try await db.collection("chat_history").document(uid).getDocument()
+                res = userDoc.data()!["userName"] as? String
+            }catch{
+                print("error")
+            }
+        }else{
+            print("Cannot find user name since not logined")
+        }
+        //print("res=",res ?? "Guest")
+        return res
+    }
+    
     
     // 1. Add a new question into the database
     // 2. Update currentQuestionID to the newly creatd question

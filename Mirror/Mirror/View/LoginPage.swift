@@ -188,16 +188,7 @@ struct LoginPage: View {
             }
             
             //print("login successful", FirebaseManager.shared.getUserName() ?? "cannot get username",email, res?.user.uid ?? "cannot get uid")
-            
             isLogined = true
-            
-            //FirebaseManager.shared.getChatHistory()
-            
-//
-//            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "user", content: "I user SwiftUI the best. But I also use Object-C.")
-//            FirebaseManager.shared.addHistoryToCurrentQuestion(role: "assistant", content: "I can give hint.")
-//
-//            FirebaseManager.shared.getQuestionsOfUser()
             
         }
     }

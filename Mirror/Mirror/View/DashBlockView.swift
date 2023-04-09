@@ -13,7 +13,8 @@ import SwiftUI
 struct DashBlockView: View {
     
     @Binding var selectedCompany: Company
-
+    @State var displayedName: String = "unknown"
+    @State var displayedAvatar: String = "myavatar"
 
     var body: some View {
         ScrollView(.vertical){
@@ -25,20 +26,37 @@ struct DashBlockView: View {
                 HStack{
                     
                     // TO-DO: change second-user name in DataSource
-                    Text((FirebaseManager.shared.auth.currentUser?.email ?? "Guest"))
+                    
+                    Text((FirebaseManager.shared.auth.currentUser != nil ? displayedName : "Guest"))
                         .font(.system(size: 30))
                         .fontWeight(.bold)
                         .padding()
                         .foregroundColor(Color("Purple3"))
-                    
+                        .onAppear(){
+                            Task{
+                                displayedName = await FirebaseManager.shared.getUserName()!
+                                DataSource.secondUser.name = await FirebaseManager.shared.getUserName()!
+                                print("displayedName =", displayedName)
+                            }
+                            
+                        }
+                   
                     
                     Spacer()
 
-                    Image(DataSource.secondUser.avatar)
+                    Image((FirebaseManager.shared.auth.currentUser != nil ? displayedAvatar : "myavatar"))
                         .resizable()
                         .frame(width: 60, height: 60)
                         .clipShape(Circle())
                         .padding(.top, 16)
+                        .onAppear(){
+                            Task{
+                                displayedAvatar = await FirebaseManager.shared.getAvatarString()!
+                                DataSource.secondUser.avatar = await FirebaseManager.shared.getAvatarString()!
+                                print("avatar_path =", displayedName)
+                            }
+                            
+                        }
                     
                 }
                 .padding(.horizontal)

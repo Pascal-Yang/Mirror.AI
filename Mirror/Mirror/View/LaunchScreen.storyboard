@@ -31,7 +31,7 @@
                                 <color key="textColor" name="Purple3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mirror" translatesAutoresizingMaskIntoConstraints="NO" id="N9Z-NE-8Oj">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="appName" translatesAutoresizingMaskIntoConstraints="NO" id="N9Z-NE-8Oj">
                                 <rect key="frame" x="114" y="351" width="164" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -46,7 +46,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="mirror" width="138" height="138"/>
+        <image name="appName" width="183" height="54"/>
         <namedColor name="Grey3">
             <color red="0.55699998140335083" green="0.55699998140335083" blue="0.55699998140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

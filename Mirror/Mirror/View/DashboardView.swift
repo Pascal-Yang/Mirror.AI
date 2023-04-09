@@ -20,38 +20,6 @@ struct DashboardView: View {
     var body: some View {
                     
             VStack {
-                
-                Spacer()
-                    .frame(maxHeight: 10)
-                
-                HStack{
-                    
-                    // TO-DO: change second-user name in DataSource
-                    Text((userName ?? "Guest"))
-                        .font(.system(size: 30))
-                        .fontWeight(.bold)
-                        .padding()
-                        .foregroundColor(Color("Purple3"))
-                        .onAppear(){
-                            Task{userName = await FirebaseManager.shared.getUserName()}
-                        }
-                    
-                    
-                    Spacer()
-                    
-                    
-                    Image(avatarString ?? DataSource.secondUser.avatar)
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                        .clipShape(Circle())
-                        .padding(.top, 16)
-                        .onAppear(){
-                            Task{avatarString = await FirebaseManager.shared.getAvatarString()}
-                        }
-                    
-                }
-                .padding(.horizontal)
-                Spacer()
             
                 CustomTabView()
                 

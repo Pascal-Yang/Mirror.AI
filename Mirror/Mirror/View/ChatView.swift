@@ -38,7 +38,10 @@ struct ChatView: View {
                 
                 List {
                     ForEach(chatHelper.realTimeMessages, id: \.self) { msg in
-                        MessageView(currentMessage: msg, hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, loading: $loading)
+                                            // Only display MessageView if the message content is not empty
+                                            if !msg.content.isEmpty {
+                                                MessageView(currentMessage: msg, hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, loading: $loading)
+                                            }
                     }
                 }
                 .frame(width:.infinity)
@@ -106,6 +109,7 @@ struct ChatView: View {
         }.onTapGesture {
                 self.endEditing(true)
         }.onAppear {
+            chatHelper.clearMessages()
             FirebaseManager.shared.startNewQuestion(job: "", question: "")
             chatHelper.configureChatroom(ConfigParam)
         }.onDisappear{

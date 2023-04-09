@@ -12,6 +12,8 @@ struct LoginPage: View {
     @State var isLoginMode = true
     @State var email = ""
     @State var password = ""
+    @State var userName = ""
+    
     @State var isLogined = false {
         didSet{
             print("isLogined = \(isLogined)")
@@ -19,8 +21,9 @@ struct LoginPage: View {
     }
     @State var displayAlert = false
     @State var alertMessage = ""
-    @State private var isButton1Selected = false
+    @State private var isButton1Selected = true
     @State private var isButton2Selected = false
+    
 
     var body: some View {
         
@@ -82,7 +85,10 @@ struct LoginPage: View {
                         
                     }
                     
-                    
+                    TextField("User Name", text: $userName)
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                        .padding(12)
                     TextField("Email", text: $email)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
@@ -136,6 +142,7 @@ struct LoginPage: View {
                 }
                 .padding()
                 .onAppear(perform: {
+                    //VoiceOver.shared.speak("Hello, Hello, Helloooooo!")
                     if isLogined{
                         do{
                             try FirebaseManager.shared.auth.signOut()
@@ -176,7 +183,7 @@ struct LoginPage: View {
                 return
             }
             
-            print("login successful", email, res?.user.uid ?? "cannot get uid")
+            //print("login successful", FirebaseManager.shared.getUserName() ?? "cannot get username",email, res?.user.uid ?? "cannot get uid")
             
             isLogined = true
             
@@ -209,6 +216,9 @@ struct LoginPage: View {
             collection.document(res!.user.uid).setData([
                 "uid": res!.user.uid,
                 "email": email,
+                "userName": userName,
+                "avatar": isButton1Selected ? "myAvatar" : "myAvatar2",
+                "questionPerDay ": 0
             ])
             
 //            loginAccount()

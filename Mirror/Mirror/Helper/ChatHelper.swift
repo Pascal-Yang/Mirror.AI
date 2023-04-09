@@ -32,6 +32,8 @@ class ChatHelper : ObservableObject {
             }
             
         }
+
+        
         //If pendingMessage is a user response, evaluate it
         else{
             let evaluatePrompt = "Evaluate this answer to your question like a real interviewer and give me a score out of 10, along with 2 short advices:'" + String(pendingMessage) + "'."
@@ -114,6 +116,10 @@ class ChatHelper : ObservableObject {
         return
 
                 
+    }
+    
+    func clearMessages() {
+        realTimeMessages.removeAll()
     }
     
     func endChat() {

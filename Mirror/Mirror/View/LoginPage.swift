@@ -60,7 +60,7 @@ struct LoginPage: View {
                                     .frame(width: 60, height: 60)
                                     .clipShape(Circle())
                                     .overlay(
-                                        Circle().stroke(Color("Purple2"), lineWidth: isButton1Selected ? 3 : 0)
+                                        Circle().stroke(Color("Purple3"), lineWidth: isButton1Selected ? 3 : 0)
                                     )
                                     .padding(.top, 16)
                             }

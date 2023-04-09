@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-
-// TODO: pass actual selectedCompany to ConfigFlowView
-
 struct DashBlockView: View {
     
     @Binding var selectedCompany: Company
@@ -34,8 +31,8 @@ struct DashBlockView: View {
                         .foregroundColor(Color("Purple3"))
                         .onAppear(){
                             Task{
-                                displayedName = await FirebaseManager.shared.getUserName()!
-                                DataSource.secondUser.name = await FirebaseManager.shared.getUserName()!
+                                displayedName = await FirebaseManager.shared.getUserName() ?? "Guest"
+                                DataSource.secondUser.name = await FirebaseManager.shared.getUserName() ?? "Guest"
                                 print("displayedName =", displayedName)
                             }
                             
@@ -44,15 +41,18 @@ struct DashBlockView: View {
                     
                     Spacer()
 
-                    Image((FirebaseManager.shared.auth.currentUser != nil ? displayedAvatar : "myavatar"))
+                    Image((FirebaseManager.shared.auth.currentUser != nil ? displayedAvatar : "myAvatar"))
                         .resizable()
                         .frame(width: 60, height: 60)
                         .clipShape(Circle())
                         .padding(.top, 16)
                         .onAppear(){
                             Task{
-                                displayedAvatar = await FirebaseManager.shared.getAvatarString()!
-                                DataSource.secondUser.avatar = await FirebaseManager.shared.getAvatarString()!
+                           
+                                displayedAvatar = await FirebaseManager.shared.getAvatarString() ?? "myAvatar"
+                                DataSource.secondUser.avatar = await FirebaseManager.shared.getAvatarString() ?? "myAvatar"
+                                
+                                
                                 print("avatar_path =", displayedName)
                             }
                             
@@ -81,7 +81,6 @@ struct DashBlockView: View {
                                 .fontWeight(.bold)
                                 .padding(.leading, 30)
                             
-                            // TODO: to add a questions per day setting for each user
                             Text("\(DataSource.secondUser.quesPerDay)")
                                 .foregroundColor(Color(.white))
                                 .font(.largeTitle)

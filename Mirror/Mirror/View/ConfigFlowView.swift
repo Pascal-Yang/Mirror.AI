@@ -11,7 +11,7 @@ import Foundation
 import SwiftUI
 
 
-var ConfigParam: [String:String] = [:]
+public var ConfigParam: [String:String] = [:]
 
 struct ConfigFlowView : View {
     

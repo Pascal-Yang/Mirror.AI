@@ -225,7 +225,7 @@ struct LoginPage: View {
                 
             //FirebaseManager.shared.storeChatHistory(content: "Hello human.", type: 1)
             
-            FirebaseManager.shared.startNewQuestion(job: "Software Engineer", question: "What is your fav coding laguage?")
+            FirebaseManager.shared.startNewQuestion(job: "Software Engineer", question: "What is your fav coding laguage?", answer:"", score: "")
 
       
 //            FirebaseManager.shared.startNewQuestion(job: "Data Scientist", question: "How do you analyze data?")

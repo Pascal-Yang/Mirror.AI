@@ -124,7 +124,7 @@ class FirebaseManager: NSObject{
     // 1. Add a new question into the database
     // 2. Update currentQuestionID to the newly creatd question
     // 3. How to call: FirebaseManager.shared.startNewQuestion()
-    func startNewQuestion(job:String, question:String){
+    func startNewQuestion(job:String, question:String, answer:String, score:String){
         
         print("Starting a new question =>", job, "=>" ,question)
         
@@ -135,6 +135,8 @@ class FirebaseManager: NSObject{
             let docData: [String:Any] = [
                 "job":job,
                 "question": question,
+                "answer": answer,
+                "score": score,
                 "time": Timestamp(date: Date())
             ]
             
@@ -178,6 +180,9 @@ class FirebaseManager: NSObject{
                         }
               
                         currentHis = [["role": "system", "content": "You are a helpful assistant."]]
+                        currentAns = ""
+                        currentScore = "0"
+                        currentQues = ""
                     }else{
                         print("New question document is not created...")
                     }

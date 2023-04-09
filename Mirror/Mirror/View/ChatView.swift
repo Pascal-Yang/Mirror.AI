@@ -109,10 +109,10 @@ struct ChatView: View {
         }.onTapGesture {
                 self.endEditing(true)
         }.onAppear {
-            
+            chatHelper.clearMessages()
             chatHelper.configureChatroom(ConfigParam)
         }.onDisappear{
-            
+            FirebaseManager.shared.startNewQuestion(job: "", question: currentQues, answer: currentAns, score: currentScore)
         }.overlay(
             LoadingView(loading: loading)
         ).navigationBarBackButtonHidden(true)

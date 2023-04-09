@@ -122,8 +122,9 @@ struct MsgBtnsView: View {
     func question() {
         loading = true
         DispatchQueue.global(qos: .background).async {
-            FirebaseManager.shared.startNewQuestion(job: "", question: "")
-            chatHelper.sendMessage(Message(display:"new question", content: "give me another question", user: DataSource.secondUser, fromAPI: false))
+            FirebaseManager.shared.startNewQuestion(job: "", question: currentQues, answer: currentAns, score: currentScore)
+            
+            chatHelper.sendMessage(Message(display:"new question", content:  "Ask me 1 " + String(ConfigParam["company"] ?? "general") + " " + String(ConfigParam["type"] ?? "") + "interview question for a " + String(ConfigParam["position"] ?? "") + " job, keep the question short and with the question only.", user: DataSource.secondUser, fromAPI: false))
 
             DispatchQueue.main.async {
                 loading = false

@@ -13,6 +13,9 @@
 		1D79C12A29D369630037D5A1 /* IntroSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D79C12929D369630037D5A1 /* IntroSlide.swift */; };
 		1D79C12E29D3701B0037D5A1 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D79C12D29D3701B0037D5A1 /* Guide.swift */; };
 		1DA318A129D2901C0049C159 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA318A029D2901C0049C159 /* Loading.swift */; };
+		1DA31B5329DFE24B00114D94 /* AxisTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 1DA31B5229DFE24B00114D94 /* AxisTabView */; };
+		1DA31B5529DFE50F00114D94 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA31B5429DFE50F00114D94 /* TabView.swift */; };
+		1DAE235E29DFEE4800898BEA /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAE235D29DFEE4800898BEA /* DataView.swift */; };
 		1DD1188629A85E4700F57759 /* DashBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1188529A85E4600F57759 /* DashBlockView.swift */; };
 		1DD1188829A8628800F57759 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1188729A8628800F57759 /* Company.swift */; };
 		1DD1188A29A8690B00F57759 /* ConfigFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1188929A8690B00F57759 /* ConfigFlowView.swift */; };
@@ -52,6 +55,8 @@
 		1D79C12929D369630037D5A1 /* IntroSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSlide.swift; sourceTree = "<group>"; };
 		1D79C12D29D3701B0037D5A1 /* Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		1DA318A029D2901C0049C159 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
+		1DA31B5429DFE50F00114D94 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		1DAE235D29DFEE4800898BEA /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
 		1DD1188529A85E4600F57759 /* DashBlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBlockView.swift; sourceTree = "<group>"; };
 		1DD1188729A8628800F57759 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		1DD1188929A8690B00F57759 /* ConfigFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigFlowView.swift; sourceTree = "<group>"; };
@@ -86,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DA31B5329DFE24B00114D94 /* AxisTabView in Frameworks */,
 				45E0D0EA29C4C8E90076713A /* FirebaseAuth in Frameworks */,
 				45E0D0EC29C4C8E90076713A /* FirebaseFirestore in Frameworks */,
 				45E0D0F029C4C8E90076713A /* FirebaseStorage in Frameworks */,
@@ -165,6 +171,8 @@
 				1DA318A029D2901C0049C159 /* Loading.swift */,
 				1D79C12729D369180037D5A1 /* IntroFlow.swift */,
 				1D79C12929D369630037D5A1 /* IntroSlide.swift */,
+				1DA31B5429DFE50F00114D94 /* TabView.swift */,
+				1DAE235D29DFEE4800898BEA /* DataView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,6 +214,7 @@
 				45E0D0ED29C4C8E90076713A /* FirebaseFirestoreSwift */,
 				45E0D0EF29C4C8E90076713A /* FirebaseStorage */,
 				467B068929D0E04400F66C9F /* RadioGroup */,
+				1DA31B5229DFE24B00114D94 /* AxisTabView */,
 			);
 			productName = ChatViewTutorial;
 			productReference = 3045530523E6702D00F41AF3 /* Mirror.app */;
@@ -238,6 +247,7 @@
 			packageReferences = (
 				45E0D0E829C4C8E90076713A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				467B068829D0E04400F66C9F /* XCRemoteSwiftPackageReference "RadioGroup" */,
+				1DA31B5129DFE24B00114D94 /* XCRemoteSwiftPackageReference "AxisTabView" */,
 			);
 			productRefGroup = 3045530623E6702D00F41AF3 /* Products */;
 			projectDirPath = "";
@@ -277,6 +287,7 @@
 				1D79C12829D369180037D5A1 /* IntroFlow.swift in Sources */,
 				3045532323E6B8DE00F41AF3 /* MessageView.swift in Sources */,
 				3045531E23E6711300F41AF3 /* User.swift in Sources */,
+				1DAE235E29DFEE4800898BEA /* DataView.swift in Sources */,
 				3045530923E6702D00F41AF3 /* AppDelegate.swift in Sources */,
 				45E0D0F229C4CB250076713A /* LoginPage.swift in Sources */,
 				1DA318A129D2901C0049C159 /* Loading.swift in Sources */,
@@ -293,6 +304,7 @@
 				3045532A23E6C9B900F41AF3 /* ContentMessageView.swift in Sources */,
 				3045530B23E6702D00F41AF3 /* SceneDelegate.swift in Sources */,
 				3045530D23E6702D00F41AF3 /* ChatView.swift in Sources */,
+				1DA31B5529DFE50F00114D94 /* TabView.swift in Sources */,
 				1DDD32DA2998BA1400BE16DC /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,7 +363,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -406,7 +418,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -480,6 +492,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1DA31B5129DFE24B00114D94 /* XCRemoteSwiftPackageReference "AxisTabView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jasudev/AxisTabView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.1;
+			};
+		};
 		45E0D0E829C4C8E90076713A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -499,6 +519,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1DA31B5229DFE24B00114D94 /* AxisTabView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1DA31B5129DFE24B00114D94 /* XCRemoteSwiftPackageReference "AxisTabView" */;
+			productName = AxisTabView;
+		};
 		45E0D0E929C4C8E90076713A /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 45E0D0E829C4C8E90076713A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -16,150 +16,152 @@ struct DashBlockView: View {
 
 
     var body: some View {
-        VStack{
-            
-            Capsule()
-                .foregroundColor(Color(.systemGroupedBackground))
-                .frame(width:48, height:6)
-                .padding(.top,8)
-            
-            //General practice
-            HStack(spacing:12){
+        ScrollView(.vertical){
+            VStack{
                 
-                NavigationLink(destination: ConfigFlowView(selectedCompany: Companies.Default)){
+                Capsule()
+                    .foregroundColor(Color(.systemGroupedBackground))
+                    .frame(width:48, height:6)
+                    .padding(.top,8)
+                
+                //General practice
+                HStack(spacing:12){
                     
-                    VStack(alignment: .leading){
-                        Text("GENERAL PRACTICE")
-                            .foregroundColor(Color(.white))
-                            .font(.subheadline)
-                            .fontWeight(.bold)
-                            .padding(.leading, 30)
+                    NavigationLink(destination: ConfigFlowView(selectedCompany: Companies.Default)){
                         
-                        // TODO: to add a questions per day setting for each user
-                        Text("10")
-                            .foregroundColor(Color(.white))
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .padding(.leading, 30)
-                        
-                        Text("Questions left today")
-                            .foregroundColor(Color(.systemGray3))
-                            .font(.subheadline)
-                            .fontWeight(.medium)
-                            .padding(.leading, 30)
-                        
+                        VStack(alignment: .leading){
+                            Text("GENERAL PRACTICE")
+                                .foregroundColor(Color(.white))
+                                .font(.subheadline)
+                                .fontWeight(.bold)
+                                .padding(.leading, 30)
+                            
+                            // TODO: to add a questions per day setting for each user
+                            Text("10")
+                                .foregroundColor(Color(.white))
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .padding(.leading, 30)
+                            
+                            Text("Questions left today")
+                                .foregroundColor(Color(.systemGray3))
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                                .padding(.leading, 30)
+                            
+                        }
                     }
+                    
+                    Spacer()
+                    
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(Color(.white))
+                        .imageScale(.medium)
+                        .padding()
+                    
                 }
+                .frame(height:111)
+                .background(Color("Purple3"))
+                .cornerRadius(30)
+                .padding([.horizontal,.top])
                 
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-                    .foregroundColor(Color(.white))
-                    .imageScale(.medium)
+                //practice by company
+                Text("Practice by Company")
+                    .font(.headline)
+                    .fontWeight(.semibold)
                     .padding()
+                    .foregroundColor(Color("Purple3"))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
-            }
-            .frame(height:111)
-            .background(Color("Purple3"))
-            .cornerRadius(30)
-            .padding([.horizontal,.top])
-            
-            //practice by company
-            Text("Practice by Company")
-                .font(.headline)
-                .fontWeight(.semibold)
-                .padding()
-                .foregroundColor(Color("Purple3"))
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            ScrollView(.horizontal, showsIndicators: false){
-                
-                HStack(spacing:12){
-                    ForEach(companies, id: \.name){ company in
-                                                
-                        NavigationLink(destination: ConfigFlowView(selectedCompany: company)){
-                            
-                            VStack (alignment: .center){
-                                
-                                VStack (alignment: .center){
-                                    Image(company.logo)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width:120)
-                                        .padding()
-                                }
-                                .background(Color(.white))
-                                .frame(width:80, height:80)
-                                .cornerRadius(25)
-                                .padding(.bottom, 3)
-                                
-                                Text(company.name)
-                                    .foregroundColor(Color(.darkGray))
-                                    .font(.footnote)
-                                
-                            }
-                            .frame(width:110, height:140)
-                            .background(Color(.systemGroupedBackground))
-                            .cornerRadius(30)
-                        }
-
-                        
-                    }
+                ScrollView(.horizontal, showsIndicators: false){
                     
-                }
-            }
-            .padding(.horizontal)
-            
-            //practice by topic
-            Text("Practice by Topic")
-                .font(.headline)
-                .fontWeight(.semibold)
-                .padding()
-                .foregroundColor(Color("Purple3"))
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            ScrollView(.horizontal, showsIndicators: false){
-                
-                HStack(spacing:12){
-                    ForEach(topics, id: \.name){ topic in
-                                                
-                        NavigationLink(destination: ConfigFlowView(selectedCompany: topic)){
+                    HStack(spacing:12){
+                        ForEach(companies, id: \.name){ company in
                             
-                            VStack (alignment: .center){
+                            NavigationLink(destination: ConfigFlowView(selectedCompany: company)){
                                 
                                 VStack (alignment: .center){
-                                    Image(topic.logo)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width:120)
-                                        .padding()
+                                    
+                                    VStack (alignment: .center){
+                                        Image(company.logo)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width:120)
+                                            .padding()
+                                    }
+                                    .background(Color(.white))
+                                    .frame(width:80, height:80)
+                                    .cornerRadius(25)
+                                    .padding(.bottom, 3)
+                                    
+                                    Text(company.name)
+                                        .foregroundColor(Color(.darkGray))
+                                        .font(.footnote)
+                                    
                                 }
-                                .background(Color(.white))
-                                .frame(width:61, height:61)
-                                .cornerRadius(20)
-                                .padding(.bottom, 3)
-                                
-                                Text(topic.name)
-                                    .foregroundColor(Color(.darkGray))
-                                    .font(.footnote)
-                                
+                                .frame(width:110, height:140)
+                                .background(Color(.systemGroupedBackground))
+                                .cornerRadius(30)
                             }
-                            .frame(width:80, height:110)
-                            .background(Color(.systemGroupedBackground))
-                            .cornerRadius(25)
+                            
+                            
                         }
-
                         
                     }
                 }
+                .padding(.horizontal)
+                
+                //practice by topic
+                Text("Practice by Topic")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .padding()
+                    .foregroundColor(Color("Purple3"))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                ScrollView(.horizontal, showsIndicators: false){
+                    
+                    HStack(spacing:12){
+                        ForEach(topics, id: \.name){ topic in
+                            
+                            NavigationLink(destination: ConfigFlowView(selectedCompany: topic)){
+                                
+                                VStack (alignment: .center){
+                                    
+                                    VStack (alignment: .center){
+                                        Image(topic.logo)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width:120)
+                                            .padding()
+                                    }
+                                    .background(Color(.white))
+                                    .frame(width:61, height:61)
+                                    .cornerRadius(20)
+                                    .padding(.bottom, 3)
+                                    
+                                    Text(topic.name)
+                                        .foregroundColor(Color(.darkGray))
+                                        .font(.footnote)
+                                    
+                                }
+                                .frame(width:80, height:110)
+                                .background(Color(.systemGroupedBackground))
+                                .cornerRadius(25)
+                            }
+                            
+                            
+                        }
+                    }
+                }
+                .padding(.bottom,40)
+                .padding(.horizontal)
+                
             }
-            .padding(.bottom,40)
-            .padding(.horizontal)
-            
+            .background(Color(.white))
+            .frame(maxWidth: UIScreen.main.bounds.size.width)
+            .cornerRadius(50)
         }
-        .background(Color(.white))
-        .frame(maxWidth: UIScreen.main.bounds.size.width)
-        .cornerRadius(50)
     }
 }
 

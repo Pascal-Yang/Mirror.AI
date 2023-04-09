@@ -14,11 +14,8 @@ import SwiftUICharts
 struct DataView : View {
 
     var body : some View{
-//        Text("data")
-//            .onAppear(){
-//                print(DummyConversationData.conversations)
-//            }
         
+        // TODO: fetch from storage instead of using dummy
         ConversationScrollView(conversations: DummyConversationData.conversations)
         
 //        ConversationBarChartView(conversations: DummyConversationData.conversations)

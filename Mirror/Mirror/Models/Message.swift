@@ -43,7 +43,7 @@ struct Message: Hashable {
 
 struct DataSource {
     static let firstUser = User(name: "Mirror", avatar: "mirror")
-    static var secondUser = User(name: "Elyse Tang", avatar: "myAvatar", isCurrentUser: true)
+    static var secondUser = User(name: "Anomynous", avatar: "myAvatar", isCurrentUser: true)
     static let messages = [
         Message(content: "Hello there! I am Mirror, your AI Interviewer!", user: DataSource.firstUser, fromAPI:false)
     ]

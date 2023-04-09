@@ -76,11 +76,40 @@ class FirebaseManager: NSObject{
                     //update current question id
                     if let doc = ref{
                         self.currentQuestionID = doc.documentID
+//                        print("start")
+//                        print(currentHis)
+                        for arr in currentHis{
+                           
+                            //addHistoryToCurrentQuestion(role: arr["role"] as! String, content: arr["content"] as! String)
+                            let tmpData: [String:Any] = [
+                                "role":arr["role"] as! String,
+                                "content": arr["content"] as! String,
+                                "time": Timestamp(date: Date())
+                            ]
+                            
+                            
+                            self.db.collection("chat_history")
+                                .document(uid)
+                                .collection("questions")
+                                .document(doc.documentID)
+                                .collection("history")
+                                .addDocument(data: tmpData){ err in
+                                if let err = err {
+                                    print("Error writing document: \(err)")
+                                } else {
+                                    print("History Added: ", arr["role"] as! String, arr["content"] as! String)
+                                }
+                            }
+                        }
+              
+                        currentHis = [["role": "system", "content": "You are a helpful assistant."]]
                     }else{
                         print("New question document is not created...")
                     }
                 }
             }
+            
+            
             
         }else{
             print("You have not logged in!")

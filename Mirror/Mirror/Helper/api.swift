@@ -74,9 +74,9 @@ func fetchCompletion(prompt: String) -> String? {
     let semaphore = DispatchSemaphore(value: 0)
     // Send the request asynchronously and handle the response
     
-    let tmpMerge = mergeWithChatHistory(prompt: prompt, chatHistory: currentHis)
-    print(tmpMerge)
-    makeRequestGPT(chatHistory: tmpMerge) { result in
+    currentHis = mergeWithChatHistory(prompt: prompt, chatHistory: currentHis)
+    
+    makeRequestGPT(chatHistory: currentHis) { result in
         switch result {
         case .success(let comp):
             completion = comp

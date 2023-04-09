@@ -116,11 +116,13 @@ struct MsgBtnsView: View {
         answerClicked = true
         showButtons = false
         print(showButtons)
+        
     }
     
     func question() {
         loading = true
         DispatchQueue.global(qos: .background).async {
+            FirebaseManager.shared.startNewQuestion(job: "", question: "")
             chatHelper.sendMessage(Message(display:"new question", content: "give me another question", user: DataSource.secondUser, fromAPI: false))
 
             DispatchQueue.main.async {
@@ -131,6 +133,9 @@ struct MsgBtnsView: View {
         answerClicked = false
         showButtons = false
         print(showButtons)
+    
+        
+        
     }
 }
 

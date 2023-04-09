@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D4AF9AE29E30DB200DA362C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AF9AD29E30DB200DA362C /* ProfileView.swift */; };
+		1D4AF9B029E33B4D00DA362C /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AF9AF29E33B4D00DA362C /* ConversationView.swift */; };
 		1D6007B129A816CD00E439D6 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6007B029A816CD00E439D6 /* ConfigurationView.swift */; };
 		1D6007B329A8172200E439D6 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6007B229A8172200E439D6 /* DashboardView.swift */; };
 		1D726D1629E085C50063830F /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D726D1529E085C50063830F /* Conversation.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D4AF9AD29E30DB200DA362C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		1D4AF9AF29E33B4D00DA362C /* ConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
 		1D6007B029A816CD00E439D6 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		1D6007B229A8172200E439D6 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		1D726D1529E085C50063830F /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -159,7 +163,6 @@
 		3045532123E6B82B00F41AF3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1DD1188529A85E4600F57759 /* DashBlockView.swift */,
 				3045530C23E6702D00F41AF3 /* ChatView.swift */,
 				3045532223E6B8DE00F41AF3 /* MessageView.swift */,
 				3045532923E6C9B900F41AF3 /* ContentMessageView.swift */,
@@ -173,7 +176,10 @@
 				1D79C12729D369180037D5A1 /* IntroFlow.swift */,
 				1D79C12929D369630037D5A1 /* IntroSlide.swift */,
 				1DA31B5429DFE50F00114D94 /* TabView.swift */,
+				1DD1188529A85E4600F57759 /* DashBlockView.swift */,
 				1DAE235D29DFEE4800898BEA /* DataView.swift */,
+				1D4AF9AD29E30DB200DA362C /* ProfileView.swift */,
+				1D4AF9AF29E33B4D00DA362C /* ConversationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -279,6 +285,7 @@
 			files = (
 				CBBFF4FA29A3F89A00062598 /* api.swift in Sources */,
 				1D79C12A29D369630037D5A1 /* IntroSlide.swift in Sources */,
+				1D4AF9B029E33B4D00DA362C /* ConversationView.swift in Sources */,
 				1D726D1629E085C50063830F /* Conversation.swift in Sources */,
 				46652B2129B56AE3008D18E4 /* MsgBtnsView.swift in Sources */,
 				1D6007B329A8172200E439D6 /* DashboardView.swift in Sources */,
@@ -299,6 +306,7 @@
 				3045532523E6BB3F00F41AF3 /* ChatHelper.swift in Sources */,
 				1DD1188A29A8690B00F57759 /* ConfigFlowView.swift in Sources */,
 				45557F0B29A309BA006EA851 /* VoiceRecognizer.swift in Sources */,
+				1D4AF9AE29E30DB200DA362C /* ProfileView.swift in Sources */,
 				1DD1188829A8628800F57759 /* Company.swift in Sources */,
 				3045532823E6BDF300F41AF3 /* KeyboardResponder.swift in Sources */,
 				3045532A23E6C9B900F41AF3 /* ContentMessageView.swift in Sources */,

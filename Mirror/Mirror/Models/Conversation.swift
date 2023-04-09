@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct Conversation {
+struct Conversation : Identifiable {
+    var id = UUID()
     let question: String
     let score: Int
     let answer: String
@@ -29,4 +30,14 @@ struct DummyConversationData {
         }
         return array
     }()
+}
+
+extension Conversation: Hashable {
+    static func == (lhs: Conversation, rhs: Conversation) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

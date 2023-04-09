@@ -19,31 +19,6 @@ struct DashboardView: View {
     var body: some View {
                     
             VStack {
-                
-                Spacer()
-                    .frame(maxHeight: 10)
-                
-                HStack{
-                    
-                    // TO-DO: change second-user name in DataSource
-                    Text((FirebaseManager.shared.auth.currentUser?.email ?? "Guest"))
-                        .font(.system(size: 30))
-                        .fontWeight(.bold)
-                        .padding()
-                        .foregroundColor(Color("Purple3"))
-                    
-                    
-                    Spacer()
-
-                    Image(DataSource.secondUser.avatar)
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                        .clipShape(Circle())
-                        .padding(.top, 16)
-                    
-                }
-                .padding(.horizontal)
-                Spacer()
             
                 CustomTabView()
                 

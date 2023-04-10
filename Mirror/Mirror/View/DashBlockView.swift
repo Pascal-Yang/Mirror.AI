@@ -74,14 +74,6 @@ struct DashBlockView: View {
                                 .font(.subheadline)
                                 .fontWeight(.medium)
                                 .padding(.leading, 30)
-                                .onAppear(){
-                                    Task{
-                                        questionList.removeAll()
-                                        FirebaseManager.shared.getQuestionsOfUser()
-                                        globalQuestionList = questionList
-                                    }
-                                    
-                                }
                         }
                     }
                     

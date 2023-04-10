@@ -22,17 +22,21 @@ struct DataView : View {
         ZStack{
             convView
                 .onAppear(){
+                    
+                    print(globalQuestionList)
                     loading = true
-                    DispatchQueue.global(qos: .background).async {
-                        questionList.removeAll()
-                        FirebaseManager.shared.getQuestionsOfUser()
-                        sleep(3)
-                        DispatchQueue.main.async {
-                            convView = ConversationScrollView(conversations: questionList)
-                            globalQuestionList = questionList
-                            loading = false
-                        }
-                    }
+                    convView = ConversationScrollView(conversations: globalQuestionList)
+                    loading = false
+//                    loading = true
+//                    DispatchQueue.global(qos: .background).async {
+//                        FirebaseManager.shared.getQuestionsOfUser()
+//                        sleep(3)
+//                        DispatchQueue.main.async {
+//                            convView = ConversationScrollView(conversations: questionList)
+//                            globalQuestionList = questionList
+//                            loading = false
+//                        }
+//                    }
                     
                     //        ConversationBarChartView(conversations: DummyConversationData.conversations)
                 }

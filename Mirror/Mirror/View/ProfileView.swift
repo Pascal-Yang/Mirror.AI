@@ -43,7 +43,6 @@ struct ProfileView : View {
                             if let uid = FirebaseManager.shared.auth.currentUser?.uid{
                                 FirebaseManager.shared.setAvatarString(avatar: avatar, uid: uid)
                             }
-                            // TODO: add background data storage update
 
                         }
                     
@@ -63,15 +62,14 @@ struct ProfileView : View {
             
             // TO-DO: change second-user name in DataSource
 //            Text((FirebaseManager.shared.auth.currentUser?.email ?? "Guest"))
-            Text("\(DataSource.secondUser.name)")
+            Text(DataSource.secondUser.name)
                 .font(.system(size: 30))
                 .fontWeight(.bold)
                 .padding(.bottom, 30)
                 .foregroundColor(Color("Purple3"))
 
             VStack(alignment: .leading, spacing: 10) {
-//                Text("Email: \(DataSource.secondUser.name)")
-                Text("Email: \((FirebaseManager.shared.auth.currentUser?.email ?? "Guest"))")
+                Text("Email: \((FirebaseManager.shared.auth.currentUser?.email ?? "Guest@wustl.edu"))")
                     .foregroundColor(Color("Grey4"))
                     .font(.subheadline)
                     .font(.system(size: 25))
@@ -90,8 +88,6 @@ struct ProfileView : View {
                                 FirebaseManager.shared.setQuestionPerDay(value: value, uid: uid)
                             }
                         }
-                        
-                        // TODO: add background data storage update
                     })
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(width: 100)

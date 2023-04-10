@@ -187,8 +187,24 @@ struct LoginPage: View {
                 return
             }
             
+           // update all user data before proceeding to the dashboard
+            FirebaseManager.shared.getUserNameWithCallBack(){name in
+                DataSource.secondUser.name = name
+                FirebaseManager.shared.getAvatarStringWithCallBack(){ avatar in
+                    DataSource.secondUser.avatar = avatar
+                    FirebaseManager.shared.getQuestionPerDayWithCallBack{ number in
+                        DataSource.secondUser.quesPerDay = number
+                        print("updated second user =>", DataSource.secondUser)
+                        isLogined = true
+                    }
+                }
+            }
+                
+                
+            
+            
             //print("login successful", FirebaseManager.shared.getUserName() ?? "cannot get username",email, res?.user.uid ?? "cannot get uid")
-            isLogined = true
+            
             
         }
     }
@@ -213,7 +229,7 @@ struct LoginPage: View {
                 "email": email,
                 "userName": userName,
                 "avatar": isButton1Selected ? "myAvatar" : "myAvatar2",
-                "questionPerDay ": 0
+                "questionPerDay": 0
             ])
             
 //            loginAccount()

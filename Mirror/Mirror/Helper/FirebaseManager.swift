@@ -11,6 +11,7 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 
+var questionList : [Conversation] = []
 class FirebaseManager: NSObject{
     
     let auth: Auth
@@ -233,57 +234,45 @@ class FirebaseManager: NSObject{
     
     // Return a list of all questions of the current user
     // Refer to structure of question and history in message.swift
-    func getQuestionsOfUser()->[Question]{
+    func getQuestionsOfUser(){
         
-        var questionList:[Question] = []
+        
         
         if let user = auth.currentUser{
             let uid = user.uid
-            db.collection("chat_history")
+            let ref = db.collection("chat_history")
                 .document(uid)
                 .collection("questions")
-                .getDocuments{
+            
+
+                ref.getDocuments{
                     (res, err) in
                     if let e = err{
                         print(e)
                     }else{
-                        for question in res!.documents{
-                            var historyList:[History] = []
-                            
-                            let questionID = question.documentID
-                            
-                            self.db.collection("chat_history")
-                                .document(uid)
-                                .collection("questions")
-                                .document(questionID)
-                                .collection("history")
-                                .getDocuments{
-                                (res, err) in
-                                if let e = err{
-                                    print(e)
-                                }else{
-                                    for hist in res!.documents{
-                                        let curHistory = History(content: hist.data()["content"] as! String,
-                                                                 role: hist.data()["role"] as! String)
-                                        print(curHistory.role, curHistory.content)
-                                        historyList.append(curHistory)
-                                    }
-                                }
+                        for document in res!.documents {
+                            let tmp = document.data()
+                            if String(describing: tmp["question"]) != "" {
+                                let tmpConversation = Conversation(question: String(describing: tmp["question"] ?? ""), score: tmp["score"] as? Int ?? 0, answer: String(describing: tmp["answer"] ?? ""), time: tmp["time"] as? Date ?? Date())
+                                
+                                questionList.append(tmpConversation)
+                                
                             }
-                            
-                            let curQuestion = Question(job: question.data()["job"] as! String,
-                                                       question: question.data()["question"] as! String,
-                                                       history: historyList)
-                            print(curQuestion.job, curQuestion.question)
-                            questionList.append(curQuestion)
                         }
+                        
                     }
                 }
+            
+            
+            
         }else{
             print("You have not signed in.")
         }
+      
         
-        return questionList
+        
+    
+        
     }
     
     

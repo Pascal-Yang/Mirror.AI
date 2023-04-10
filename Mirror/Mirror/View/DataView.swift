@@ -12,14 +12,33 @@ import SwiftUI
 
 
 struct DataView : View {
-
+    @State var loading: Bool = false
     var body : some View{
         
+        
+        
+        
+        
         // TODO: fetch from storage instead of using dummy
-        ConversationScrollView(conversations: DummyConversationData.conversations)
+        
+        
+        ConversationScrollView(conversations: questionList)
+            .onAppear(){
+                loading = true
+                DispatchQueue.global(qos: .background).async {
+                    FirebaseManager.shared.getQuestionsOfUser()
+                    sleep(3)
+                    DispatchQueue.main.async {
+                        loading = false
+                    }
+                }
         
 //        ConversationBarChartView(conversations: DummyConversationData.conversations)
         
+            }
+            .overlay(
+                LoadingView(loading: loading)
+            )
     }
 }
 

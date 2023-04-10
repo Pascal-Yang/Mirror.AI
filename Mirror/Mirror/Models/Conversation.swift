@@ -8,6 +8,8 @@
 
 import Foundation
 
+var globalQuestionList : [Conversation] = []
+
 struct Conversation : Identifiable {
     var id = UUID()
     let question: String
@@ -41,3 +43,12 @@ extension Conversation: Hashable {
         hasher.combine(id)
     }
 }
+
+func countConversationsToday(conversations: [Conversation]) -> Int {
+    let today = Calendar.current.startOfDay(for: Date())
+    let filteredConversations = conversations.filter {
+        Calendar.current.startOfDay(for: $0.time) == today
+    }
+    return filteredConversations.count
+}
+

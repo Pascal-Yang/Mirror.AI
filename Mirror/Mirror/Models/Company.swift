@@ -23,7 +23,7 @@ struct Companies {
     static let Amazon = Company(name: "Amazon", logo: "amazon_logo", description: "Amazon is a multinational tech company known for its e-commerce platform, cloud computing services, digital streaming, and artificial intelligence products.")
     static let Meta = Company(name: "Meta", logo: "meta_logo", description: "Meta is a tech company that provides social networking and digital communication services.")
     static let Microsoft = Company(name: "Microsoft", logo: "microsoft_logo", description: "Microsoft is a technology company that offers software, hardware, and cloud services.")
-    static let PayPal = Company(name: "PayPal", logo: "paypal_logo", description: "PayPal is a technology company that operates a digital payments platform allowing individuals and businesses to send and receive payments online securely.")
+    static let PayPal = Company(name: "PayPal", logo: "paypal_logo", description: "PayPal is a financial technology company that operates a digital payments platform.")
     static let Adobe = Company(name: "Adobe", logo: "adobe_logo", description: "Adobe is a software company that creates products for creative professionals, marketers, and enterprises.")
 }
 
@@ -35,6 +35,6 @@ struct Topics {
     static let Node = Company(name: "Node", logo: "node_logo", description: "Node.js is a JavaScript library for building fast and scalable server-side applications.")
 }
 
-let companies : [Company] = [Companies.Google, Companies.Amazon, Companies.Meta, Companies.Microsoft]
+let companies : [Company] = [Companies.Google, Companies.Amazon, Companies.Meta, Companies.Microsoft, Companies.PayPal, Companies.Adobe]
 
-let topics : [Company] = [Topics.React, Topics.Python, Topics.Swift, Topics.Javascript]
+let topics : [Company] = [Topics.React, Topics.Python, Topics.Swift, Topics.Javascript, Topics.Node]

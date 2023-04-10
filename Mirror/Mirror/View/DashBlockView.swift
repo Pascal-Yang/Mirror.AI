@@ -11,7 +11,7 @@ struct DashBlockView: View {
     
     @Binding var selectedCompany: Company
     @State var displayedName: String = "unknown"
-    @State var displayedAvatar: String = "myavatar"
+    @State var displayedAvatar: String = "myAvatar"
 
     var body: some View {
         ScrollView(.vertical){
@@ -95,7 +95,7 @@ struct DashBlockView: View {
                                 .padding(.leading, 30)
                                 .onAppear(){
                                     Task{
-                                        questionList = []
+                                        questionList.removeAll()
                                         FirebaseManager.shared.getQuestionsOfUser()
                                         globalQuestionList = questionList
                                     }

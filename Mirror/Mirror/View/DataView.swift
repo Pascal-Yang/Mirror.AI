@@ -24,6 +24,7 @@ struct DataView : View {
                 .onAppear(){
                     loading = true
                     DispatchQueue.global(qos: .background).async {
+                        questionList.removeAll()
                         FirebaseManager.shared.getQuestionsOfUser()
                         sleep(3)
                         DispatchQueue.main.async {

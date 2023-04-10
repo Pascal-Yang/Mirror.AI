@@ -25,7 +25,7 @@ struct DashboardView: View {
                 
             }.onAppear(){
                 if let tempUserName = FirebaseManager.shared.auth.currentUser?.email {
-                    DataSource.secondUser.name = tempUserName;
+                    
                 } else {
                     DataSource.secondUser.name = "Guest";
                 }

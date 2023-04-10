@@ -48,7 +48,7 @@ class FirebaseManager: NSObject{
     
     func setQuestionPerDay(value:Int, uid:String){
         let docRef = db.collection("chat_history").document(uid)
-        docRef.setData(["questionPerDay ":value], merge:true){err in
+        docRef.setData(["questionPerDay":value], merge:true){err in
             if let e = err{
                 print("error in changing questionPerDay", e)
             }else{
@@ -57,23 +57,45 @@ class FirebaseManager: NSObject{
         }
     }
     
-    func getQuestionPerDay() async -> Int{
-        var res:Int = 0
+    func getQuestionPerDayWithCallBack(completion: @escaping (Int)->Void){
         if let user = auth.currentUser{
             let uid = user.uid
-            do{
-                let userDoc = try await db.collection("chat_history").document(uid).getDocument()
-                res = userDoc.data()!["questionPerDay"] as! Int
-                print(userDoc.data()!)
-            }catch{
-                print("error")
+            db.collection("chat_history").document(uid).getDocument(){(result, error) in
+                if let e = error{
+                    print("When getting Q per day: ", e)
+                }else if let doc = result{
+                    print(doc.data()!)
+                    let docDict = doc.data()!
+                    if let ret = docDict["questionPerDay"] as? Int{
+                        completion(ret)
+                    }else{
+                        print("cannot find question perday in user data =>", docDict)
+                    }
+                    
+                }
             }
         }else{
             print("Cannot find user name since not logined")
         }
-        //print("res=",res ?? "Guest")
-        return res
     }
+    
+//    func getQuestionPerDay() async -> Int{
+//        var res:Int = 0
+//        if let user = auth.currentUser{
+//            let uid = user.uid
+//            do{
+//                let userDoc = try await db.collection("chat_history").document(uid).getDocument()
+//                res = userDoc.data()!["questionPerDay"] as! Int
+//                print(userDoc.data()!)
+//            }catch{
+//                print("error")
+//            }
+//        }else{
+//            print("Cannot find user name since not logined")
+//        }
+//        //print("res=",res ?? "Guest")
+//        return res
+//    }
     
     func setAvatarString(avatar:String, uid:String){
         let docRef = db.collection("chat_history").document(uid)
@@ -86,40 +108,72 @@ class FirebaseManager: NSObject{
         }
     }
     
-    func getAvatarString() async -> String?{
-        var res:String?
+    func getAvatarStringWithCallBack(completion: @escaping (String)->Void){
         if let user = auth.currentUser{
             let uid = user.uid
-            do{
-                let userDoc = try await db.collection("chat_history").document(uid).getDocument()
-                res = userDoc.data()!["avatar"] as? String
-                print(userDoc.data()!)
-            }catch{
-                print("error")
+            db.collection("chat_history").document(uid).getDocument(){(result, error) in
+                if let e = error{
+                    print("When avatar: ", e)
+                }else if let doc = result{
+                    let ret = doc.data()!["avatar"] as! String
+                    completion(ret)
+                }
             }
         }else{
             print("Cannot find user name since not logined")
         }
-        //print("res=",res ?? "Guest")
-        return res
     }
     
-    func getUserName() async->String?{
-        var res:String?
+//    func getAvatarString() async -> String?{
+//        var res:String?
+//        if let user = auth.currentUser{
+//            let uid = user.uid
+//            do{
+//                let userDoc = try await db.collection("chat_history").document(uid).getDocument()
+//                res = userDoc.data()!["avatar"] as? String
+//                print(userDoc.data()!)
+//            }catch{
+//                print("error")
+//            }
+//        }else{
+//            print("Cannot find user name since not logined")
+//        }
+//        //print("res=",res ?? "Guest")
+//        return res
+//    }
+    
+    func getUserNameWithCallBack(completion: @escaping (String)->Void){
         if let user = auth.currentUser{
             let uid = user.uid
-            do{
-                let userDoc = try await db.collection("chat_history").document(uid).getDocument()
-                res = userDoc.data()!["userName"] as? String
-            }catch{
-                print("error")
+            db.collection("chat_history").document(uid).getDocument(){(result, error) in
+                if let e = error{
+                    print("When avatar: ", e)
+                }else if let doc = result{
+                    let ret = doc.data()!["userName"] as! String
+                    completion(ret)
+                }
             }
         }else{
             print("Cannot find user name since not logined")
         }
-        //print("res=",res ?? "Guest")
-        return res
     }
+    
+//    func getUserName() async->String?{
+//        var res:String?
+//        if let user = auth.currentUser{
+//            let uid = user.uid
+//            do{
+//                let userDoc = try await db.collection("chat_history").document(uid).getDocument()
+//                res = userDoc.data()!["userName"] as? String
+//            }catch{
+//                print("error")
+//            }
+//        }else{
+//            print("Cannot find user name since not logined")
+//        }
+//        //print("res=",res ?? "Guest")
+//        return res
+//    }
     
     
     // 1. Add a new question into the database
@@ -231,6 +285,34 @@ class FirebaseManager: NSObject{
         }
     }
     
+    func getQuestionsWithCallBack(completion: @escaping ([Question]) -> Void){
+        var ret:[Question] = []
+        if let uid = auth.currentUser?.uid{
+            db.collection("chat_history")
+                .document(uid)
+                .collection("questions")
+                .getDocuments{ (res, err) in
+                    if let e = err{
+                        print("error!")
+                        return
+                    }
+                    
+                    for doc in res!.documents{
+                        let curQuestion = Question(job: doc.data()["job"] as! String,
+                                                   question: doc.data()["question"] as! String,
+                                                   history: [])
+//                        print(curQuestion)
+                        ret.append(curQuestion)
+                    }
+//                    print("fetch finished => ",ret)
+                    completion(ret)
+                    
+                }
+        }else{
+            print("cannot fetch questions without login")
+        }
+       
+    }
     
     // Return a list of all questions of the current user
     // Refer to structure of question and history in message.swift

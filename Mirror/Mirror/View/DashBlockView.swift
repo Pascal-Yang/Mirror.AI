@@ -24,39 +24,20 @@ struct DashBlockView: View {
                     
                     // TO-DO: change second-user name in DataSource
                     
-                    Text((FirebaseManager.shared.auth.currentUser != nil ? displayedName : "Guest"))
+                    Text((FirebaseManager.shared.auth.currentUser != nil ? DataSource.secondUser.name : "Guest"))
                         .font(.system(size: 30))
                         .fontWeight(.bold)
                         .padding()
                         .foregroundColor(Color("Purple3"))
-                        .onAppear(){
-                            Task{
-                                displayedName = await FirebaseManager.shared.getUserName() ?? "Guest"
-                                DataSource.secondUser.name = await FirebaseManager.shared.getUserName() ?? "Guest"
-                                print("displayedName =", displayedName)
-                            }
-                            
-                        }
                    
                     
                     Spacer()
 
-                    Image((FirebaseManager.shared.auth.currentUser != nil ? displayedAvatar : "myAvatar"))
+                    Image((FirebaseManager.shared.auth.currentUser != nil ? DataSource.secondUser.avatar : "myavatar"))
                         .resizable()
                         .frame(width: 60, height: 60)
                         .clipShape(Circle())
                         .padding(.top, 16)
-                        .onAppear(){
-                            Task{
-                           
-                                displayedAvatar = await FirebaseManager.shared.getAvatarString() ?? "myAvatar"
-                                DataSource.secondUser.avatar = await FirebaseManager.shared.getAvatarString() ?? "myAvatar"
-                                
-                                
-                                print("avatar_path =", displayedName)
-                            }
-                            
-                        }
                     
                 }
                 .padding(.horizontal)

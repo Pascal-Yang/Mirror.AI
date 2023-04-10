@@ -8,6 +8,8 @@
 
 import Foundation
 
+var globalQuestionList : [Conversation] = []
+
 struct Conversation : Identifiable {
     var id = UUID()
     let question: String

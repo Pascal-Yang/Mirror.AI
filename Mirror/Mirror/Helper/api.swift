@@ -14,6 +14,9 @@ struct Response: Codable {
     let response: String
 }
 public var currentHis: [[String:Any]] = [["role": "system", "content": "You are a helpful assistant."]]
+public var currentQues: String = ""
+public var currentAns: String = ""
+public var currentScore: String = "0"
 
 
 func mergeWithChatHistory(prompt: String, chatHistory: [[String:Any]]) -> [[String:Any]] {
@@ -25,7 +28,7 @@ func mergeWithChatHistory(prompt: String, chatHistory: [[String:Any]]) -> [[Stri
 
 
 // Function for making a request to OpenAI's Chatgpt API and returning the response
-func makeRequestGPT(chatHistory: [[String:Any]], completion: @escaping (Result<String, Error>) -> Void) {
+func makeRequestGPT(chatHistory: [[String:Any]], isQues: Bool = false, completion: @escaping (Result<String, Error>) -> Void) {
     let apiKey = ProcessInfo.processInfo.environment["API_KEY"]
     // Set up request with required headers and parameters
     let url = URL(string: "https://api.openai.com/v1/chat/completions")!
@@ -59,6 +62,9 @@ func makeRequestGPT(chatHistory: [[String:Any]], completion: @escaping (Result<S
             let resDic = completions[0]["message"] as! [String: Any]
             currentHis.append(resDic)
             let res = resDic["content"] as! String
+            if isQues {
+                currentQues = res
+            }
             completion(.success(res))
         } catch let error {
             completion(.failure(error))
@@ -73,10 +79,13 @@ func fetchCompletion(prompt: String) -> String? {
     var completion: String?
     let semaphore = DispatchSemaphore(value: 0)
     // Send the request asynchronously and handle the response
+    var isQuestion = false
+    if prompt.contains("with the question only") {
+        isQuestion = true
+    }
+    currentHis = mergeWithChatHistory(prompt: prompt, chatHistory: currentHis)
     
-    let tmpMerge = mergeWithChatHistory(prompt: prompt, chatHistory: currentHis)
-    print(tmpMerge)
-    makeRequestGPT(chatHistory: tmpMerge) { result in
+    makeRequestGPT(chatHistory: currentHis, isQues: isQuestion) { result in
         switch result {
         case .success(let comp):
             completion = comp

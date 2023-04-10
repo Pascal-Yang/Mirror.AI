@@ -22,7 +22,7 @@ class ChatHelper : ObservableObject {
         //If pendingMessage is one of the preset message of msgbtnsview, don't evaluate it
         if pendingMessage == "give me a hint to the interview question you just asked, keep it relatively short" ||
            pendingMessage == "give me a standard answer to the interview question you just asked" ||
-           pendingMessage == "give me another question" {
+            pendingMessage.contains("with the question only")  {
             
             if let res = fetchCompletion(prompt: pendingMessage){
                 // Create a new chat message from the response and append it to the realTimeMessages data source
@@ -60,6 +60,8 @@ class ChatHelper : ObservableObject {
                     let extractedScore = String(charBefore)
                     print("Extracted score:", extractedScore)
                     score = extractedScore
+                    currentScore = score
+                    currentAns = pendingMessage
                 }
                 
                 let new = Message(content: res, user: DataSource.firstUser, fromAPI:true)
@@ -103,7 +105,7 @@ class ChatHelper : ObservableObject {
         
         if realTimeMessages.count <= 1 {
             // prepare prompt
-            let configuredParams = "Ask me 1 " + String(company ) + " " + String(questionType ?? "") + "interview question for a " + String(job ?? "") + " job, keep the question short."
+            let configuredParams = "Ask me 1 " + String(company ) + " " + String(questionType ?? "") + "interview question for a " + String(job ?? "") + " job, keep the question short and with the question only."
             print(configuredParams)
 
             if let res = fetchCompletion(prompt: configuredParams){

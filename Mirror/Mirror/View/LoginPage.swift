@@ -195,7 +195,11 @@ struct LoginPage: View {
                     FirebaseManager.shared.getQuestionPerDayWithCallBack{ number in
                         DataSource.secondUser.quesPerDay = number
                         print("updated second user =>", DataSource.secondUser)
-                        isLogined = true
+                        FirebaseManager.shared.getQuestionsWithCallBack(){ conversations in
+                            globalQuestionList = conversations
+                            print("updated globalQuestionList =>", globalQuestionList)
+                            isLogined = true
+                        }
                     }
                 }
             }

@@ -261,7 +261,7 @@ class FirebaseManager: NSObject{
                         let docAsDict = doc.data()
                         let curQuestion = Conversation(//id: UUID(uuidString: doc.documentID)!,
                                                        question: docAsDict["question"] as? String ?? "Empty Question",
-                                                       score: docAsDict["score"] as? Int ?? -1,
+                                                       score: docAsDict["score"] as? String ?? "N/A",
                                                        answer: docAsDict["answer"] as? String ?? "Empty Answer",
                                                        time: docAsDict["time"] as? Date ?? Date())
 //                        print(curQuestion)
@@ -296,7 +296,7 @@ class FirebaseManager: NSObject{
                         for document in res!.documents {
                             let tmp = document.data()
                             if String(describing: tmp["question"]) != "" {
-                                let tmpConversation = Conversation(question: String(describing: tmp["question"] ?? ""), score: tmp["score"]! as? Int ?? 0, answer: String(describing: tmp["answer"] ?? ""), time: tmp["time"] as? Date ?? Date())
+                                let tmpConversation = Conversation(question: String(describing: tmp["question"] ?? ""), score: tmp["score"]! as? String ?? "0", answer: String(describing: tmp["answer"] ?? ""), time: tmp["time"] as? Date ?? Date())
                                 
                                 questionList.append(tmpConversation)
                                 

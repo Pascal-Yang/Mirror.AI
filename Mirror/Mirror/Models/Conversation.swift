@@ -13,7 +13,7 @@ var globalQuestionList : [Conversation] = []
 struct Conversation : Hashable {
 //    var id = UUID()
     let question: String
-    let score: Int
+    let score: String
     let answer: String
     let time: Date
 }
@@ -27,7 +27,7 @@ struct DummyConversationData {
         for i in 0..<10 {
             let randomTimeInterval = TimeInterval.random(in: 0...604800) // 7 days in seconds
             let conversationTime = Date(timeIntervalSinceNow: -randomTimeInterval)
-            let conversation = Conversation(question: "question\(i)", score: Int.random(in: 0...10), answer: "answer\(i)", time: conversationTime)
+            let conversation = Conversation(question: "question\(i)", score: String(Int.random(in: 0...10)), answer: "answer\(i)", time: conversationTime)
             array.append(conversation)
         }
         return array

@@ -11,6 +11,7 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 
+var questionList : [Conversation] = []
 class FirebaseManager: NSObject{
     
     let auth: Auth
@@ -178,7 +179,7 @@ class FirebaseManager: NSObject{
     // 1. Add a new question into the database
     // 2. Update currentQuestionID to the newly creatd question
     // 3. How to call: FirebaseManager.shared.startNewQuestion()
-    func startNewQuestion(job:String, question:String){
+    func startNewQuestion(job:String, question:String, answer:String, score:String){
         
         print("Starting a new question =>", job, "=>" ,question)
         
@@ -189,6 +190,8 @@ class FirebaseManager: NSObject{
             let docData: [String:Any] = [
                 "job":job,
                 "question": question,
+                "answer": answer,
+                "score": score,
                 "time": Timestamp(date: Date())
             ]
             
@@ -205,11 +208,43 @@ class FirebaseManager: NSObject{
                     //update current question id
                     if let doc = ref{
                         self.currentQuestionID = doc.documentID
+//                        print("start")
+//                        print(currentHis)
+                        for arr in currentHis{
+                           
+                            //addHistoryToCurrentQuestion(role: arr["role"] as! String, content: arr["content"] as! String)
+                            let tmpData: [String:Any] = [
+                                "role":arr["role"] as! String,
+                                "content": arr["content"] as! String,
+                                "time": Timestamp(date: Date())
+                            ]
+                            
+                            
+                            self.db.collection("chat_history")
+                                .document(uid)
+                                .collection("questions")
+                                .document(doc.documentID)
+                                .collection("history")
+                                .addDocument(data: tmpData){ err in
+                                if let err = err {
+                                    print("Error writing document: \(err)")
+                                } else {
+                                    print("History Added: ", arr["role"] as! String, arr["content"] as! String)
+                                }
+                            }
+                        }
+              
+                        currentHis = [["role": "system", "content": "You are a helpful assistant."]]
+                        currentAns = ""
+                        currentScore = "0"
+                        currentQues = ""
                     }else{
                         print("New question document is not created...")
                     }
                 }
             }
+            
+            
             
         }else{
             print("You have not logged in!")
@@ -281,57 +316,45 @@ class FirebaseManager: NSObject{
     
     // Return a list of all questions of the current user
     // Refer to structure of question and history in message.swift
-    func getQuestionsOfUser()->[Question]{
+    func getQuestionsOfUser(){
         
-        var questionList:[Question] = []
+        
         
         if let user = auth.currentUser{
             let uid = user.uid
-            db.collection("chat_history")
+            let ref = db.collection("chat_history")
                 .document(uid)
                 .collection("questions")
-                .getDocuments{
+            
+
+                ref.getDocuments{
                     (res, err) in
                     if let e = err{
                         print(e)
                     }else{
-                        for question in res!.documents{
-                            var historyList:[History] = []
-                            
-                            let questionID = question.documentID
-                            
-                            self.db.collection("chat_history")
-                                .document(uid)
-                                .collection("questions")
-                                .document(questionID)
-                                .collection("history")
-                                .getDocuments{
-                                (res, err) in
-                                if let e = err{
-                                    print(e)
-                                }else{
-                                    for hist in res!.documents{
-                                        let curHistory = History(content: hist.data()["content"] as! String,
-                                                                 role: hist.data()["role"] as! String)
-                                        print(curHistory.role, curHistory.content)
-                                        historyList.append(curHistory)
-                                    }
-                                }
+                        for document in res!.documents {
+                            let tmp = document.data()
+                            if String(describing: tmp["question"]) != "" {
+                                let tmpConversation = Conversation(question: String(describing: tmp["question"] ?? ""), score: tmp["score"] as? Int ?? 0, answer: String(describing: tmp["answer"] ?? ""), time: tmp["time"] as? Date ?? Date())
+                                
+                                questionList.append(tmpConversation)
+                                
                             }
-                            
-                            let curQuestion = Question(job: question.data()["job"] as! String,
-                                                       question: question.data()["question"] as! String,
-                                                       history: historyList)
-                            print(curQuestion.job, curQuestion.question)
-                            questionList.append(curQuestion)
                         }
+                        
                     }
                 }
+            
+            
+            
         }else{
             print("You have not signed in.")
         }
+      
         
-        return questionList
+        
+    
+        
     }
     
     

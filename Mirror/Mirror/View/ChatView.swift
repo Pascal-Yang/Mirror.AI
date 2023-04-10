@@ -110,14 +110,9 @@ struct ChatView: View {
                 self.endEditing(true)
         }.onAppear {
             chatHelper.clearMessages()
-            FirebaseManager.shared.startNewQuestion(job: "", question: "")
             chatHelper.configureChatroom(ConfigParam)
         }.onDisappear{
-            for arr in currentHis{
-                FirebaseManager.shared.addHistoryToCurrentQuestion(role: arr["role"] as! String, content: arr["content"] as! String)
-            }
-            currentHis = [["role": "system", "content": "You are a helpful assistant."]]
-            
+            FirebaseManager.shared.startNewQuestion(job: "", question: currentQues, answer: currentAns, score: currentScore)
         }.overlay(
             LoadingView(loading: loading)
         ).navigationBarBackButtonHidden(true)

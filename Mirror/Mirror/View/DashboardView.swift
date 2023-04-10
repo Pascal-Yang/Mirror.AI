@@ -34,6 +34,7 @@ struct DashboardView: View {
             .navigationBarItems(trailing:
                 NavigationLink(destination: IntroFlow()) {
                     Image(systemName: "lightbulb")
+                        .foregroundColor(Color("Purple3"))
                 }
             )
                         

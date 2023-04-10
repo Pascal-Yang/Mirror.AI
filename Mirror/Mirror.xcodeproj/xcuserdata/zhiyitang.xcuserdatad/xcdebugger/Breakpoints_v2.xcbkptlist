@@ -258,38 +258,6 @@
             endingLineNumber = "136"
             landmarkName = "fetchData(prompt:)"
             landmarkType = "9">
-            <Locations>
-               <Location
-                  uuid = "69B1A528-AB63-49D1-8F0B-EA07F7DDCDA8 - 55ef685578841ddf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mirror.fetchData(prompt: Swift.String) -&gt; Swift.Optional&lt;Mirror.Response&gt;"
-                  moduleName = "Mirror"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhiyitang/Desktop/cs/cse_439/cse-439-final-project-mirror/Mirror/Mirror/Helper/api.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "136"
-                  endingLineNumber = "136"
-                  offsetFromSymbolStart = "308">
-               </Location>
-               <Location
-                  uuid = "69B1A528-AB63-49D1-8F0B-EA07F7DDCDA8 - c2eb3120438e47e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Mirror.Response, Swift.Error&gt;) -&gt; () in Mirror.fetchData(prompt: Swift.String) -&gt; Swift.Optional&lt;Mirror.Response&gt;"
-                  moduleName = "Mirror"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhiyitang/Desktop/cs/cse_439/cse-439-final-project-mirror/Mirror/Mirror/Helper/api.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
-                  offsetFromSymbolStart = "179">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

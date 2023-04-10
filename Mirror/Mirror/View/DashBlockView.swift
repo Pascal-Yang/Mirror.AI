@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-
-// TODO: pass actual selectedCompany to ConfigFlowView
-
 struct DashBlockView: View {
     
     @Binding var selectedCompany: Company
@@ -54,6 +51,7 @@ struct DashBlockView: View {
                     .padding(.top,8)
                 
                 //General practice
+                
                 HStack(spacing:12){
                     
                     NavigationLink(destination: ConfigFlowView(selectedCompany: Companies.Default)){
@@ -65,8 +63,7 @@ struct DashBlockView: View {
                                 .fontWeight(.bold)
                                 .padding(.leading, 30)
                             
-                            // TODO: to add a questions per day setting for each user
-                            Text("\(DataSource.secondUser.quesPerDay)")
+                            Text("\(max(DataSource.secondUser.quesPerDay - countConversationsToday(conversations: questionList), 0))")
                                 .foregroundColor(Color(.white))
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
@@ -77,7 +74,14 @@ struct DashBlockView: View {
                                 .font(.subheadline)
                                 .fontWeight(.medium)
                                 .padding(.leading, 30)
-                            
+                                .onAppear(){
+                                    Task{
+                                        questionList = []
+                                        FirebaseManager.shared.getQuestionsOfUser()
+                                        globalQuestionList = questionList
+                                    }
+                                    
+                                }
                         }
                     }
                     

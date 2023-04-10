@@ -14,7 +14,7 @@ struct ProfileView : View {
     
     @State private var avatar: String = DataSource.secondUser.avatar
     @State private var quesPerDay: String = "\(DataSource.secondUser.quesPerDay)"
-    @State var circleOpacity: Double = 0.2
+    @State var circleOpacity: Double = 0.0
 
     
     var body : some View{
@@ -30,7 +30,7 @@ struct ProfileView : View {
 
                 ZStack(alignment: .center){
                     Circle()
-                        .stroke(Color("Purple2").opacity(circleOpacity), lineWidth: 5)
+                        .stroke(Color("Purple3").opacity(circleOpacity), lineWidth: 5)
                         .frame(width: 90, height: 90)
                     
                     Image(avatar)

@@ -261,7 +261,7 @@ class FirebaseManager: NSObject{
                         let docAsDict = doc.data()
                         let curQuestion = Conversation(//id: UUID(uuidString: doc.documentID)!,
                                                        question: docAsDict["question"] as? String ?? "Empty Question",
-                                                       score: docAsDict["score"] as? Int ?? -1,
+                                                       score: docAsDict["score"] as? String ?? "N/A",
                                                        answer: docAsDict["answer"] as? String ?? "Empty Answer",
                                                        time: docAsDict["time"] as? Date ?? Date())
 //                        print(curQuestion)
@@ -279,40 +279,40 @@ class FirebaseManager: NSObject{
     
     // Return a list of all questions of the current user
     // Refer to structure of question and history in message.swift
-    func getQuestionsOfUser(){
-        
-        if let user = auth.currentUser{
-            let uid = user.uid
-            let ref = db.collection("chat_history")
-                .document(uid)
-                .collection("questions")
-            
-
-                ref.getDocuments{
-                    (res, err) in
-                    if let e = err{
-                        print(e)
-                    }else{
-                        for document in res!.documents {
-                            let tmp = document.data()
-                            if String(describing: tmp["question"]) != "" {
-                                let tmpConversation = Conversation(question: String(describing: tmp["question"] ?? ""), score: tmp["score"] as? Int ?? 0, answer: String(describing: tmp["answer"] ?? ""), time: tmp["time"] as? Date ?? Date())
-                                
-                                questionList.append(tmpConversation)
-                                
-                            }
-                        }
-                        
-                    }
-                }
-            
-            
-            
-        }else{
-            print("You have not signed in.")
-        }
-        
-    }
+//    func getQuestionsOfUser(){
+//        
+//        if let user = auth.currentUser{
+//            let uid = user.uid
+//            let ref = db.collection("chat_history")
+//                .document(uid)
+//                .collection("questions")
+//            
+//
+//                ref.getDocuments{
+//                    (res, err) in
+//                    if let e = err{
+//                        print(e)
+//                    }else{
+//                        for document in res!.documents {
+//                            let tmp = document.data()
+//                            if String(describing: tmp["question"]) != "" {
+//                                let tmpConversation = Conversation(question: String(describing: tmp["question"] ?? ""), score: tmp["score"] as? Int ?? 0, answer: String(describing: tmp["answer"] ?? ""), time: tmp["time"] as? Date ?? Date())
+//                                
+//                                questionList.append(tmpConversation)
+//                                
+//                            }
+//                        }
+//                        
+//                    }
+//                }
+//            
+//            
+//            
+//        }else{
+//            print("You have not signed in.")
+//        }
+//        
+//    }
     
     
 //    // store a new record to the current user

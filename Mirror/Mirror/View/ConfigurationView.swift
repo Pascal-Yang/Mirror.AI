@@ -17,6 +17,7 @@ struct ConfigurationView : View {
     @State private var selectedIndex: Int = -1
     @Binding var selectedCompany: Company
     @Binding var currentPage: Int
+    @State var loading: Bool = false
 
     
     var body : some View{
@@ -118,12 +119,13 @@ struct ConfigurationView : View {
                         .cornerRadius(50)
                 }
                 .padding(.top, 30)
-//                .disabled(selectedIndex == -1)
-//                .opacity(selectedIndex != -1 ? 1.0 : 0.5)
-                
+
             }
 
         }
+        .overlay (
+            LoadingView(loading: loading)
+        )
         
     }
 }

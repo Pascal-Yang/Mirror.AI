@@ -38,7 +38,7 @@ struct ConversationBlockView: View {
             Text("Question: \(conversation.question)")
             Text("Answer: \(conversation.answer)")
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
         .padding(25)
         .background(Color("Purple1"))
         .cornerRadius(25)

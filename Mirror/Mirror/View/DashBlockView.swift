@@ -33,7 +33,7 @@ struct DashBlockView: View {
                     
                     Spacer()
 
-                    Image((FirebaseManager.shared.auth.currentUser != nil ? DataSource.secondUser.avatar : "myavatar"))
+                    Image((FirebaseManager.shared.auth.currentUser != nil ? DataSource.secondUser.avatar : "myAvatar"))
                         .resizable()
                         .frame(width: 60, height: 60)
                         .clipShape(Circle())
@@ -96,7 +96,7 @@ struct DashBlockView: View {
                     .fontWeight(.semibold)
                     .padding()
                     .foregroundColor(Color("Purple3"))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
                 
                 ScrollView(.horizontal, showsIndicators: false){
                     
@@ -142,7 +142,7 @@ struct DashBlockView: View {
                     .fontWeight(.semibold)
                     .padding()
                     .foregroundColor(Color("Purple3"))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
                 
                 ScrollView(.horizontal, showsIndicators: false){
                     

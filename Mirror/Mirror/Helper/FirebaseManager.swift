@@ -263,7 +263,7 @@ class FirebaseManager: NSObject{
                                                        question: docAsDict["question"] as? String ?? "Empty Question",
                                                        score: docAsDict["score"] as? String ?? "N/A",
                                                        answer: docAsDict["answer"] as? String ?? "Empty Answer",
-                                                       time: docAsDict["time"] as? Date ?? Date())
+                                                       time: (docAsDict["time"] as? Timestamp)? .dateValue() ?? Date())
 //                        print(curQuestion)
                         ret.append(curQuestion)
                     }

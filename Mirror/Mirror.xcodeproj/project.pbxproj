@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D48EAE629E5A70B00D7D2CE /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D48EAE529E5A70B00D7D2CE /* ChartView.swift */; };
+		1D48EAE929E5AE7300D7D2CE /* AxisContribution in Frameworks */ = {isa = PBXBuildFile; productRef = 1D48EAE829E5AE7300D7D2CE /* AxisContribution */; };
+		1D48EAEB29E5BD6C00D7D2CE /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D48EAEA29E5BD6C00D7D2CE /* LaunchScreenViewController.swift */; };
 		1D4AF9AE29E30DB200DA362C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AF9AD29E30DB200DA362C /* ProfileView.swift */; };
 		1D4AF9B029E33B4D00DA362C /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AF9AF29E33B4D00DA362C /* ConversationView.swift */; };
 		1D6007B129A816CD00E439D6 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6007B029A816CD00E439D6 /* ConfigurationView.swift */; };
@@ -52,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D48EAE529E5A70B00D7D2CE /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		1D48EAEA29E5BD6C00D7D2CE /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		1D4AF9AD29E30DB200DA362C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1D4AF9AF29E33B4D00DA362C /* ConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
 		1D6007B029A816CD00E439D6 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
@@ -99,6 +104,7 @@
 			files = (
 				1DA31B5329DFE24B00114D94 /* AxisTabView in Frameworks */,
 				45E0D0EA29C4C8E90076713A /* FirebaseAuth in Frameworks */,
+				1D48EAE929E5AE7300D7D2CE /* AxisContribution in Frameworks */,
 				45E0D0EC29C4C8E90076713A /* FirebaseFirestore in Frameworks */,
 				45E0D0F029C4C8E90076713A /* FirebaseStorage in Frameworks */,
 				45E0D0EE29C4C8E90076713A /* FirebaseFirestoreSwift in Frameworks */,
@@ -182,6 +188,8 @@
 				1DAE235D29DFEE4800898BEA /* DataView.swift */,
 				1D4AF9AD29E30DB200DA362C /* ProfileView.swift */,
 				1D4AF9AF29E33B4D00DA362C /* ConversationView.swift */,
+				1D48EAE529E5A70B00D7D2CE /* ChartView.swift */,
+				1D48EAEA29E5BD6C00D7D2CE /* LaunchScreenViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -224,6 +232,7 @@
 				45E0D0EF29C4C8E90076713A /* FirebaseStorage */,
 				467B068929D0E04400F66C9F /* RadioGroup */,
 				1DA31B5229DFE24B00114D94 /* AxisTabView */,
+				1D48EAE829E5AE7300D7D2CE /* AxisContribution */,
 			);
 			productName = ChatViewTutorial;
 			productReference = 3045530523E6702D00F41AF3 /* Mirror.app */;
@@ -257,6 +266,7 @@
 				45E0D0E829C4C8E90076713A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				467B068829D0E04400F66C9F /* XCRemoteSwiftPackageReference "RadioGroup" */,
 				1DA31B5129DFE24B00114D94 /* XCRemoteSwiftPackageReference "AxisTabView" */,
+				1D48EAE729E5AE7300D7D2CE /* XCRemoteSwiftPackageReference "AxisContribution" */,
 			);
 			productRefGroup = 3045530623E6702D00F41AF3 /* Products */;
 			projectDirPath = "";
@@ -290,6 +300,7 @@
 				1D79C12A29D369630037D5A1 /* IntroSlide.swift in Sources */,
 				1D4AF9B029E33B4D00DA362C /* ConversationView.swift in Sources */,
 				1D726D1629E085C50063830F /* Conversation.swift in Sources */,
+				1D48EAEB29E5BD6C00D7D2CE /* LaunchScreenViewController.swift in Sources */,
 				46652B2129B56AE3008D18E4 /* MsgBtnsView.swift in Sources */,
 				1D6007B329A8172200E439D6 /* DashboardView.swift in Sources */,
 				1DD1188629A85E4700F57759 /* DashBlockView.swift in Sources */,
@@ -315,6 +326,7 @@
 				3045532823E6BDF300F41AF3 /* KeyboardResponder.swift in Sources */,
 				3045532A23E6C9B900F41AF3 /* ContentMessageView.swift in Sources */,
 				3045530B23E6702D00F41AF3 /* SceneDelegate.swift in Sources */,
+				1D48EAE629E5A70B00D7D2CE /* ChartView.swift in Sources */,
 				3045530D23E6702D00F41AF3 /* ChatView.swift in Sources */,
 				1DA31B5529DFE50F00114D94 /* TabView.swift in Sources */,
 				1DDD32DA2998BA1400BE16DC /* Constants.swift in Sources */,
@@ -504,6 +516,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1D48EAE729E5AE7300D7D2CE /* XCRemoteSwiftPackageReference "AxisContribution" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jasudev/AxisContribution";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
 		1DA31B5129DFE24B00114D94 /* XCRemoteSwiftPackageReference "AxisTabView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jasudev/AxisTabView.git";
@@ -531,6 +551,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1D48EAE829E5AE7300D7D2CE /* AxisContribution */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D48EAE729E5AE7300D7D2CE /* XCRemoteSwiftPackageReference "AxisContribution" */;
+			productName = AxisContribution;
+		};
 		1DA31B5229DFE24B00114D94 /* AxisTabView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1DA31B5129DFE24B00114D94 /* XCRemoteSwiftPackageReference "AxisTabView" */;

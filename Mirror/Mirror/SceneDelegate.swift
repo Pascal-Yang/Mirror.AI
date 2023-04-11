@@ -18,13 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         
         let loginView = LoginPage()
-        //        let chatView = ChatView()
-        let DashboardView = DashboardView(selectedCompany: Companies.Default)
+        let launchScreen = LaunchScreenView()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: loginView.environmentObject(chatHelper))
+            window.rootViewController = UIHostingController(rootView: launchScreen.environmentObject(chatHelper))
             self.window = window
             window.makeKeyAndVisible()
         }

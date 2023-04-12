@@ -112,7 +112,9 @@ struct ChatView: View {
             chatHelper.clearMessages()
             chatHelper.configureChatroom(ConfigParam)
         }.onDisappear{
-            FirebaseManager.shared.startNewQuestion(job: "", question: currentQues, answer: currentAns, score: currentScore)
+            if currentQues.trimmingCharacters(in: [" "]).count > 0{
+                FirebaseManager.shared.startNewQuestion(job: "", question: currentQues, answer: currentAns, score: currentScore)
+            }
         }.overlay(
             LoadingView(loading: loading)
         ).navigationBarBackButtonHidden(true)

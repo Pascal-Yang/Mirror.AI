@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "axiscontribution",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/jasudev/AxisContribution",
-      "state" : {
-        "revision" : "dd794264fe7f4c265e05bc0867370ed587e27279",
-        "version" : "0.5.0"
-      }
-    },
-    {
       "identity" : "axistabview",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/jasudev/AxisTabView.git",

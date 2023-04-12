@@ -14,50 +14,52 @@ struct LaunchScreenView: View {
     @State var imageScale: Double = 0.5
 
     var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(LinearGradient(
-                    gradient: Gradient(colors: [Color("Purple3"), Color.white]),
-                    startPoint: .top,
-                    endPoint: .center
-                ))
-                .edgesIgnoringSafeArea(.all)
-
-            VStack {
-                Spacer()
+        NavigationView{
+            NavigationLink(destination: LoginPage().environmentObject(chatHelper), isActive: $isLoginViewPresented) {
+            ZStack {
+                Rectangle()
+                    .fill(LinearGradient(
+                        gradient: Gradient(colors: [Color("Purple3"), Color.white]),
+                        startPoint: .top,
+                        endPoint: .center
+                    ))
+                    .edgesIgnoringSafeArea(.all)
                 
-                Image("appName")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.white)
-                    .scaleEffect(imageScale)
-                    .onAppear {
-                        withAnimation(Animation.easeInOut(duration: 1.0).repeatForever()) {
-                            imageScale = 0.55
+                VStack {
+                    Spacer()
+                    
+                    Image("appName")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(.white)
+                        .scaleEffect(imageScale)
+                        .onAppear {
+                            withAnimation(Animation.easeInOut(duration: 1.0).repeatForever()) {
+                                imageScale = 0.55
+                            }
                         }
-                    }
-                    .padding(.top, 80)
+                        .padding(.top, 80)
+                    
+                    Spacer()
+                    
+                    TypingAnimationView(text: "Introducing Mirror, the AI Interviewer App designed to help you ace your next interview! With Mirror, you can get a realistic mock practice of real interview questions, and receive real-time feedback from artificial intelligence on your performance.")
+                        .padding(.bottom, 80)
+                    
+                    Text("Tap to continue")
+                        .italic()
+                        .foregroundColor(Color("Grey3"))
+                }
+                .padding(.top, 100)
+                .padding(.bottom, 80)
                 
-                Spacer()
-                                
-                TypingAnimationView(text: "Introducing Mirror, the AI Interviewer App designed to help you ace your next interview! With Mirror, you can get a realistic mock practice of real interview questions, and receive real-time feedback from artificial intelligence on your performance.")
-                    .padding(.bottom, 80)
-                
-                Text("Tap to continue")
-                    .italic()
-                    .foregroundColor(Color("Grey3"))
             }
-            .padding(.top, 100)
-            .padding(.bottom, 80)
+            .onTapGesture {
+                withAnimation {
+                    isLoginViewPresented = true
+                }
+            }
+            }
 
-        }
-        .onTapGesture {
-            withAnimation {
-                isLoginViewPresented = true
-            }
-        }
-        .fullScreenCover(isPresented: $isLoginViewPresented) {
-            LoginPage().environmentObject(chatHelper)
         }
     }
 }

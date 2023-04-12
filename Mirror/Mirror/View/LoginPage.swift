@@ -26,144 +26,140 @@ struct LoginPage: View {
     
 
     var body: some View {
-        
-        NavigationView{
+                    
+        ScrollView{
             
-            ScrollView{
+            VStack(spacing: 20){
+                Spacer()
                 
-                VStack(spacing: 20){
-                    Spacer()
-                    
-                    Text("Welcome!")
-                        .font(.system(size: 28))
-                        .fontWeight(.bold)
-                        .padding()
-                        .foregroundColor(Color("Purple3"))
-                    
-                    
-                    Picker(selection: $isLoginMode, label: Text("Picker is here")){
-                        Text("Login").tag(true)
-                        Text("Create Account").tag(false)
-                    }.pickerStyle(SegmentedPickerStyle())
-                    
-                    
-                    if !isLoginMode {
+                Text("Welcome!")
+                    .font(.system(size: 28))
+                    .fontWeight(.bold)
+                    .padding()
+                    .foregroundColor(Color("Purple3"))
+                
+                
+                Picker(selection: $isLoginMode, label: Text("Picker is here")){
+                    Text("Login").tag(true)
+                    Text("Create Account").tag(false)
+                }.pickerStyle(SegmentedPickerStyle())
+                
+                
+                if !isLoginMode {
 
-                        HStack {
-                            Button(action: {
-                                isButton1Selected = true
-                                isButton2Selected = false
-                                DataSource.secondUser.avatar = "myAvatar"
-                            }) {
-                                Image("myAvatar")
-                                    .resizable()
-                                    .frame(width: 60, height: 60)
-                                    .clipShape(Circle())
-                                    .overlay(
-                                        Circle().stroke(Color("Purple3"), lineWidth: isButton1Selected ? 3 : 0)
-                                    )
-                                    .padding(.top, 16)
-                            }
-                            Spacer().frame(width: 20)
-                            
-                            Button(action: {
-                                isButton1Selected = false
-                                isButton2Selected = true
-                                DataSource.secondUser.avatar = "myAvatar2"
-
-                            }) {
-                                Image("myAvatar2")
-                                    .resizable()
-                                    .frame(width: 60, height: 60)
-                                    .clipShape(Circle())
-                                    .overlay(
-                                        Circle().stroke(Color("Purple2"), lineWidth: isButton2Selected ? 3 : 0)
-                                    )
-                                    .padding(.top, 16)
-                            }
+                    HStack {
+                        Button(action: {
+                            isButton1Selected = true
+                            isButton2Selected = false
+                            DataSource.secondUser.avatar = "myAvatar"
+                        }) {
+                            Image("myAvatar")
+                                .resizable()
+                                .frame(width: 60, height: 60)
+                                .clipShape(Circle())
+                                .overlay(
+                                    Circle().stroke(Color("Purple3"), lineWidth: isButton1Selected ? 3 : 0)
+                                )
+                                .padding(.top, 16)
                         }
+                        Spacer().frame(width: 20)
                         
+                        Button(action: {
+                            isButton1Selected = false
+                            isButton2Selected = true
+                            DataSource.secondUser.avatar = "myAvatar2"
+
+                        }) {
+                            Image("myAvatar2")
+                                .resizable()
+                                .frame(width: 60, height: 60)
+                                .clipShape(Circle())
+                                .overlay(
+                                    Circle().stroke(Color("Purple2"), lineWidth: isButton2Selected ? 3 : 0)
+                                )
+                                .padding(.top, 16)
+                        }
                     }
                     
-                    // user name field in register page
-                    if !isLoginMode{
-                        TextField("User Name", text: $userName)
-                            .keyboardType(.emailAddress)
-                            .autocapitalization(.none)
-                            .padding(12)
-                    }
-                    
-                    TextField("Email", text: $email)
+                }
+                
+                // user name field in register page
+                if !isLoginMode{
+                    TextField("User Name", text: $userName)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
                         .padding(12)
-                    SecureField("Password", text: $password)
-                        .padding(12)
-                    
-                    VStack{
-                        Button{
-                            handleButton()
-                        }label: {
-                            HStack{
-                                Spacer()
-                                Text(isLoginMode ? "Log In" : "Create Account")
-                                    .foregroundColor(.white)
-                                    .padding(.vertical, 8)
-                                Spacer()
-                            }.background(Color("Purple3"))
-                        }
-                        .alert(isPresented: $displayAlert){
-                            Alert(
-                                title: Text("Error"),
-                                message: Text(alertMessage),
-                                dismissButton: .default(Text("OK"))
-                            )
-                        }
-                        .cornerRadius(10)
-                        
-                        Button("Continue as Guest") {
-                            isLogined = true
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        .foregroundColor(Color("Purple3"))
-                        .padding(.top, 20)
-                        .background(
-                            NavigationLink(destination: DashboardView(selectedCompany: Companies.Google), isActive: $isLogined) {
-                                EmptyView()
-                            }
-                        )
-                        
-                        Spacer()
-
-                        
+                }
+                
+                TextField("Email", text: $email)
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+                    .padding(12)
+                SecureField("Password", text: $password)
+                    .padding(12)
+                
+                VStack{
+                    Button{
+                        handleButton()
+                    }label: {
+                        HStack{
+                            Spacer()
+                            Text(isLoginMode ? "Log In" : "Create Account")
+                                .foregroundColor(.white)
+                                .padding(.vertical, 8)
+                            Spacer()
+                        }.background(Color("Purple3"))
                     }
+                    .alert(isPresented: $displayAlert){
+                        Alert(
+                            title: Text("Error"),
+                            message: Text(alertMessage),
+                            dismissButton: .default(Text("OK"))
+                        )
+                    }
+                    .cornerRadius(10)
+                    
+                    Button("Continue as Guest") {
+                        isLogined = true
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .foregroundColor(Color("Purple3"))
+                    .padding(.top, 20)
                     .background(
-                        NavigationLink(destination: DashboardView(selectedCompany: Companies.Google), isActive: $isLogined){
+                        NavigationLink(destination: DashboardView(selectedCompany: Companies.Google), isActive: $isLogined) {
                             EmptyView()
                         }
                     )
                     
-                }
-                .padding()
-                .onAppear(perform: {
-                    //VoiceOver.shared.speak("Hello, Hello, Helloooooo!")
-                    if isLogined{
-                        do{
-                            try FirebaseManager.shared.auth.signOut()
-                        }catch{
-                            print(error)
-                        }
-                        isLogined = false
-                        email = ""
-                        password = ""
-                    }
+                    Spacer()
+
                     
-                })
+                }
+                .background(
+                    NavigationLink(destination: DashboardView(selectedCompany: Companies.Google), isActive: $isLogined){
+                        EmptyView()
+                    }
+                )
                 
             }
+            .padding()
+            .onAppear(perform: {
+                //VoiceOver.shared.speak("Hello, Hello, Helloooooo!")
+                if isLogined{
+                    do{
+                        try FirebaseManager.shared.auth.signOut()
+                    }catch{
+                        print(error)
+                    }
+                    isLogined = false
+                    email = ""
+                    password = ""
+                }
+                
+            })
             
         }
-        
+                    
     }
     
     private func handleButton(){

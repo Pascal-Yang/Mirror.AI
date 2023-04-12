@@ -21,7 +21,7 @@ struct LoadingView: View {
                     Text("Loading...")
                         .font(.footnote)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: .infinity)
                 .background(Color.black.opacity(0.5))
             } else {
                 EmptyView()

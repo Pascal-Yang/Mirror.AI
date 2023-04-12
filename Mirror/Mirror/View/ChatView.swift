@@ -44,7 +44,7 @@ struct ChatView: View {
                                             }
                     }
                 }
-                .frame(width:.infinity)
+                .frame(width: UIScreen.main.bounds.width)
                 
                 HStack {
                     Button(action: {

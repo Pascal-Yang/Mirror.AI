@@ -10,8 +10,7 @@ import Foundation
 
 var globalQuestionList : [Conversation] = []
 
-struct Conversation : Identifiable {
-    var id = UUID()
+struct Conversation : Hashable {
     let question: String
     let score: String
     let answer: String
@@ -32,18 +31,22 @@ struct DummyConversationData {
         }
         return array
     }()
+    
+    static let ranDates: [Date] = {
+        var array: [Date] = []
+
+        for i in 0..<200 {
+            let randomTimeInterval = TimeInterval.random(in: 0...24192000)
+            let date = Date(timeIntervalSinceNow: -randomTimeInterval)
+            array.append(date)
+        }
+        
+        return array
+    }()
 }
 
-extension Conversation: Hashable {
-    static func == (lhs: Conversation, rhs: Conversation) -> Bool {
-        lhs.id == rhs.id
-    }
 
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-}
-
+// for counting question left today
 func countConversationsToday(conversations: [Conversation]) -> Int {
     let today = Calendar.current.startOfDay(for: Date())
     let filteredConversations = conversations.filter {

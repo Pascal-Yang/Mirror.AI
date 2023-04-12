@@ -265,7 +265,10 @@ class FirebaseManager: NSObject{
                                                        answer: docAsDict["answer"] as? String ?? "Empty Answer",
                                                        time: (docAsDict["time"] as? Timestamp)? .dateValue() ?? Date())
 //                        print(curQuestion)
-                        ret.append(curQuestion)
+                        if curQuestion.answer.count > 0{
+                            ret.append(curQuestion)
+                        }
+                        
                     }
 //                    print("fetch finished => ",ret)
                     completion(ret)

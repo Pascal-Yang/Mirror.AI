@@ -16,15 +16,33 @@ struct DataView : View {
     var body : some View{
 
         // TODO: fetch from storage instead of using dummy
-
+        
         ZStack{
             convView
                 .onAppear(){
                     
                     print(globalQuestionList)
+
+                    //convView = ConversationScrollView(conversations: globalQuestionList)
+                    
                     loading = true
-                    convView = ConversationScrollView(conversations: globalQuestionList)
-                    loading = false
+                    FirebaseManager.shared.getQuestionsWithCallBack{result in
+                        globalQuestionList = result
+                        convView = ConversationScrollView(conversations: globalQuestionList)
+                        loading = false
+                    }
+//                    DispatchQueue.global(qos: .background).async {
+//                        FirebaseManager.shared.getQuestionsOfUser()
+//                        sleep(3)
+//                        DispatchQueue.main.async {
+//                            convView = ConversationScrollView(conversations: questionList)
+//                            globalQuestionList = questionList
+//                            loading = false
+//                        }
+//                    }
+                    
+                    //        ConversationBarChartView(conversations: DummyConversationData.conversations)
+
                 }
                 .onDisappear(){
                     questionList = []

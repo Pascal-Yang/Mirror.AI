@@ -57,8 +57,6 @@ class FirebaseManager: NSObject{
         }
     }
     
-
-    
     func getQuestionPerDayWithCallBack(completion: @escaping (Int)->Void){
         if let user = auth.currentUser{
             let uid = user.uid
@@ -144,6 +142,11 @@ class FirebaseManager: NSObject{
                 "time": Timestamp(date: Date())
             ]
             
+            print("======== Doc Data =========")
+            print(docData)
+            print("======== Doc Data =========")
+            
+            
             var ref: DocumentReference? = nil
             ref = db.collection("chat_history")
                 .document(uid)
@@ -157,10 +160,7 @@ class FirebaseManager: NSObject{
                     //update current question id
                     if let doc = ref{
                         self.currentQuestionID = doc.documentID
-//                        print("start")
-//                        print(currentHis)
                         for arr in currentHis{
-                           
                             //addHistoryToCurrentQuestion(role: arr["role"] as! String, content: arr["content"] as! String)
                             let tmpData: [String:Any] = [
                                 "role":arr["role"] as! String,

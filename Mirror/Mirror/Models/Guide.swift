@@ -14,6 +14,22 @@ struct Guide {
     let img: String
 }
 
+let dashboard = Guide(description: "Initiate a mock interview with mirror by selecting one of the options.",
+                        title: "Dashboard",
+                        img: "dashboard")
+
+let history = Guide(description: "Click on the 'Calendar' tab to view a list of your practice problem history.",
+                        title: "Practice History",
+                        img: "history")
+
+let chart = Guide(description: "Click on the 'Chart' tab to view your practice trend.",
+                        title: "Practice Trend",
+                        img: "chart")
+
+let profile = Guide(description: "Click on your profile image to switch your animal avatar. Update the number of questions you want to practice per day by entering a value in the text field.",
+                        title: "Profile Setting",
+                        img: "profile")
+
 let config = Guide(description: "Start by configuring your interview room by selecting from given parameters.",
                         title: "Practice Setting",
                         img: "config")
@@ -26,4 +42,4 @@ let record = Guide(description: "To start answering the question, simply hit the
                         title: "Record Answer",
                         img: "recordMic")
 
-let introSlides: [Guide] = [config, chatButton, record]
+let introSlides: [Guide] = [dashboard, config, chatButton, record, history, chart, profile]

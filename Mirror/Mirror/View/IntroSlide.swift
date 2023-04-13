@@ -20,16 +20,23 @@ struct IntroSlide : View {
         
         VStack {
                         
-            VStack (alignment: .center) {
-                                
-                Image(page.img)
-                    .resizable()
-                    .scaledToFit()
-                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
-                    .frame(width: 200)
-                    .foregroundColor(Color(.white))
-                    .padding(.bottom, 20)
+            VStack (alignment: .leading) {
                 
+                HStack{
+                    Spacer()
+
+                    Image(page.img)
+                        .resizable()
+                        .scaledToFit()
+                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
+                        .frame(width: 200)
+                        .foregroundColor(Color(.white))
+                        .padding(.bottom, 20)
+                    
+                    Spacer()
+
+                }
+
                 HStack{
                     Text(page.title)
                         .foregroundColor(Color("Purple3"))

@@ -31,11 +31,11 @@ struct IntroFlow : View {
                 // transits to next config page if not last
                 Button(action: {
                     withAnimation (.easeInOut(duration: 1.0)) {
-                        self.currentPage = (self.currentPage + 1) % pages.count
+                        self.currentPage = (self.currentPage + 1) % introSlides.count
                     }
                 }) {
     
-                    if self.currentPage != pages.count - 1{
+                    if self.currentPage != introSlides.count - 1{
                         
                         
                         Text("Continue")

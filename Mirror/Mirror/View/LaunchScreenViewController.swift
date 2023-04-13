@@ -76,7 +76,7 @@ struct TypingAnimationView: View {
             .frame(height: 100)
             .padding(.horizontal, 40)
             .padding(.vertical, 25)
-            .onAppear {
+            .onAppear() {
                 var index:String.Index = text.startIndex
                 animatedText = ""
                 currentIndex = 0
@@ -89,6 +89,13 @@ struct TypingAnimationView: View {
                         timer.invalidate()
                     }
                 }
+                
+                index = text.startIndex
+                
+            }
+            .onDisappear() {
+                animatedText = ""
+                currentIndex = 0
             }
     }
 }

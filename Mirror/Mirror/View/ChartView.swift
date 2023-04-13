@@ -14,32 +14,60 @@ struct ChartView : View {
 
     @State var rowSize:CGFloat = 30.0
     @State var rowImageName:String = "square.fill"
-    
+    @State var dateList:[Date] = globalQuestionList.compactMap { $0.time }
+    @State var loading: Bool = false
+
     var body : some View{
-        VStack{
-            AxisContribution(constant: .init(axisMode: .vertical), source: DummyConversationData.ranDates){ indexSet, data in
-                Image(systemName: rowImageName)
-                    .foregroundColor(Color("Grey1"))
-                    .font(.system(size: rowSize))
-                    .frame(width: rowSize, height: rowSize)
-            } foreground: { indexSet, data in
-                Image(systemName: rowImageName)
-                    .foregroundColor(Color("Purple3"))
-                    .font(.system(size: rowSize))
-                    .frame(width: rowSize, height: rowSize)
-            }
-            .onAppear(){
-                print(DummyConversationData.ranDates)
-            }
+
+        ZStack{
             
-            PickerView(rowSize: $rowSize, rowImageName: $rowImageName)
+            if DataSource.secondUser.name != "Guest" {
+                VStack{
+                    AxisContribution(constant: .init(axisMode: .vertical), source: dateList){ indexSet, data in
+                        Image(systemName: rowImageName)
+                            .foregroundColor(Color("Grey1"))
+                            .font(.system(size: rowSize))
+                            .frame(width: rowSize, height: rowSize)
+                    } foreground: { indexSet, data in
+                        Image(systemName: rowImageName)
+                            .foregroundColor(Color("Purple3"))
+                            .font(.system(size: rowSize))
+                            .frame(width: rowSize, height: rowSize)
+                    }
+                    .onAppear(){
+                        print(dateList)
+                        
+                        loading = true
+                        FirebaseManager.shared.getQuestionsWithCallBack{result in
+                            globalQuestionList = result
+                            dateList = globalQuestionList.compactMap { $0.time }
+                            loading = false
+                        }
+                        
+                    }
+                    
+                    PickerView(rowSize: $rowSize, rowImageName: $rowImageName)
+                }
+                .padding(20)
+                .padding(.bottom, 80)
+                
+                
+                LoadingView(loading: loading)
+                
+            } else {
+                
+                Text("Please log in to view")
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .padding()
+                    .foregroundColor(Color("Purple3"))
+            }
         }
-        .padding(20)
-        .padding(.bottom, 80)
 
     }
     
 }
+
 
 struct PickerView: View {
     

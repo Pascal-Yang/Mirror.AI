@@ -356,7 +356,7 @@
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "7D056689-D03F-4A15-A006-72D69A95F301 - fea224c25b92ab8d"
+                  uuid = "7D056689-D03F-4A15-A006-72D69A95F301 - fea224c25b92ab01"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -366,12 +366,12 @@
                   urlString = "file:///Users/zhiyitang/Desktop/cs/cse_439/mirror_new/cse-439-final-project-mirror/Mirror/Mirror/View/LaunchScreenViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80"
-                  offsetFromSymbolStart = "24">
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "437">
                </Location>
                <Location
-                  uuid = "7D056689-D03F-4A15-A006-72D69A95F301 - 660c47cc27665eb0"
+                  uuid = "7D056689-D03F-4A15-A006-72D69A95F301 - 660c47cc27665e9f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -381,11 +381,27 @@
                   urlString = "file:///Users/zhiyitang/Desktop/cs/cse_439/mirror_new/cse-439-final-project-mirror/Mirror/Mirror/View/LaunchScreenViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "100">
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "107">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1469AF30-C5B7-4C10-964E-50E5DC426A45"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mirror/Helper/FirebaseManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "startNewQuestion(job:question:answer:score:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

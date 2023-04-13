@@ -115,6 +115,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D4F449129E7C2CF00037305 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				1D79C12729D369180037D5A1 /* IntroFlow.swift */,
+				1D79C12929D369630037D5A1 /* IntroSlide.swift */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
+		1D4F449229E7C2F900037305 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				1DA31B5429DFE50F00114D94 /* TabView.swift */,
+				1D4F449329E7C31900037305 /* Dashboard */,
+				1D4F449729E7C3DF00037305 /* History */,
+				1D4AF9AD29E30DB200DA362C /* ProfileView.swift */,
+				1D48EAE529E5A70B00D7D2CE /* ChartView.swift */,
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
+		1D4F449329E7C31900037305 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				1D6007B229A8172200E439D6 /* DashboardView.swift */,
+				1DD1188529A85E4600F57759 /* DashBlockView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		1D4F449429E7C33600037305 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				46652B2029B56AE3008D18E4 /* MsgBtnsView.swift */,
+				3045530C23E6702D00F41AF3 /* ChatView.swift */,
+				3045532223E6B8DE00F41AF3 /* MessageView.swift */,
+				3045532923E6C9B900F41AF3 /* ContentMessageView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		1D4F449529E7C37600037305 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				1D6007B029A816CD00E439D6 /* ConfigurationView.swift */,
+				1DD1188929A8690B00F57759 /* ConfigFlowView.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		1D4F449629E7C3BC00037305 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				4515FABB29D0FE14001A884A /* LaunchScreen.storyboard */,
+				1D48EAEA29E5BD6C00D7D2CE /* LaunchScreenViewController.swift */,
+				45E0D0F129C4CB250076713A /* LoginPage.swift */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		1D4F449729E7C3DF00037305 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				1DAE235D29DFEE4800898BEA /* DataView.swift */,
+				1D4AF9AF29E33B4D00DA362C /* ConversationView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		304552FC23E6702D00F41AF3 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +205,7 @@
 			children = (
 				3045532623E6BDCE00F41AF3 /* Helper */,
 				3045532123E6B82B00F41AF3 /* View */,
+				1DA318A029D2901C0049C159 /* Loading.swift */,
 				3045531C23E670FE00F41AF3 /* Models */,
 				3045530823E6702D00F41AF3 /* AppDelegate.swift */,
 				3045530A23E6702D00F41AF3 /* SceneDelegate.swift */,
@@ -171,25 +241,11 @@
 		3045532123E6B82B00F41AF3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3045530C23E6702D00F41AF3 /* ChatView.swift */,
-				3045532223E6B8DE00F41AF3 /* MessageView.swift */,
-				3045532923E6C9B900F41AF3 /* ContentMessageView.swift */,
-				45E0D0F129C4CB250076713A /* LoginPage.swift */,
-				1D6007B029A816CD00E439D6 /* ConfigurationView.swift */,
-				1DD1188929A8690B00F57759 /* ConfigFlowView.swift */,
-				1D6007B229A8172200E439D6 /* DashboardView.swift */,
-				4515FABB29D0FE14001A884A /* LaunchScreen.storyboard */,
-				46652B2029B56AE3008D18E4 /* MsgBtnsView.swift */,
-				1DA318A029D2901C0049C159 /* Loading.swift */,
-				1D79C12729D369180037D5A1 /* IntroFlow.swift */,
-				1D79C12929D369630037D5A1 /* IntroSlide.swift */,
-				1DA31B5429DFE50F00114D94 /* TabView.swift */,
-				1DD1188529A85E4600F57759 /* DashBlockView.swift */,
-				1DAE235D29DFEE4800898BEA /* DataView.swift */,
-				1D4AF9AD29E30DB200DA362C /* ProfileView.swift */,
-				1D4AF9AF29E33B4D00DA362C /* ConversationView.swift */,
-				1D48EAE529E5A70B00D7D2CE /* ChartView.swift */,
-				1D48EAEA29E5BD6C00D7D2CE /* LaunchScreenViewController.swift */,
+				1D4F449629E7C3BC00037305 /* Launch */,
+				1D4F449229E7C2F900037305 /* Tab */,
+				1D4F449129E7C2CF00037305 /* Guide */,
+				1D4F449529E7C37600037305 /* Config */,
+				1D4F449429E7C33600037305 /* Chat */,
 			);
 			path = View;
 			sourceTree = "<group>";

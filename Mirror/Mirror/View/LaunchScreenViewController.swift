@@ -73,12 +73,16 @@ struct TypingAnimationView: View {
         Text(animatedText)
             .font(.system(size: 13))
             .foregroundColor(Color("Grey3"))
-            .frame(height: 80)
+            .frame(height: 100)
             .padding(.horizontal, 40)
             .padding(.vertical, 25)
             .onAppear {
+                var index:String.Index = text.startIndex
+                animatedText = ""
+                currentIndex = 0
+                
                 Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-                    let index = text.index(text.startIndex, offsetBy: currentIndex)
+                    index = text.index(text.startIndex, offsetBy: currentIndex)
                     animatedText += String(text[index])
                     currentIndex += 1
                     if currentIndex == text.count {

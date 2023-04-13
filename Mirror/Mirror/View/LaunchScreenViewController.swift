@@ -74,21 +74,31 @@ struct TypingAnimationView: View {
             .font(.system(size: 13))
             .foregroundColor(Color("Grey3"))
             .frame(height: 100)
+            .multilineTextAlignment(.leading)
             .padding(.horizontal, 40)
             .padding(.vertical, 25)
-            .onAppear {
+            .onAppear() {
                 var index:String.Index = text.startIndex
                 animatedText = ""
                 currentIndex = 0
                 
                 Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
                     index = text.index(text.startIndex, offsetBy: currentIndex)
-                    animatedText += String(text[index])
-                    currentIndex += 1
-                    if currentIndex == text.count {
-                        timer.invalidate()
+                    if text.indices.contains(index) {
+                        animatedText += String(text[index])
+                        currentIndex += 1
+                        if currentIndex == text.count {
+                            timer.invalidate()
+                        }
                     }
                 }
+                
+                index = text.startIndex
+                
+            }
+            .onDisappear() {
+                animatedText = ""
+                currentIndex = 0
             }
     }
 }

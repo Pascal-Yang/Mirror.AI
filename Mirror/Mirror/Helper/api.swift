@@ -29,7 +29,14 @@ func mergeWithChatHistory(prompt: String, chatHistory: [[String:Any]]) -> [[Stri
 
 // Function for making a request to OpenAI's Chatgpt API and returning the response
 func makeRequestGPT(chatHistory: [[String:Any]], isQues: Bool = false, completion: @escaping (Result<String, Error>) -> Void) {
-    let apiKey = ProcessInfo.processInfo.environment["API_KEY"]
+//    let apiKey = ProcessInfo.processInfo.environment["API_KEY"]
+    
+    var apiKey = ""
+    
+    // TODO: to store in firebase
+    if let getapiKey = Bundle.main.infoDictionary?["MyAPIKey"] as? String {
+        apiKey = getapiKey
+    }
     // Set up request with required headers and parameters
     let url = URL(string: "https://api.openai.com/v1/chat/completions")!
 

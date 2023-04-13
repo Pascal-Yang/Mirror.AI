@@ -30,10 +30,10 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "makeRequestGPT(chatHistory:isQues:completion:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -46,10 +46,10 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "fetchCompletion(prompt:)"
-            landmarkType = "9">
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -62,8 +62,8 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "fetchCompletion(prompt:)"
             landmarkType = "9">
             <Locations>
@@ -110,9 +110,9 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "makeRequestGPT(chatHistory:completion:)"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "makeRequestGPT(chatHistory:isQues:completion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -126,9 +126,9 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "makeRequestGPT(chatHistory:completion:)"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "makeRequestGPT(chatHistory:isQues:completion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -142,9 +142,9 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "makeRequestGPT(chatHistory:completion:)"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "makeRequestGPT(chatHistory:isQues:completion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -158,9 +158,9 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "makeRequestGPT(chatHistory:completion:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "makeRequestGPT(chatHistory:isQues:completion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -174,9 +174,9 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "makeRequestGPT(chatHistory:completion:)"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "makeRequestGPT(chatHistory:isQues:completion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -190,9 +190,9 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "makeRequestGPT(chatHistory:completion:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "makeRequestGPT(chatHistory:isQues:completion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -206,9 +206,9 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "makeRequestGPT(chatHistory:completion:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "makeRequestGPT(chatHistory:isQues:completion:)"
             landmarkType = "9">
             <Locations>
                <Location
@@ -254,9 +254,9 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "fetchData(prompt:)"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "makeRequest(request:completion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -286,9 +286,9 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "makeRequestGPT(chatHistory:completion:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "makeRequestGPT(chatHistory:isQues:completion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -302,9 +302,9 @@
             filePath = "Mirror/Helper/api.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "makeRequestGPT(chatHistory:completion:)"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "makeRequestGPT(chatHistory:isQues:completion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -350,13 +350,13 @@
             filePath = "Mirror/View/LaunchScreenViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "7D056689-D03F-4A15-A006-72D69A95F301 - fea224c25b92ab8d"
+                  uuid = "7D056689-D03F-4A15-A006-72D69A95F301 - fea224c25b92ab01"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -366,12 +366,12 @@
                   urlString = "file:///Users/zhiyitang/Desktop/cs/cse_439/mirror_new/cse-439-final-project-mirror/Mirror/Mirror/View/LaunchScreenViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80"
-                  offsetFromSymbolStart = "24">
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "437">
                </Location>
                <Location
-                  uuid = "7D056689-D03F-4A15-A006-72D69A95F301 - 660c47cc27665eb0"
+                  uuid = "7D056689-D03F-4A15-A006-72D69A95F301 - 660c47cc27665e9f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -381,11 +381,27 @@
                   urlString = "file:///Users/zhiyitang/Desktop/cs/cse_439/mirror_new/cse-439-final-project-mirror/Mirror/Mirror/View/LaunchScreenViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "100">
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "107">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1469AF30-C5B7-4C10-964E-50E5DC426A45"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mirror/Helper/FirebaseManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "startNewQuestion(job:question:answer:score:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

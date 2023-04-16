@@ -42,7 +42,7 @@ func makeRequestGPT(chatHistory: [[String:Any]], isQues: Bool = false, completio
 
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
-    request.addValue("Bearer \(apiKey ?? "")", forHTTPHeaderField: "Authorization")
+    request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
     let parameters = [

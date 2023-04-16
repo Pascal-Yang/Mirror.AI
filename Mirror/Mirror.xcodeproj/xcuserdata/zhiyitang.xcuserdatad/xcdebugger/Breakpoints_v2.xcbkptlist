@@ -258,6 +258,38 @@
             endingLineNumber = "143"
             landmarkName = "makeRequest(request:completion:)"
             landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "69B1A528-AB63-49D1-8F0B-EA07F7DDCDA8 - 7f0dfc9bfc80e18b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mirror.makeRequest(request: Mirror.Request, completion: (Swift.Result&lt;Mirror.Response, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Mirror"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhiyitang/Desktop/cs/cse_439/mirror_new/cse-439-final-project-mirror/Mirror/Mirror/Helper/api.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "1395">
+               </Location>
+               <Location
+                  uuid = "69B1A528-AB63-49D1-8F0B-EA07F7DDCDA8 - 7f0dfc9bfc80e18b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mirror.makeRequest(request: Mirror.Request, completion: (Swift.Result&lt;Mirror.Response, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Mirror"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhiyitang/Desktop/cs/cse_439/mirror_new/cse-439-final-project-mirror/Mirror/Mirror/Helper/api.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "1548">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -392,7 +424,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1469AF30-C5B7-4C10-964E-50E5DC426A45"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mirror/Helper/FirebaseManager.swift"

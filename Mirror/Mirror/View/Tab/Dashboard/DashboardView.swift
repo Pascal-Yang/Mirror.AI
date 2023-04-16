@@ -22,9 +22,11 @@ struct DashboardView: View {
             VStack {
             
                 CustomTabView()
+                    .ignoresSafeArea(.keyboard) // use the ignoresSafeArea(.keyboard) modifier
+
                 
             }.onAppear(){
-                if let tempUserName = FirebaseManager.shared.auth.currentUser?.email {
+                if (FirebaseManager.shared.auth.currentUser?.email) != nil {
                     
                 } else {
                     DataSource.secondUser.name = "Guest";

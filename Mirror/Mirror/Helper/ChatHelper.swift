@@ -16,7 +16,7 @@ class ChatHelper : ObservableObject {
         var score = "0";
         
         print("evaluation process:")
-        var pendingMessage = chatMessage.content
+        let pendingMessage = chatMessage.content
         print(pendingMessage)
         
         //If pendingMessage is one of the preset message of msgbtnsview, don't evaluate it

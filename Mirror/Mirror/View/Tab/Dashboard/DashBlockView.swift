@@ -63,7 +63,7 @@ struct DashBlockView: View {
                                 .fontWeight(.bold)
                                 .padding(.leading, 30)
                             
-                            Text("\(max(DataSource.secondUser.quesPerDay - countConversationsToday(conversations: questionList), 0))")
+                            Text("\(max(DataSource.secondUser.quesPerDay - countConversationsToday(conversations: globalQuestionList), 0))")
                                 .foregroundColor(Color(.white))
                                 .font(.largeTitle)
                                 .fontWeight(.bold)

@@ -46,6 +46,30 @@ class FirebaseManager: NSObject{
         }
     }
     
+    func deleteCurrentUser(completion: @escaping ()->Void){
+        if let currentUser = auth.currentUser{
+            
+            db.collection("chat_history").document(currentUser.uid).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("User \(currentUser.email) chat-history successfully removed!")
+                    
+                    currentUser.delete(){err in
+                        if let e = err{
+                            print(e)
+                        }else{
+                            print("user deleted")
+                            completion()
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+    }
+    
     func setQuestionPerDay(value:Int, uid:String){
         let docRef = db.collection("chat_history").document(uid)
         docRef.setData(["questionPerDay":value], merge:true){err in

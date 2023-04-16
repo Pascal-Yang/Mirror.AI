@@ -15,6 +15,9 @@ struct ProfileView : View {
     @State private var avatar: String = DataSource.secondUser.avatar
     @State private var quesPerDay: String = "\(DataSource.secondUser.quesPerDay)"
     @State var circleOpacity: Double = 0.0
+    @State var userDeleted = false
+    
+    @Environment(\.presentationMode) var presentationMode
 
     
     var body : some View{
@@ -92,6 +95,17 @@ struct ProfileView : View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(width: 100)
                 }
+                
+                // delete user account
+                if FirebaseManager.shared.auth.currentUser != nil{
+                    Button("Delete Account"){
+                        FirebaseManager.shared.deleteCurrentUser(){
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                        
+                    }
+                }
+                
                 
             }
             

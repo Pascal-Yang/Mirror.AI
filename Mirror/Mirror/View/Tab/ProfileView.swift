@@ -99,15 +99,11 @@ struct ProfileView : View {
                 // delete user account
                 if FirebaseManager.shared.auth.currentUser != nil{
                     Button("Delete Account"){
-                        FirebaseManager.shared.deleteCurrentUser()
-                        self.presentationMode.wrappedValue.dismiss()
-                        userDeleted = true
-                    }
-                    .background(
-                        NavigationLink(destination: LoginPage(), isActive: $userDeleted){
-                            EmptyView()
+                        FirebaseManager.shared.deleteCurrentUser(){
+                            self.presentationMode.wrappedValue.dismiss()
                         }
-                    )
+                        
+                    }
                 }
                 
                 

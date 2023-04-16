@@ -46,7 +46,7 @@ class FirebaseManager: NSObject{
         }
     }
     
-    func deleteCurrentUser(){
+    func deleteCurrentUser(completion: @escaping ()->Void){
         if let currentUser = auth.currentUser{
             
             db.collection("chat_history").document(currentUser.uid).delete() { err in
@@ -60,6 +60,7 @@ class FirebaseManager: NSObject{
                             print(e)
                         }else{
                             print("user deleted")
+                            completion()
                         }
                     }
                 }

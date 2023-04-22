@@ -110,22 +110,24 @@ struct ConfigurationView : View {
             // if on last configuration page, show "Start Practicing" button
             if self.currentPage == pages.count - 1 {
                 
-                NavigationLink(destination: ChatView()) {
-                    Text("Start Practicing")
-                        .foregroundColor(.white)
-                        .padding()
-                        .font(.system(size: 15, weight: .medium))
-                        .background(Color("Purple3"))
-                        .cornerRadius(50)
-                }
-                .padding(.top, 30)
+                LottieView(name: "98263-robot", loopMode: .loop)
+                    .scaleEffect(0.7)
+                    .onAppear(){
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            // Set loading to false to hide the progress view and trigger the navigation
+                            loading = true
+                        }
+                    }
 
+                NavigationLink(destination: ChatView(), isActive: $loading) {
+                    EmptyView()
+                }
+                .hidden()
+                
             }
 
         }
-        .overlay (
-            LoadingView(loading: loading)
-        )
+    
         
     }
 }

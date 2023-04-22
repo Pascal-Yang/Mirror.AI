@@ -174,8 +174,7 @@ struct DashBlockView: View {
                                 .background(Color(.systemGroupedBackground))
                                 .cornerRadius(25)
                             }
-                            
-                            
+        
                         }
                     }
                 }

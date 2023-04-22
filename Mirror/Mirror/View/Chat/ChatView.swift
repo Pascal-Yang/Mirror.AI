@@ -10,7 +10,6 @@ struct ChatView: View {
         
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    
     @State var typingMessage: String = ""
     @EnvironmentObject var chatHelper: ChatHelper
     @ObservedObject private var keyboard = KeyboardResponder()
@@ -22,6 +21,9 @@ struct ChatView: View {
     @State var questionClicked: Bool = false
     
     @State var loading: Bool = false
+    
+    @State private var showPopup: Bool = false
+    @State private var popupMessage: String = ""
     
     @State private var timeRemaining = -1
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -59,7 +61,7 @@ struct ChatView: View {
                             timeRemaining = -1
                             loading = true
                             DispatchQueue.global(qos: .background).async {
-                                chatHelper.sendMessage(Message(content: myRecognizer.getCurrentTranscript(), user: DataSource.secondUser, fromAPI: false))
+//                                chatHelper.sendMessage(Message(content: myRecognizer.getCurrentTranscript(), user: DataSource.secondUser, fromAPI: false))
 
                                 DispatchQueue.main.async {
                                     loading = false
@@ -67,6 +69,9 @@ struct ChatView: View {
                             }
                             self.isRecording = false
                             myRecognizer.audioEngine.stop()
+                            
+                            popupMessage = myRecognizer.getCurrentTranscript()
+                            showPopup = true
                             
                         } else {
                             // if not recording, start recording
@@ -148,6 +153,9 @@ struct ChatView: View {
             }
             
         }.overlay(
+            showPopup ? PopupView(popupMessage: $popupMessage, showPopup: $showPopup, sendMessage: sendMessage) : nil
+        )
+        .overlay(
             LoadingView(loading: loading)
         ).navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {

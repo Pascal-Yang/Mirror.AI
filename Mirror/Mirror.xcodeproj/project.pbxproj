@@ -54,6 +54,7 @@
 		45E0D0F229C4CB250076713A /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E0D0F129C4CB250076713A /* LoginPage.swift */; };
 		45E0D0F429C624F70076713A /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E0D0F329C624F70076713A /* FirebaseManager.swift */; };
 		46652B2129B56AE3008D18E4 /* MsgBtnsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46652B2029B56AE3008D18E4 /* MsgBtnsView.swift */; };
+		466EF90029F47B0C00247D42 /* popupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466EF8FF29F47B0C00247D42 /* popupView.swift */; };
 		467B068A29D0E04400F66C9F /* RadioGroup in Frameworks */ = {isa = PBXBuildFile; productRef = 467B068929D0E04400F66C9F /* RadioGroup */; };
 		CBBFF4FA29A3F89A00062598 /* api.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBFF4F929A3F89900062598 /* api.swift */; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		45E0D0F129C4CB250076713A /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		45E0D0F329C624F70076713A /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		46652B2029B56AE3008D18E4 /* MsgBtnsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgBtnsView.swift; sourceTree = "<group>"; };
+		466EF8FF29F47B0C00247D42 /* popupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popupView.swift; sourceTree = "<group>"; };
 		CBBFF4F929A3F89900062598 /* api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +162,7 @@
 				3045530C23E6702D00F41AF3 /* ChatView.swift */,
 				3045532223E6B8DE00F41AF3 /* MessageView.swift */,
 				3045532923E6C9B900F41AF3 /* ContentMessageView.swift */,
+				466EF8FF29F47B0C00247D42 /* popupView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBBFF4FA29A3F89A00062598 /* api.swift in Sources */,
+				466EF90029F47B0C00247D42 /* popupView.swift in Sources */,
 				1D79C12A29D369630037D5A1 /* IntroSlide.swift in Sources */,
 				1D4AF9B029E33B4D00DA362C /* ConversationView.swift in Sources */,
 				1D726D1629E085C50063830F /* Conversation.swift in Sources */,

@@ -22,7 +22,7 @@ struct LoadingView: View {
                         .font(.footnote)
                 }
                 .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: .infinity)
-                .background(Color.black.opacity(0.5))
+                .background(Color.black.opacity(0.5).ignoresSafeArea())
             } else {
                 EmptyView()
             }

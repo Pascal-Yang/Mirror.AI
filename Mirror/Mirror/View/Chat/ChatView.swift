@@ -143,7 +143,10 @@ struct ChatView: View {
             if currentQues.trimmingCharacters(in: [" "]).count > 0{
                 FirebaseManager.shared.startNewQuestion(job: "", question: currentQues, answer: currentAns, score: currentScore)
             }
-            myRecognizer.audioEngine.stop()
+            if myRecognizer != nil {
+                myRecognizer.audioEngine.stop()
+            }
+            
         }.overlay(
             LoadingView(loading: loading)
         ).navigationBarBackButtonHidden(true)

@@ -15,28 +15,37 @@ struct IntroSlide : View {
     
     let page: Guide
     @Binding var currentPage: Int
-
+    
     var body : some View{
         
         VStack {
-                        
+            
             VStack (alignment: .leading) {
                 
                 HStack{
                     Spacer()
-
-                    Image(page.img)
-                        .resizable()
-                        .scaledToFit()
-                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
-                        .frame(width: 200)
-                        .foregroundColor(Color(.white))
-                        .padding(.bottom, 20)
                     
+                    Group {
+                        
+                        if (currentPage == introSlides.count - 1) {
+                            LottieView(name: "79793-guy-talking-to-robot-ai-help", loopMode: .loop)
+                                .scaleEffect(0.2)
+                                .frame(height: 200)
+                        } else {
+                            Image(page.img)
+                                .resizable()
+                                .scaledToFit()
+                                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
+                                .frame(width: 200)
+                                .foregroundColor(Color(.white))
+                                .padding(.bottom, 20)
+                            
+                        }
+                        
+                    }
                     Spacer()
-
                 }
-
+                    
                 HStack{
                     Text(page.title)
                         .foregroundColor(Color("Purple3"))
@@ -56,9 +65,10 @@ struct IntroSlide : View {
                 
             }
             .padding()
-
+            
         }
         
     }
 }
+
 

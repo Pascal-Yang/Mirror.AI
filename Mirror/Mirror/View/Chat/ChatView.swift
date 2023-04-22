@@ -44,6 +44,9 @@ struct ChatView: View {
                                             // Only display MessageView if the message content is not empty
                                             if !msg.content.isEmpty {
                                                 MessageView(currentMessage: msg, hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, loading: $loading)
+                                                    .onTapGesture(){
+                                                        VoiceOver.shared.speak(msg.content.replacingOccurrences(of: "\n", with: " "))
+                                                    }
                                             }
                     }
                 }

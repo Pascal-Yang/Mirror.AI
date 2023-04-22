@@ -15,6 +15,7 @@ class VoiceOver{
     let synthesizer = AVSpeechSynthesizer()
 
     func speak(_ text: String) {
+        print("speanking: \(text)")
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         utterance.rate = 0.4

@@ -23,6 +23,9 @@ struct ChatView: View {
     
     @State var loading: Bool = false
     
+    @State private var timeRemaining = -1
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     init() {
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().tableFooterView = UIView()
@@ -50,7 +53,7 @@ struct ChatView: View {
                     Button(action: {
                         // if currently recording, end and send
                         if isRecording {
-
+                            timeRemaining = -1
                             loading = true
                             DispatchQueue.global(qos: .background).async {
                                 chatHelper.sendMessage(Message(content: myRecognizer.getCurrentTranscript(), user: DataSource.secondUser, fromAPI: false))
@@ -64,6 +67,7 @@ struct ChatView: View {
                             
                         } else {
                             // if not recording, start recording
+                            timeRemaining = 45
                             myRecognizer = recognizer()
                             do {
                                 myRecognizer.getPermission()
@@ -75,8 +79,29 @@ struct ChatView: View {
                         }
                     }) {
                         HStack {
-                            Image(systemName: isRecording ? "mic.fill" : "mic.slash.fill")
-                                .foregroundColor(isRecording ? .white : Color("Grey4"))
+                            if isRecording{
+                                Text("Time: \(timeRemaining)").onReceive(timer) { time in
+                                    if timeRemaining > 0 {
+                                        timeRemaining -= 1
+                                    }else if timeRemaining == 0{
+                                        timeRemaining = -1
+                                        loading = true
+                                        DispatchQueue.global(qos: .background).async {
+                                            chatHelper.sendMessage(Message(content: myRecognizer.getCurrentTranscript(), user: DataSource.secondUser, fromAPI: false))
+                                            
+                                            DispatchQueue.main.async {
+                                                loading = false
+                                            }
+                                        }
+                                        isRecording = false
+                                        myRecognizer.audioEngine.stop()
+                                    }
+                                }
+                            }else{
+                                Image(systemName: isRecording ? "mic.fill" : "mic.slash.fill")
+                                    .foregroundColor(isRecording ? .white : Color("Grey4"))
+                            }
+                           
                         }
                         .padding()
                         .frame(minWidth:350, minHeight: 40)
@@ -115,6 +140,7 @@ struct ChatView: View {
             if currentQues.trimmingCharacters(in: [" "]).count > 0{
                 FirebaseManager.shared.startNewQuestion(job: "", question: currentQues, answer: currentAns, score: currentScore)
             }
+            myRecognizer.audioEngine.stop()
         }.overlay(
             LoadingView(loading: loading)
         ).navigationBarBackButtonHidden(true)

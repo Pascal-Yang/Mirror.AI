@@ -54,7 +54,7 @@ struct IntroFlow : View {
                         Button(action: {
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
-                            Text("Done")
+                            Text("Get Started!")
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.white)
                                 .padding(.vertical, 10)

@@ -15,6 +15,7 @@
 		1D6007B129A816CD00E439D6 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6007B029A816CD00E439D6 /* ConfigurationView.swift */; };
 		1D6007B329A8172200E439D6 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6007B229A8172200E439D6 /* DashboardView.swift */; };
 		1D726D1629E085C50063830F /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D726D1529E085C50063830F /* Conversation.swift */; };
+		1D79730E29F36CCC007583C2 /* 79793-guy-talking-to-robot-ai-help.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D79730D29F36CCC007583C2 /* 79793-guy-talking-to-robot-ai-help.json */; };
 		1D79C12829D369180037D5A1 /* IntroFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D79C12729D369180037D5A1 /* IntroFlow.swift */; };
 		1D79C12A29D369630037D5A1 /* IntroSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D79C12929D369630037D5A1 /* IntroSlide.swift */; };
 		1D79C12E29D3701B0037D5A1 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D79C12D29D3701B0037D5A1 /* Guide.swift */; };
@@ -65,6 +66,7 @@
 		1D6007B029A816CD00E439D6 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		1D6007B229A8172200E439D6 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		1D726D1529E085C50063830F /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		1D79730D29F36CCC007583C2 /* 79793-guy-talking-to-robot-ai-help.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "79793-guy-talking-to-robot-ai-help.json"; sourceTree = "<group>"; };
 		1D79C12729D369180037D5A1 /* IntroFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFlow.swift; sourceTree = "<group>"; };
 		1D79C12929D369630037D5A1 /* IntroSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSlide.swift; sourceTree = "<group>"; };
 		1D79C12D29D3701B0037D5A1 /* Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		1DFE179D29F35C4100C36991 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				1D79730D29F36CCC007583C2 /* 79793-guy-talking-to-robot-ai-help.json */,
 				1DFE17A029F35F1200C36991 /* 98263-robot.json */,
 				1DFE179E29F35C5000C36991 /* LottieVIew.swift */,
 			);
@@ -357,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DFE17A129F35F1200C36991 /* 98263-robot.json in Resources */,
+				1D79730E29F36CCC007583C2 /* 79793-guy-talking-to-robot-ai-help.json in Resources */,
 				3045531223E6703300F41AF3 /* Preview Assets.xcassets in Resources */,
 				4515FABC29D0FE14001A884A /* LaunchScreen.storyboard in Resources */,
 				3045530F23E6703300F41AF3 /* Assets.xcassets in Resources */,

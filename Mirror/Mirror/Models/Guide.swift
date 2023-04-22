@@ -42,4 +42,7 @@ let record = Guide(description: "To start answering the question, simply hit the
                         title: "Record Answer",
                         img: "recordMic")
 
-let introSlides: [Guide] = [dashboard, config, chatButton, record, history, chart, profile]
+let start = Guide(description: "", title: "",
+                        img: " ")
+
+let introSlides: [Guide] = [dashboard, config, chatButton, record, history, chart, profile, start]

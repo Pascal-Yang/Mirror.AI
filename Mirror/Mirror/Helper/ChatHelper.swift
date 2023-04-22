@@ -30,9 +30,7 @@ class ChatHelper : ObservableObject {
                 realTimeMessages.append(new)
                 didChange.send(())
             }
-            
         }
-
         
         //If pendingMessage is a user response, evaluate it
         else{

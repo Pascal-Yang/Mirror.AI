@@ -17,7 +17,8 @@ struct ConfigFlowView : View {
     
     @State private var currentPage = 0
     @State var selectedCompany: Company
-    
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
         
         VStack {
@@ -54,6 +55,9 @@ struct ConfigFlowView : View {
             .padding()
             .onAppear{
                 ConfigParam = [:]
+            }
+            .onDisappear(){
+                presentationMode.wrappedValue.dismiss()
             }
     
         }

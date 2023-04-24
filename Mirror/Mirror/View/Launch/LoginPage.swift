@@ -120,6 +120,8 @@ struct LoginPage: View {
                     .cornerRadius(10)
                     
                     Button("Continue as Guest") {
+                        DataSource.secondUser.name = "Guest"
+                        DataSource.secondUser.quesPerDay = 20
                         isLogined = true
                     }
                     .buttonStyle(PlainButtonStyle())

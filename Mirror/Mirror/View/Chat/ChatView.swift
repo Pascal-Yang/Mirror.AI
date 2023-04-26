@@ -47,11 +47,7 @@ struct ChatView: View {
                                             if !msg.content.isEmpty {
                                                 MessageView(currentMessage: msg, hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, isRecording: $isRecording, loading: $loading)
                                                     .onTapGesture() {
-                                                        if !self.isRecording {
-                                                            VoiceOver.shared.speak(msg.content.replacingOccurrences(of: "\n", with: " "))
-                                                        } else {
-                                                            VoiceOver.shared.stop()
-                                                        }
+                                                        VoiceOver.shared.speak(msg.content.replacingOccurrences(of: "\n", with: " "))
                                                     }
                                             }
                     }

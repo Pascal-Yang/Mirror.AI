@@ -7,9 +7,16 @@ struct PopupView: View {
     let sendMessage: () -> Void
     @State private var isLoading = false
     @State private var isButtonDisabled = false
-    @State private var isTextEditorEmpty = true
+    @State private var isTextEditorEmpty: Bool
     @State private var showAlert = false
     @State private var isButtonPressed = false
+
+    init(popupMessage: Binding<String>, showPopup: Binding<Bool>, sendMessage: @escaping () -> Void) {
+        self._popupMessage = popupMessage
+        self._showPopup = showPopup
+        self.sendMessage = sendMessage
+        self._isTextEditorEmpty = State(initialValue: popupMessage.wrappedValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+    }
 
     var body: some View {
         ZStack {

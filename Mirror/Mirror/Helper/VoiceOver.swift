@@ -21,6 +21,11 @@ class VoiceOver{
         utterance.rate = 0.4
         self.synthesizer.speak(utterance)
     }
+    
+    func stop() {
+        synthesizer.stopSpeaking(at: .immediate)
+    }
+
 }
 
 

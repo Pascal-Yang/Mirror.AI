@@ -6,6 +6,10 @@ struct PopupView: View {
     @Binding var showPopup: Bool
     let sendMessage: () -> Void
     @State private var isLoading = false
+    @State private var isButtonDisabled = false
+    @State private var isTextEditorEmpty = true
+    @State private var showAlert = false
+    @State private var isButtonPressed = false
 
     var body: some View {
         ZStack {
@@ -22,39 +26,62 @@ struct PopupView: View {
                         RoundedRectangle(cornerRadius: 15)
                             .stroke(Color.white, lineWidth: 1)
                     )
+                    .onChange(of: popupMessage) { text in
+                        isTextEditorEmpty = text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                    }
                 
                 Spacer()
                 
                 Button(action: sendButtonTapped) {
-                    Text("send")
+                    Text(showAlert ? "Entry cannot be empty" : "send")
                         .fontWeight(.semibold)
                         .padding(.vertical, 10)
                         .frame(maxWidth: .infinity)
-                        .background(isLoading ? Color("Purple2") : Color("Purple3"))
+                        .background(
+                            showAlert ? Color.orange :
+                            isButtonPressed ? Color("Purple2") :
+                            Color("Purple3")
+                        )
                         .foregroundColor(.white)
                         .cornerRadius(15)
                 }
                 .frame(maxWidth: .infinity)
                 .buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, 16)
+                .disabled(isButtonDisabled)
+                .scaleEffect(showAlert ? 1.05 : 1)
+                .animation(.easeInOut(duration: 0.1))
+                .simultaneousGesture(LongPressGesture(minimumDuration: .infinity)
+                    .onChanged { _ in isButtonPressed = true }
+                    .onEnded { _ in isButtonPressed = false }
+                )
             }
             .padding()
             .frame(width: 320, height: 260)
             .background(Color("Grey1"))
             .cornerRadius(25)
         }
-        .overlay(
-            LoadingView(loading: isLoading)
-        )
     }
     
     private func sendButtonTapped() {
-        isLoading = true
-        let editedMessage = Message(content: popupMessage, user: DataSource.secondUser, fromAPI: false)
-        chatHelper.sendMessage(editedMessage)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            isLoading = false
-            showPopup = false
+        if isTextEditorEmpty {
+            showAlert = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                showAlert = false
+                isButtonPressed = false // Reset the button state after the alert is dismissed
+            }
+        } else {
+            isButtonDisabled = true
+            isLoading = true
+            let editedMessage = Message(content: popupMessage, user: DataSource.secondUser, fromAPI: false)
+            chatHelper.sendMessage(editedMessage)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                isLoading = false
+                showPopup = false
+            }
         }
+        
+        isButtonPressed = false // Reset the button state after it is pressed
     }
 }
+

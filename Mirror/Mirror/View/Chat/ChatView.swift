@@ -28,6 +28,8 @@ struct ChatView: View {
     @State private var timeRemaining = -1
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    @State private var isSpeaking = false
+
     init() {
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().tableFooterView = UIView()
@@ -47,15 +49,23 @@ struct ChatView: View {
                                             if !msg.content.isEmpty {
                                                 MessageView(currentMessage: msg, hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, isRecording: $isRecording, loading: $loading)
                                                     .onTapGesture() {
-                                                        VoiceOver.shared.speak(msg.content.replacingOccurrences(of: "\n", with: " "))
+                                                    
+ //                                                       VoiceOver.shared.speak(msg.content.replacingOccurrences(of: "\n", with: " "))
+                                                        if isSpeaking {
+                                                            VoiceOver.shared.stop()
+                                                        } else {
+                                                            VoiceOver.shared.speak(msg.content.replacingOccurrences(of: "\n", with: " "))
+                                                            // VoiceOver.shared.speak("heyheyhey")
+                                                        }
+                                                        isSpeaking.toggle()
+                                                    }
+                                                    .onAppear() {
+                                                        isSpeaking = false
                                                     }
                                             }
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width)
-                .onTapGesture {
-                    VoiceOver.shared.stop()
-                }
                 
                 HStack {
                     Button(action: {

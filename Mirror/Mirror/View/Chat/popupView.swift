@@ -10,6 +10,7 @@ struct PopupView: View {
     @State private var isTextEditorEmpty: Bool
     @State private var showAlert = false
     @State private var isButtonPressed = false
+    @State private var isSendButtonClicked = false
 
     init(popupMessage: Binding<String>, showPopup: Binding<Bool>, sendMessage: @escaping () -> Void) {
         self._popupMessage = popupMessage
@@ -78,10 +79,13 @@ struct PopupView: View {
                 isButtonPressed = false // Reset the button state after the alert is dismissed
             }
         } else {
-            isButtonDisabled = true
+            guard !isSendButtonClicked else { return } // Prevent multiple clicks
+            
+            isSendButtonClicked = true // Set this flag after the first click
             isLoading = true
             let editedMessage = Message(content: popupMessage, user: DataSource.secondUser, fromAPI: false)
             chatHelper.sendMessage(editedMessage)
+            sendMessage() // Call the external sendMessage function
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 isLoading = false
                 showPopup = false
@@ -90,5 +94,6 @@ struct PopupView: View {
         
         isButtonPressed = false // Reset the button state after it is pressed
     }
+    
 }
 

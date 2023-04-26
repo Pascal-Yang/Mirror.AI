@@ -10,6 +10,8 @@ struct MessageView : View {
     @Binding var hintClicked: Bool
     @Binding var answerClicked: Bool
     @Binding var questionClicked: Bool
+    @Binding var isRecording: Bool
+
     
     @State private var showButtons: Bool = true
     @Binding var loading: Bool
@@ -56,12 +58,13 @@ struct MessageView : View {
             
             if currentMessage.fromAPI == true && showButtons {
                 MsgBtnsView(hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, isHintClicked: hintClicked, isAnswerClicked: answerClicked, isPlusClicked: questionClicked, showButtons: $showButtons, loading: $loading)
-//                Text("Tap message to listen")
-//                    .font(.caption)
-//                    .foregroundColor(Color("Purple2"))
+                Text("Tap message to listen")
+                    .font(.caption)
+                    .foregroundColor(Color("Purple2"))
             }
             
         }
         .padding()
+        
     }
 }

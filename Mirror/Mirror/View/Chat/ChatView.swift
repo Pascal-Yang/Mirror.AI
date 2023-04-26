@@ -45,17 +45,25 @@ struct ChatView: View {
                     ForEach(chatHelper.realTimeMessages, id: \.self) { msg in
                                             // Only display MessageView if the message content is not empty
                                             if !msg.content.isEmpty {
-                                                MessageView(currentMessage: msg, hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, loading: $loading)
-                                                    .onTapGesture(){
-                                                        VoiceOver.shared.speak(msg.content.replacingOccurrences(of: "\n", with: " "))
+                                                MessageView(currentMessage: msg, hintClicked: $hintClicked, answerClicked: $answerClicked, questionClicked: $questionClicked, isRecording: $isRecording, loading: $loading)
+                                                    .onTapGesture() {
+                                                        if !self.isRecording {
+                                                            VoiceOver.shared.speak(msg.content.replacingOccurrences(of: "\n", with: " "))
+                                                        } else {
+                                                            VoiceOver.shared.stop()
+                                                        }
                                                     }
                                             }
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width)
+                .onTapGesture {
+                    VoiceOver.shared.stop()
+                }
                 
                 HStack {
                     Button(action: {
+                        VoiceOver.shared.stop()
                         // if currently recording, end and send
                         if isRecording {
                             timeRemaining = -1
@@ -161,6 +169,7 @@ struct ChatView: View {
         .navigationBarItems(leading: Button(action: {
             self.presentationMode.wrappedValue.dismiss()
             self.presentationMode.wrappedValue.dismiss()
+            VoiceOver.shared.stop()
         }) {
             Text("Back")
                 .fontWeight(.bold)
@@ -171,13 +180,10 @@ struct ChatView: View {
     
     
     func sendMessage() {
-        chatHelper.sendMessage(Message(content: typingMessage, user: DataSource.secondUser, fromAPI: false))
-        typingMessage = ""
         hintClicked = false
         answerClicked = false
         questionClicked = false
     }
-    
     
 }
 

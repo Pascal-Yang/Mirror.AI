@@ -61,8 +61,8 @@ struct CustomBackButton: View {
     }
 }
 
-struct DashboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        DashboardView(selectedCompany: Companies.Google)
-    }
-}
+//struct DashboardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DashboardView(selectedCompany: Companies.Google)
+//    }
+//}

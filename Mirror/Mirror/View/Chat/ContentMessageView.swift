@@ -17,9 +17,3 @@ struct ContentMessageView: View {
             .cornerRadius(10)
     }
 }
-
-struct ContentMessageView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentMessageView(contentMessage: "Hi, I am your friend", isCurrentUser: false)
-    }
-}

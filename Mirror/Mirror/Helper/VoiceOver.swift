@@ -10,23 +10,31 @@ import Foundation
 import AVFoundation
 import SwiftUI
 
-class VoiceOver{
+class VoiceOver {
     static let shared = VoiceOver()
-    let synthesizer = AVSpeechSynthesizer()
-
+    private let speechSynthesizer = AVSpeechSynthesizer()
+    private let audioSession = AVAudioSession.sharedInstance()
+    
     func speak(_ text: String) {
-        print("speanking: \(text)")
+        
+        do {
+            try audioSession.setCategory(.playback, mode: .default, options: [])
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            print("Error setting up audio session: \(error.localizedDescription)")
+            return
+        }
+        
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         utterance.rate = 0.4
-        self.synthesizer.speak(utterance)
+        
+        speechSynthesizer.speak(utterance)
     }
     
     func stop() {
-        synthesizer.stopSpeaking(at: .immediate)
+        speechSynthesizer.stopSpeaking(at: .immediate)
     }
-
 }
-
 
 
